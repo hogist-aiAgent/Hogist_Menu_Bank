@@ -150,7 +150,7 @@ export const CustomerFav = () => {
               }}
             >
               
-              <MenuCard title={menu.title} items={menu.items}  foodType={menu.foodType} />
+              <MenuCard title={menu.title} items={menu.items}  foodType={menu.foodType} image={menu.image} />
             </Box>
           ))
         ) : (

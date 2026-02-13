@@ -6,7 +6,7 @@ import { MenuHomePage } from '../pages/MenuHomePage';
 import { GetStarted } from '../pages/GetStarted/GetStarted';
 import { CustomerFav } from '../pages/CustomerFav/CustomerFav';
 import ScrollToTop from '../components/common/ScrollToTop';
-import { PrepareYourMenu } from '../pages/PrepareMenu/PrepareYourMenu';
+import PrepareYourMenu  from '../pages/PrepareMenu/PrepareYourMenu';
 
 const MainRoutes = () => {
     return (

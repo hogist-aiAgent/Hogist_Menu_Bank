@@ -1,140 +1,146 @@
 import {
   Card,
   Typography,
-  IconButton,
   Box,
-  Snackbar,
-  Alert,
 } from "@mui/material";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { useState } from "react";
+import defaultImage from "../../assets/gallery/industry.webp";
 
-const MenuCard = ({ title, items, foodType }) => {
-  const [open, setOpen] = useState(false);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(items.join("\n"));
-    setOpen(true);
-  };
+const MenuCard = ({ title, items, foodType, image }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const fullText = items.join(", ");
 
   return (
-    <>
-      <Card
+    <Card
+      sx={{
+        width: "100%",
+        borderRadius: 3,
+        position: "relative",
+        overflow: "hidden",
+        transition: "all 0.4s ease",
+      }}
+    >
+      {/* IMAGE */}
+      <Box
+        component="img"
+        src={image || defaultImage}
+        alt="menu"
         sx={{
           width: "100%",
-          height: 370,             
-          borderRadius: 3,
-          position: "relative",
-          overflow: "hidden",
+          height: 200,
+          objectFit: "cover",
+        }}
+      />
+
+      {/* VEG / NON-VEG INDICATOR (TOP RIGHT) */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 10,
+          right: 19,
+          width: 16,
+          height: 16,
+          border: `2px solid ${
+            foodType?.toUpperCase() === "VEG"
+              ? "#0f8a3b"
+              : "#ce0505"
+          }`,
+          borderRadius: "2px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#fff",
+          zIndex: 3,
         }}
       >
-        {/*  VEG / NON-VEG INDICATOR (TOP RIGHT) */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: 10,
-            right: 19,
-            width: 16,
-            height: 16,
-            border: `2px solid ${
-              foodType?.toUpperCase() === "VEG" ? "#0f8a3b" : "#ce0505"
-            }`,
-            borderRadius: "2px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#fff",
-            zIndex: 3,
-          }}
-        >
-  {foodType?.toUpperCase() === "VEG" ? (
-    
-    <Box
-      sx={{
-        width: 0,
-        height: 0,
-        borderLeft: "4px solid transparent",
-        borderRight: "4px solid transparent",
-        borderBottom: "7px solid #0f8a3b",
-      }}
-    />
-  ) : (
-    
-    <Box
-      sx={{
-        width: 0,
-        height: 0,
-        borderLeft: "4px solid transparent",
-        borderRight: "4px solid transparent",
-        borderBottom: "7px solid #ce0505",
-      }}
-    />
-  )}
-        </Box>
+        {foodType?.toUpperCase() === "VEG" ? (
+          <Box
+            sx={{
+              width: 0,
+              height: 0,
+              borderLeft: "4px solid transparent",
+              borderRight: "4px solid transparent",
+              borderBottom: "7px solid #0f8a3b",
+            }}
+          />
+        ) : (
+          <Box
+            sx={{
+              width: 0,
+              height: 0,
+              borderLeft: "4px solid transparent",
+              borderRight: "4px solid transparent",
+              borderBottom: "7px solid #ce0505",
+            }}
+          />
+        )}
+      </Box>
 
-
-        {/* COPY ICON */}
-        <IconButton
-          onClick={handleCopy}
-          sx={{
-            position: "absolute",
-            bottom: 8,
-            right: 8,
-            zIndex: 2,
-            backgroundColor: "#fff",
-          }}
-        >
-          <ContentCopyIcon fontSize="small" />
-        </IconButton>
-
-        {/* SCROLLABLE CONTENT */}
-        <Box
-          sx={{
-            height: "100%",
-            overflowY: "auto",
-            padding: "16px",
-            paddingBottom: "64px",
-            boxSizing: "border-box",
-            mt:3
-          }}
-        >
-          <Typography  component="p" fontWeight="bold" mb={1}>
-            {title}
-          </Typography>
-
-          {items.map((item, index) => (
-            <Typography key={index} component="p">
-              • {item}
-            </Typography>
-          ))}
-        </Box>
-      </Card>
-
-      {/* COPY CONFIRMATION (UNCHANGED) */}
-      <Snackbar
-        open={open}
-        autoHideDuration={1800}
-        onClose={() => setOpen(false)}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      {/* CONTENT */}
+      <Box
+        sx={{
+          p: 2.5,
+        }}
       >
-        <Alert
-          severity="success"
-          icon={false}
+        <Typography
+          component="p"
+          fontWeight="bold"
+          mb={1}
+        >
+          {title}
+        </Typography>
+
+        {/* DESCRIPTION */}
+        <Typography
+          component="p"
           sx={{
-            backgroundColor: "#fff",
-            color: "#333",
-            border: "1px solid #ddd",
-            fontSize: "12px",
-            padding: "4px 10px",
-            minWidth: "auto",
-            boxShadow: "none",
-            borderRadius: "10px",
+            fontSize: "14px",
+            color: "#555",
+            lineHeight: 1.6,
+            display: expanded ? "block" : "-webkit-box",
+            WebkitLineClamp: expanded ? "unset" : 1,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
           }}
         >
-          Menu copied
-        </Alert>
-      </Snackbar>
-    </>
+          {fullText}
+        </Typography>
+
+        {!expanded && fullText.length > 40 && (
+          <Typography
+            component="span"
+            onClick={() => setExpanded(true)}
+            sx={{
+              fontSize: "13px",
+              fontWeight: 600,
+              color: "#c60000",
+              cursor: "pointer",
+            }}
+          >
+            ... Read more
+          </Typography>
+        )}
+
+        {expanded && (
+          <Typography
+            component="span"
+            onClick={() => setExpanded(false)}
+            sx={{
+              display: "inline-block",
+              mt: 1,
+              fontSize: "13px",
+              fontWeight: 600,
+              color: "#c60000",
+              cursor: "pointer",
+            }}
+          >
+            Read less
+          </Typography>
+        )}
+      </Box>
+    </Card>
   );
 };
 

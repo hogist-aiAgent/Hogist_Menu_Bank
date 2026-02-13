@@ -1,117 +1,93 @@
+/* eslint-disable no-unused-vars */
+import React, { useState } from "react";
 import {
   Box,
   Typography,
+  Button,
+  Card,
   Breadcrumbs,
   Link,
-  Card,
-  Checkbox,
   Divider,
-  Button,
-  Snackbar,
-  Alert,
 } from "@mui/material";
-import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 import { prepareMenuData } from "../../components/data/prepareMenuData";
 
-/* ✅ VEG / NON-VEG INDICATOR (REFERENCE DESIGN) */
-const VegNonVegIndicator = ({ type }) => {
-  const isVeg = type?.toUpperCase() === "VEG";
+const PrepareYourMenu = () => {
+  const navigate = useNavigate();
 
-  return (
-    <Box
-      sx={{
-        width: 16,
-        height: 16,
-        border: `2px solid ${isVeg ? "#0f8a3b" : "#ce0505"}`,
-        borderRadius: "2px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "transparent",
-        mr: 1,
-      }}
-    >
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [activeCategory, setActiveCategory] = useState(
+    prepareMenuData[0]?.category
+  );
+
+  const currentCategory = prepareMenuData.find(
+    (cat) => cat.category === activeCategory
+  );
+
+  const allItems = [
+    ...(currentCategory?.veg || []).map((item) => ({
+      ...item,
+      type: "veg",
+    })),
+    ...(currentCategory?.nonVeg || []).map((item) => ({
+      ...item,
+      type: "nonVeg",
+    })),
+  ];
+
+  const handleAdd = (item) => {
+    if (!selectedItems.find((i) => i.name === item.name)) {
+      setSelectedItems([...selectedItems, item]);
+    }
+  };
+
+  const handleRemove = (item) => {
+    setSelectedItems(selectedItems.filter((i) => i.name !== item.name));
+  };
+
+  const isAdded = (item) => {
+    return selectedItems.find((i) => i.name === item.name);
+  };
+
+  const renderIndicator = (type, size = 16) => {
+    const isVeg = type === "veg";
+    return (
       <Box
         sx={{
-          width: 0,
-          height: 0,
-          borderLeft: "4px solid transparent",
-          borderRight: "4px solid transparent",
-          borderBottom: `7px solid ${isVeg ? "#0f8a3b" : "#ce0505"}`,
+          width: size,
+          height: size,
+          border: `2px solid ${isVeg ? "#2e7d32" : "#c62828"}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
-      />
-    </Box>
-  );
-};
-
-export const PrepareYourMenu = () => {
-  const navigate = useNavigate();
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
-  const [openCategory, setOpenCategory] = useState(null);
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [open, setOpen] = useState(false);
-
-  const dropdownRef = useRef(null);
-
-  const handleToggleItem = (event, item) => {
-    event.stopPropagation();
-    setSelectedItems((prev) =>
-      prev.includes(item)
-        ? prev.filter((i) => i !== item)
-        : [...prev, item]
+      >
+        {isVeg ? (
+          <Box
+            sx={{
+              borderLeft: `${size / 3}px solid transparent`,
+              borderRight: `${size / 3}px solid transparent`,
+              borderBottom: `${size / 2}px solid #2e7d32`,
+            }}
+          />
+        ) : (
+          <Box
+            sx={{
+              width: 0,
+              height: 0,
+              borderLeft: `${size / 3}px solid transparent`,
+              borderRight: `${size / 3}px solid transparent`,
+              borderBottom: `${size / 2}px solid #c62828`,
+            }}
+          />
+        )}
+      </Box>
     );
   };
 
-  const handleRemoveItem = (item) => {
-    setSelectedItems((prev) => prev.filter((i) => i !== item));
-  };
-
-  const getItemType = (item) => {
-    for (const cat of prepareMenuData) {
-      if (cat.veg?.includes(item)) return "VEG";
-      if (cat.nonVeg?.includes(item)) return "NONVEG";
-    }
-    return "OTHER";
-  };
-
-  const handleCopyMenu = async () => {
-    if (selectedItems.length === 0) return;
-
-    const formattedMenu = selectedItems
-      .map((item, index) => `${index + 1}. ${item}`)
-      .join("\n");
-
-    try {
-      await navigator.clipboard.writeText(formattedMenu);
-      setOpen(true);
-    } catch (err) {
-      console.error("Copy failed");
-    }
-  };
-
-  useEffect(() => {
-    if (openCategory && dropdownRef.current) {
-      const headerOffset = 100;
-      const elementPosition =
-        dropdownRef.current.getBoundingClientRect().top +
-        window.pageYOffset;
-      const offsetPosition = elementPosition - headerOffset;
-
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-    }
-  }, [openCategory]);
-
   return (
-    <Box sx={{ backgroundColor: "#fff", minHeight: "100vh", px: 2, py: 3 }}>
-      {/* BREADCRUMBS */}
+    <Box sx={{ px: 4, py: 3, backgroundColor: "#f6f6f6", minHeight: "100vh" }}>
       <Breadcrumbs sx={{ mb: 2 }}>
         <Link
           component="button"
@@ -123,51 +99,42 @@ export const PrepareYourMenu = () => {
         <Typography fontWeight={600}>Prepare Your Menu</Typography>
       </Breadcrumbs>
 
-      {/* TITLE */}
       <Typography
-       component="p"
         align="center"
-        fontWeight={800}
-        mb={4}
-        sx={{ fontSize: { xs: "24px", md: "36px" }, color: "#c60000" }}
+        sx={{
+          fontSize: { xs: 26, md: 36 },
+          fontWeight: 800,
+          color: "#c60000",
+          mb: 4,
+        }}
       >
         Prepare your Menu
       </Typography>
 
-      {/* CATEGORY BUTTONS */}
       <Box
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "center",
           gap: 2,
+          justifyContent: "center",
           mb: 5,
         }}
       >
         {prepareMenuData.map((cat) => (
           <Button
             key={cat.category}
-            onClick={() =>
-              setOpenCategory(
-                openCategory === cat.category ? null : cat.category
-              )
-            }
-            endIcon={
-              openCategory === cat.category ? (
-                <KeyboardArrowUpIcon />
-              ) : (
-                <KeyboardArrowDownIcon />
-              )
-            }
+            onClick={() => setActiveCategory(cat.category)}
             sx={{
-              width: { xs: "45%", sm: 180, md: 200 },
-              height: 48,
-              background: "linear-gradient(45deg,#ff4b2b,#c60000)",
-              color: "#fff",
+              background:
+                activeCategory === cat.category
+                  ? "linear-gradient(45deg,#ff4b2b,#c60000)"
+                  : "#fff",
+              color: activeCategory === cat.category ? "#fff" : "#c60000",
               borderRadius: "30px",
-              fontWeight: 600,
+              px: 3,
+              py: 1,
               textTransform: "none",
-              fontSize: { xs: "12px", md: "14px" },
+              fontWeight: 600,
               boxShadow: 2,
             }}
           >
@@ -176,205 +143,157 @@ export const PrepareYourMenu = () => {
         ))}
       </Box>
 
-      {/* DROPDOWN CARD */}
-      {prepareMenuData.map(
-        (cat) =>
-          openCategory === cat.category && (
-            <Box
-              key={cat.category}
-              ref={dropdownRef}
-              sx={{ display: "flex", justifyContent: "center", mb: 6 }}
+      <Box
+        sx={{
+          display: "flex",
+          gap: 4,
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
+        {/* LEFT SIDE */}
+        <Box sx={{ flex: 3 }}>
+          {allItems.map((item) => (
+            <Card
+              key={item.name}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                p: 2,
+                mb: 3,
+                borderRadius: 3,
+                boxShadow: 3,
+              }}
             >
-              <Card
-                sx={{
-                  width: { xs: "95%", sm: 380, md: 420 },
-                  borderRadius: 5,
-                  p: { xs: 2, md: 3 },
-                  border: "2px solid black",
-                }}
-              >
-                {/* VEG */}
-                {cat.veg.length > 0 && (
-                  <>
-                    <Box display="flex" alignItems="center" mb={1}>
-                      <VegNonVegIndicator type="VEG" />
-                      <Typography  component="p" fontWeight={600}>VEG</Typography>
-                    </Box>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+                <Box
+                  component="img"
+                  src={item.image}
+                  alt={item.name}
+                  sx={{
+                    width: 100,
+                    height: 80,
+                    borderRadius: 2,
+                    objectFit: "cover",
+                  }}
+                />
 
-                    {cat.veg.map((item) => (
-                      <Box
-                        key={item}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="space-between"
-                      >
-                        <Typography  component="p" sx={{fontSize:{xs:"12px",md:"14px"}}}>
-                          {item}
-                        </Typography>
-                        <Checkbox
-                          checked={selectedItems.includes(item)}
-                          onChange={(e) => handleToggleItem(e, item)}
-                        />
-                      </Box>
-                    ))}
+                <Box>
+                  <Typography fontWeight={700}>
+                    {item.name}
+                  </Typography>
+                  <Typography fontSize={14} color="#666">
+                    Fresh mix of ingredients
+                  </Typography>
+                </Box>
+              </Box>
 
-                    {cat.nonVeg.length > 0 && <Divider sx={{ my: 2 }} />}
-                  </>
-                )}
+              {/* RIGHT SIDE SECTION */}
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
+                {/* Indicator ABOVE button */}
+                {renderIndicator(item.type, 18)}
 
-                {/* NON VEG */}
-                {cat.nonVeg.length > 0 && (
-                  <>
-                    <Box display="flex" alignItems="center" mb={1}>
-                      <VegNonVegIndicator type="NONVEG" />
-                      <Typography  component="p" fontWeight={600}>NON VEG</Typography>
-                    </Box>
+                <Button
+                  onClick={() =>
+                    isAdded(item)
+                      ? handleRemove(item)
+                      : handleAdd(item)
+                  }
+                  sx={{
+                    backgroundColor: isAdded(item)
+                      ? "#2e7d32"
+                      : "#c60000",
+                    color: "#fff",
+                    borderRadius: 2,
+                    px: 3,
+                    textTransform: "none",
+                    fontWeight: 600,
+                  }}
+                >
+                  {isAdded(item) ? "✓ Added" : "+ Add"}
+                </Button>
+              </Box>
+            </Card>
+          ))}
+        </Box>
 
-                    {cat.nonVeg.map((item) => (
-                      <Box
-                        key={item}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="space-between"
-                      >
-                        <Typography  component="p" sx={{fontSize:{xs:"12px",md:"14px"}}}>
-                          {item}
-                        </Typography>
-                        <Checkbox
-                          checked={selectedItems.includes(item)}
-                          onChange={(e) => handleToggleItem(e, item)}
-                        />
-                      </Box>
-                    ))}
-                  </>
-                )}
-
-                {/* OTHER */}
-                {cat.other && cat.other.length > 0 && (
-                  <>
-                    {(cat.veg.length > 0 || cat.nonVeg.length > 0) && (
-                      <Divider sx={{ my: 2 }} />
-                    )}
-
-                    <Box display="flex" alignItems="center" mb={1}>
-                      <Box
-                        sx={{
-                          width: 12,
-                          height: 12,
-                          backgroundColor: "#555",
-                          mr: 1,
-                        }}
-                      />
-                      <Typography  component="p" fontWeight={600}>OTHER</Typography>
-                    </Box>
-
-                    {cat.other.map((item) => (
-                      <Box
-                        key={item}
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="space-between"
-                      >
-                        <Typography  component="p" sx={{fontSize:{xs:"12px",md:"14px"}}}>{item}</Typography>
-                        <Checkbox
-                          checked={selectedItems.includes(item)}
-                          onChange={(e) => handleToggleItem(e, item)}
-                        />
-                      </Box>
-                    ))}
-                  </>
-                )}
-              </Card>
-            </Box>
-          )
-      )}
-
-      {/* MY MENU CARD */}
-      {selectedItems.length > 0 && (
-        <Box
-          sx={{
-            position: { xs: "relative", md: "fixed" },
-            right: { md: 30 },
-            bottom: { md: 30 },
-            width: { xs: "100%", md: 300 },
-            mt: { xs: 3, md: 0 },
-          }}
-        >
+        {/* RIGHT SIDE CUSTOM MENU */}
+        <Box sx={{ flex: 1 }}>
           <Card
             sx={{
-              borderRadius: 5,
               p: 3,
-              border: "2px solid black",
-              backgroundColor: "#eee",
+              borderRadius: 4,
+              boxShadow: 4,
+              position: { md: "sticky" },
+              top: 100,
             }}
           >
             <Typography
-             component="p"
-              fontWeight={700}
-              align="center"
-              mb={2}
-              color="#c60000"
+              sx={{
+                fontWeight: 700,
+                mb: 2,
+                color: "#c60000",
+                fontSize: 18,
+              }}
             >
-              My Menu
+              My Custom Menu
             </Typography>
 
-            {selectedItems.map((item, index) => {
-              const type = getItemType(item);
+            {selectedItems.length === 0 && (
+              <Typography fontSize={14} color="#777" mb={2}>
+                No items added yet.
+              </Typography>
+            )}
 
-              return (
-                <Box
-                  key={item}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between"
-                  sx={{ mb: 1 }}
-                >
-                  <Box display="flex" alignItems="center">
-                    <VegNonVegIndicator type={type} />
-                    <Typography  component="p" sx={{ fontSize: "14px" }}>
-                      {index + 1}. {item}
-                    </Typography>
-                  </Box>
-
-                  <DeleteIcon
-                    sx={{ cursor: "pointer", fontSize: 18 }}
-                    onClick={() => handleRemoveItem(item)}
-                  />
-                </Box>
-              );
-            })}
-
-            <Box textAlign="center" mt={3}>
-              <Button
-                fullWidth
-                onClick={handleCopyMenu}
-                variant="contained"
+            {selectedItems.map((item) => (
+              <Box
+                key={item.name}
                 sx={{
-                  backgroundColor: "#c60000",
-                  color: "white",
-                  borderRadius: 3,
-                  textTransform: "none",
-                  fontWeight: 600,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  mb: 1.5,
                 }}
               >
-                Copy Menu
-              </Button>
-            </Box>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                  {renderIndicator(item.type, 14)}
+
+                  <Typography fontSize={14}>
+                    {item.name}
+                  </Typography>
+                </Box>
+
+                <DeleteIcon
+                  sx={{ cursor: "pointer", fontSize: 18 }}
+                  onClick={() => handleRemove(item)}
+                />
+              </Box>
+            ))}
+
+            <Divider sx={{ my: 2 }} />
+
+            <Typography fontSize={14} mb={2}>
+              Total Items: {selectedItems.length}
+            </Typography>
+
+            <Button
+              fullWidth
+              disabled={selectedItems.length === 0}
+              sx={{
+                background: "linear-gradient(45deg,#ff4b2b,#c60000)",
+                color: "#fff",
+                borderRadius: 3,
+                textTransform: "none",
+                fontWeight: 600,
+              }}
+            >
+              Copy Menu
+            </Button>
           </Card>
         </Box>
-      )}
-
-      {/* SNACKBAR */}
-      <Snackbar
-        open={open}
-        autoHideDuration={1800}
-        onClose={() => setOpen(false)}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert severity="success" icon={false}>
-          Menu copied
-        </Alert>
-      </Snackbar>
+      </Box>
     </Box>
   );
 };
+
+export default PrepareYourMenu;

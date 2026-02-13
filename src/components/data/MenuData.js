@@ -1,3 +1,6 @@
+import menu7 from "../../assets/gallery/menu7.jpeg";
+
+
 export const menuData = [
   // 1. BREAKFAST: Veg
   {
@@ -18,6 +21,7 @@ export const menuData = [
     category: "Breakfast",
     title: "Menu 7 – Breakfast (Veg)",
     foodType: "VEG",
+    image:menu7,
     items: [
       "Idly – 2",
       "Pongal – 1 Scoop",

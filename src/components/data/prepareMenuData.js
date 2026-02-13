@@ -1,310 +1,813 @@
+import dummyImage from "../../assets/gallery/industry.webp"
+
 export const prepareMenuData = [
   {
     category: "Welcome Drink",
     veg: [
-      "Lemon juice",
-      "Grape juice",
-      "Fruit punch",
+      {
+        name: "Lemon juice",
+        image: dummyImage,
+      },
+      {
+        name: "Grape juice",
+        image: dummyImage,
+      },
+      {
+        name: "Fruit punch",
+        image: dummyImage,
+      },
     ],
     nonVeg: [],
-    other:[
-      "Any other Welcome Drink"
-    ]
+    other: [
+      {
+        name: "Any other Welcome Drink",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Salad",
     veg: [
-      "Green salad",
-      "Tossed salad",
-      "Cucumber salad",
-      "Beans sprout salad",
-      "Corn salad",
-      "Chilled Dahi Bhalla",
-      "Kachumber Salad",
-      "Green salad (Veg Clear soup)",
-      "Pasta salad",
+      {
+        name: "Green salad",
+        image: dummyImage,
+      },
+      {
+        name: "Tossed salad",
+        image: dummyImage,
+      },
+      {
+        name: "Cucumber salad",
+        image: dummyImage,
+      },
+      {
+        name: "Beans sprout salad",
+        image: dummyImage,
+      },
+      {
+        name: "Corn salad",
+        image: dummyImage,
+      },
+      {
+        name: "Chilled Dahi Bhalla",
+        image: dummyImage,
+      },
+      {
+        name: "Kachumber Salad",
+        image: dummyImage,
+      },
+      {
+        name: "Green salad (Veg Clear soup)",
+        image: dummyImage,
+      },
+      {
+        name: "Pasta salad",
+        image: dummyImage,
+      },
     ],
     nonVeg: [],
-     other:[
-      "Any other Salad"
-    ]
+    other: [
+      {
+        name: "Any other Salad",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Soup",
     veg: [
-      "Cream of tomato",
-      "Cream of veg soup",
-      "Hot & sour veg soup",
-      "Veg Manchow soup",
-      "Drumstick soup",
-      "Lemon Coriander Soup",
-      "Tomato Rasam",
+      {
+        name: "Cream of tomato",
+        image: dummyImage,
+      },
+      {
+        name: "Cream of veg soup",
+        image: dummyImage,
+      },
+      {
+        name: "Hot & sour veg soup",
+        image: dummyImage,
+      },
+      {
+        name: "Veg Manchow soup",
+        image: dummyImage,
+      },
+      {
+        name: "Drumstick soup",
+        image: dummyImage,
+      },
+      {
+        name: "Lemon Coriander Soup",
+        image: dummyImage,
+      },
+      {
+        name: "Tomato Rasam",
+        image: dummyImage,
+      },
     ],
     nonVeg: [
-      "Cream of Chicken Soup",
+      {
+        name: "Cream of Chicken Soup",
+        image: dummyImage,
+      },
     ],
-     other:[
-      "Any other Soup"
-    ]
+    other: [
+      {
+        name: "Any other Soup",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Starter",
     veg: [
-      "Veg cutlet",
-      "French fry",
-      "Gobi / paneer 65",
-      "Chilly baby corn",
-      "Paneer tikka",
-      "Baby corn pepper fry",
-      "Gobi fried baby corn",
-      "Hara bhara kebab",
+      {
+        name: "Veg cutlet",
+        image: dummyImage,
+      },
+      {
+        name: "French fry",
+        image: dummyImage,
+      },
+      {
+        name: "Gobi / paneer 65",
+        image: dummyImage,
+      },
+      {
+        name: "Chilly baby corn",
+        image: dummyImage,
+      },
+      {
+        name: "Paneer tikka",
+        image: dummyImage,
+      },
+      {
+        name: "Baby corn pepper fry",
+        image: dummyImage,
+      },
+      {
+        name: "Gobi fried baby corn",
+        image: dummyImage,
+      },
+      {
+        name: "Hara bhara kebab",
+        image: dummyImage,
+      },
     ],
     nonVeg: [
-      "Chicken 65",
-      "Chilly fish / Chicken",
-      "Fish fry",
-      "Chicken Manchurian",
-      "Chicken Lolly Pop",
-      "Chicken pepper fry",
-      "Mutton pepper fry",
-      "Fish pakoda",
+      {
+        name: "Chicken 65",
+        image: dummyImage,
+      },
+      {
+        name: "Chilly fish / Chicken",
+        image: dummyImage,
+      },
+      {
+        name: "Fish fry",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken Manchurian",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken Lolly Pop",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken pepper fry",
+        image: dummyImage,
+      },
+      {
+        name: "Mutton pepper fry",
+        image: dummyImage,
+      },
+      {
+        name: "Fish pakoda",
+        image: dummyImage,
+      },
     ],
-     other:[
-      "Any other Starter"
-    ]
+    other: [
+      {
+        name: "Any other Starter",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Indian Bread",
     veg: [
-      "Roti / Naan",
-      "Chapathi",
-      "Stuffed kulcha",
-      "Lachha roti",
-      "Rumali roti",
-      "Aloo / Paneer parotta",
-      "Butter naan",
-      "Butter roti",
-      "Aloo paratha",
-      "Pulka",
+      {
+        name: "Roti / Naan",
+        image: dummyImage,
+      },
+      {
+        name: "Chapathi",
+        image: dummyImage,
+      },
+      {
+        name: "Stuffed kulcha",
+        image: dummyImage,
+      },
+      {
+        name: "Lachha roti",
+        image: dummyImage,
+      },
+      {
+        name: "Rumali roti",
+        image: dummyImage,
+      },
+      {
+        name: "Aloo / Paneer parotta",
+        image: dummyImage,
+      },
+      {
+        name: "Butter naan",
+        image: dummyImage,
+      },
+      {
+        name: "Butter roti",
+        image: dummyImage,
+      },
+      {
+        name: "Aloo paratha",
+        image: dummyImage,
+      },
+      {
+        name: "Pulka",
+        image: dummyImage,
+      },
     ],
     nonVeg: [],
-     other:[
-      "Any other Indian Bread"
-    ]
+    other: [
+      {
+        name: "Any other Indian Bread",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Rice & Noodles",
     veg: [
-      "Jeera veg / pulao",
-      "Veg mushroom / Biryani",
-      "Veg fried rice / mix veg steam noodles",
-      "Steam rice",
-      "Navarathan pulao",
-      "Veg biryani",
-      "Veg noodles",
-      "Veg pulao",
+      {
+        name: "Jeera veg / pulao",
+        image: dummyImage,
+      },
+      {
+        name: "Veg mushroom / Biryani",
+        image: dummyImage,
+      },
+      {
+        name: "Veg fried rice / mix veg steam noodles",
+        image: dummyImage,
+      },
+      {
+        name: "Steam rice",
+        image: dummyImage,
+      },
+      {
+        name: "Navarathan pulao",
+        image: dummyImage,
+      },
+      {
+        name: "Veg biryani",
+        image: dummyImage,
+      },
+      {
+        name: "Veg noodles",
+        image: dummyImage,
+      },
+      {
+        name: "Veg pulao",
+        image: dummyImage,
+      },
     ],
     nonVeg: [
-      "Non Veg hakka Noodles",
-      "Non veg noodles",
+      {
+        name: "Non Veg hakka Noodles",
+        image: dummyImage,
+      },
+      {
+        name: "Non veg noodles",
+        image: dummyImage,
+      },
     ],
-     other:[
-      "Any other Rice & Noodles "
-    ]
+    other: [
+      {
+        name: "Any other Rice & Noodles",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Gravy",
     veg: [
-      "Aloo jeera / dum aloo",
-      "Aloo gobi masala",
-      "Bhindi jaipuri",
-      "Chilli gobi",
-      "Gobi manchurian",
-      "Kadai vegetables",
-      "Mushroom peas masala",
-      "Malai kofta curry",
-      "Paneer shahi kurma",
-      "Mix veg curry",
-      "Dal makhani / Dal tadka",
-      "Paneer butter masala",
-      "Amritsari channa",
+      {
+        name: "Aloo jeera / dum aloo",
+        image: dummyImage,
+      },
+      {
+        name: "Aloo gobi masala",
+        image: dummyImage,
+      },
+      {
+        name: "Bhindi jaipuri",
+        image: dummyImage,
+      },
+      {
+        name: "Chilli gobi",
+        image: dummyImage,
+      },
+      {
+        name: "Gobi manchurian",
+        image: dummyImage,
+      },
+      {
+        name: "Kadai vegetables",
+        image: dummyImage,
+      },
+      {
+        name: "Mushroom peas masala",
+        image: dummyImage,
+      },
+      {
+        name: "Malai kofta curry",
+        image: dummyImage,
+      },
+      {
+        name: "Paneer shahi kurma",
+        image: dummyImage,
+      },
+      {
+        name: "Mix veg curry",
+        image: dummyImage,
+      },
+      {
+        name: "Dal makhani / Dal tadka",
+        image: dummyImage,
+      },
+      {
+        name: "Paneer butter masala",
+        image: dummyImage,
+      },
+      {
+        name: "Amritsari channa",
+        image: dummyImage,
+      },
     ],
     nonVeg: [
-      "Chicken chettinad",
-      "Chicken pepper masala",
-      "Chicken tikka masala",
-      "Kadai chicken",
-      "Mutton rogan josh",
-      "Mutton vindaloo",
-      "Mutton curry",
-      "Kadai mutton / Sukka",
-      "Mutton kosha / Bengali style",
-      "Egg curry",
+      {
+        name: "Chicken chettinad",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken pepper masala",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken tikka masala",
+        image: dummyImage,
+      },
+      {
+        name: "Kadai chicken",
+        image: dummyImage,
+      },
+      {
+        name: "Mutton rogan josh",
+        image: dummyImage,
+      },
+      {
+        name: "Mutton vindaloo",
+        image: dummyImage,
+      },
+      {
+        name: "Mutton curry",
+        image: dummyImage,
+      },
+      {
+        name: "Kadai mutton / Sukka",
+        image: dummyImage,
+      },
+      {
+        name: "Mutton kosha / Bengali style",
+        image: dummyImage,
+      },
+      {
+        name: "Egg curry",
+        image: dummyImage,
+      },
     ],
-     other:[
-      "Any other Gravy"
-    ]
+    other: [
+      {
+        name: "Any other Gravy",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Side Dishes",
     veg: [
-      "Appalam",
-      "Vathal",
-      "Pickle",
-      "More milagai",
-      "Veg biryani",
-      "Veg fried rice",
-      "Veg pulao",
+      {
+        name: "Appalam",
+        image: dummyImage,
+      },
+      {
+        name: "Vathal",
+        image: dummyImage,
+      },
+      {
+        name: "Pickle",
+        image: dummyImage,
+      },
+      {
+        name: "More milagai",
+        image: dummyImage,
+      },
+      {
+        name: "Veg biryani",
+        image: dummyImage,
+      },
+      {
+        name: "Veg fried rice",
+        image: dummyImage,
+      },
+      {
+        name: "Veg pulao",
+        image: dummyImage,
+      },
     ],
     nonVeg: [],
-     other:[
-      "Any other Side Dish"
-    ]
+    other: [
+      {
+        name: "Any other Side Dish",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Main Course",
     veg: [
-      "Veg biryani",
-      "Steamed rice",
-      "Peas pulao",
-      "Veg fried rice",
-      "Peas pulao",
+      {
+        name: "Veg biryani",
+        image: dummyImage,
+      },
+      {
+        name: "Steamed rice",
+        image: dummyImage,
+      },
+      {
+        name: "Peas pulao",
+        image: dummyImage,
+      },
+      {
+        name: "Veg fried rice",
+        image: dummyImage,
+      },
+      {
+        name: "Peas pulao",
+        image: dummyImage,
+      },
     ],
     nonVeg: [
-      "Mutton biryani",
-      "Chicken biryani",
-      "Egg biryani",
-      "Fish biryani",
-      "Bengali biryani",
+      {
+        name: "Mutton biryani",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken biryani",
+        image: dummyImage,
+      },
+      {
+        name: "Egg biryani",
+        image: dummyImage,
+      },
+      {
+        name: "Fish biryani",
+        image: dummyImage,
+      },
+      {
+        name: "Bengali biryani",
+        image: dummyImage,
+      },
     ],
-     other:[
-      "Any other Main Course"
-    ]
+    other: [
+      {
+        name: "Any other Main Course",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Variety Rice",
     veg: [
-      "Curd rice",
-      "Sambar rice",
-      "Bisibela bath",
-      "Puliyodharai",
-      "Lemon rice",
-      "Coconut rice",
+      {
+        name: "Curd rice",
+        image: dummyImage,
+      },
+      {
+        name: "Sambar rice",
+        image: dummyImage,
+      },
+      {
+        name: "Bisibela bath",
+        image: dummyImage,
+      },
+      {
+        name: "Puliyodharai",
+        image: dummyImage,
+      },
+      {
+        name: "Lemon rice",
+        image: dummyImage,
+      },
+      {
+        name: "Coconut rice",
+        image: dummyImage,
+      },
     ],
     nonVeg: [],
-     other:[
-      "Any other Variety Rice"
-    ]
+    other: [
+      {
+        name: "Any other Variety Rice",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Dessert",
     veg: [
-      "Gulab jamun / Rasgulla",
-      "Bread halwa",
-      "Gajar ka halwa",
-      "Kashi halwa / Ashoka halwa",
-      "Payasam / Ice cream",
-      "Beeda / sweet paan",
-      "Sweet lassi",
-      "Soft drinks",
-      "Vanilla ice cream",
-      "Basundi",
-      "Badam halwa",
+      {
+        name: "Gulab jamun / Rasgulla",
+        image: dummyImage,
+      },
+      {
+        name: "Bread halwa",
+        image: dummyImage,
+      },
+      {
+        name: "Gajar ka halwa",
+        image: dummyImage,
+      },
+      {
+        name: "Kashi halwa / Ashoka halwa",
+        image: dummyImage,
+      },
+      {
+        name: "Payasam / Ice cream",
+        image: dummyImage,
+      },
+      {
+        name: "Beeda / sweet paan",
+        image: dummyImage,
+      },
+      {
+        name: "Sweet lassi",
+        image: dummyImage,
+      },
+      {
+        name: "Soft drinks",
+        image: dummyImage,
+      },
+      {
+        name: "Vanilla ice cream",
+        image: dummyImage,
+      },
+      {
+        name: "Basundi",
+        image: dummyImage,
+      },
+      {
+        name: "Badam halwa",
+        image: dummyImage,
+      },
     ],
     nonVeg: [],
-     other:[
-      "Any other Dessert"
-    ]
+    other: [
+      {
+        name: "Any other Dessert",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Sea Food",
     veg: [],
     nonVeg: [
-      "Prawn pepper fry",
-      "Crab masala",
-      "Fish fry",
-      "Prawn malai curry",
+      {
+        name: "Prawn pepper fry",
+        image: dummyImage,
+      },
+      {
+        name: "Crab masala",
+        image: dummyImage,
+      },
+      {
+        name: "Fish fry",
+        image: dummyImage,
+      },
+      {
+        name: "Prawn malai curry",
+        image: dummyImage,
+      },
     ],
-     other:[
-      "Any other Sea Food "
-    ]
+    other: [
+      {
+        name: "Any other Sea Food",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Tandoori",
     veg: [
-      "Paneer tikka",
+      {
+        name: "Paneer tikka",
+        image: dummyImage,
+      },
     ],
     nonVeg: [
-      "Tandoori chicken",
-      "Chicken tikka",
-      "Fish tikka",
-      "Mutton seekh kabab",
+      {
+        name: "Tandoori chicken",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken tikka",
+        image: dummyImage,
+      },
+      {
+        name: "Fish tikka",
+        image: dummyImage,
+      },
+      {
+        name: "Mutton seekh kabab",
+        image: dummyImage,
+      },
     ],
-     other:[
-      "Any other Tandoori"
-    ]
+    other: [
+      {
+        name: "Any other Tandoori",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Chaat",
     veg: [
-      "Channa chaat",
-      "Potato chaat",
-      "Aloo samosa",
-      "Dahi puri",
-      "Pani puri",
-      "Masala puri",
+      {
+        name: "Channa chaat",
+        image: dummyImage,
+      },
+      {
+        name: "Potato chaat",
+        image: dummyImage,
+      },
+      {
+        name: "Aloo samosa",
+        image: dummyImage,
+      },
+      {
+        name: "Dahi puri",
+        image: dummyImage,
+      },
+      {
+        name: "Pani puri",
+        image: dummyImage,
+      },
+      {
+        name: "Masala puri",
+        image: dummyImage,
+      },
     ],
     nonVeg: [],
-     other:[
-      "Any other Chaat"
-    ]
+    other: [
+      {
+        name: "Any other Chaat",
+        image: dummyImage,
+      },
+    ],
   },
 
   {
     category: "Snacks",
     veg: [
-      "Special vadai",
-      "Kachori",
-      "Aloo samosa",
-      "Vada pav",
-      "Rava kesari",
-      "Soft mini idli",
-      "Rose milk 200ml",
-      "Curd vadai",
-      "Veg bonda",
-      "Veg puff",
-      "Puddings",
-      "Donut special",
-      "Cream cake",
-      "Cutlet",
-      "Vada with chutney",
-      "French fries",
-      "Veg momos",
-      "Veg burger",
+      {
+        name: "Special vadai",
+        image: dummyImage,
+      },
+      {
+        name: "Kachori",
+        image: dummyImage,
+      },
+      {
+        name: "Aloo samosa",
+        image: dummyImage,
+      },
+      {
+        name: "Vada pav",
+        image: dummyImage,
+      },
+      {
+        name: "Rava kesari",
+        image: dummyImage,
+      },
+      {
+        name: "Soft mini idli",
+        image: dummyImage,
+      },
+      {
+        name: "Rose milk 200ml",
+        image: dummyImage,
+      },
+      {
+        name: "Curd vadai",
+        image: dummyImage,
+      },
+      {
+        name: "Veg bonda",
+        image: dummyImage,
+      },
+      {
+        name: "Veg puff",
+        image: dummyImage,
+      },
+      {
+        name: "Puddings",
+        image: dummyImage,
+      },
+      {
+        name: "Donut special",
+        image: dummyImage,
+      },
+      {
+        name: "Cream cake",
+        image: dummyImage,
+      },
+      {
+        name: "Cutlet",
+        image: dummyImage,
+      },
+      {
+        name: "Vada with chutney",
+        image: dummyImage,
+      },
+      {
+        name: "French fries",
+        image: dummyImage,
+      },
+      {
+        name: "Veg momos",
+        image: dummyImage,
+      },
+      {
+        name: "Veg burger",
+        image: dummyImage,
+      },
     ],
     nonVeg: [
-      "Chicken roll",
-      "Chicken samosa",
-      "Chicken fingers",
-      "Chicken momos",
-      "Chicken popcorn",
-      "Chicken nuggets",
+      {
+        name: "Chicken roll",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken samosa",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken fingers",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken momos",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken popcorn",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken nuggets",
+        image: dummyImage,
+      },
     ],
-     other:[
-      "Any other Snacks"
-    ]
+    other: [
+      {
+        name: "Any other Snacks",
+        image: dummyImage,
+      },
+    ],
   },
 ];
