@@ -1,4 +1,54 @@
-import menu7 from "../../assets/gallery/menu7.jpeg";
+import menu1 from "../../assets/MenuImage/Menu 1.webp";
+import menu2 from "../../assets/MenuImage/Menu 2.webp";
+import menu3 from "../../assets/MenuImage/Menu 3.webp";
+import menu4 from "../../assets/MenuImage/Menu 4.webp";
+import menu5 from "../../assets/MenuImage/Menu 5.webp";
+import menu6 from "../../assets/MenuImage/Menu 6.webp";
+import menu7 from "../../assets/MenuImage/Menu 7.webp";
+import menu8 from "../../assets/MenuImage/Menu 8.webp";
+import menu9 from "../../assets/MenuImage/Menu 9.webp";
+import menu10 from "../../assets/MenuImage/Menu 10.webp";
+import menu11 from "../../assets/MenuImage/Menu 11.webp";
+import menu12 from "../../assets/MenuImage/Menu 12.webp";
+import menu13 from "../../assets/MenuImage/Menu 13.webp";
+import menu14 from "../../assets/MenuImage/Menu 14.webp";
+import menu15 from "../../assets/MenuImage/Menu 15.webp";
+import menu16 from "../../assets/MenuImage/Menu 16.webp";
+import menu17 from "../../assets/MenuImage/Menu 17.webp";
+import menu18 from "../../assets/MenuImage/Menu 18.webp";
+import menu19 from "../../assets/MenuImage/Menu 19.webp";
+import menu20 from "../../assets/MenuImage/Menu 20.webp";
+
+import menu22 from "../../assets/MenuImage/Menu 22.webp";
+import menu23 from "../../assets/MenuImage/Menu 23.webp";
+import menu24 from "../../assets/MenuImage/Menu 24.webp";
+import menu25 from "../../assets/MenuImage/Menu 25.webp";
+import menu26 from "../../assets/MenuImage/Menu 26.webp";
+import menu27 from "../../assets/MenuImage/Menu 27.webp";
+import menu28 from "../../assets/MenuImage/Menu 28.webp";
+import menu29 from "../../assets/MenuImage/Menu 29.webp";
+import menu30 from "../../assets/MenuImage/Menu 30.webp";
+import menu31 from "../../assets/MenuImage/Menu 31.webp";
+import menu32 from "../../assets/MenuImage/Menu 32.webp";
+import menu33 from "../../assets/MenuImage/Menu 33.webp";
+import menu34 from "../../assets/MenuImage/Menu 34.webp";
+import menu35 from "../../assets/MenuImage/Menu 35.webp";
+import menu36 from "../../assets/MenuImage/Menu 36.webp";
+import menu37 from "../../assets/MenuImage/Menu 37.webp";
+import menu38 from "../../assets/MenuImage/Menu 38.webp";
+import menu39 from "../../assets/MenuImage/Menu 39.webp";
+import menu40 from "../../assets/MenuImage/Menu 40.webp";
+import menu41 from "../../assets/MenuImage/Menu 41.webp";
+import menu42 from "../../assets/MenuImage/Menu 42.webp";
+import menu43 from "../../assets/MenuImage/Menu 43.webp";
+import menu44 from "../../assets/MenuImage/Menu 44.webp";
+import menu45 from "../../assets/MenuImage/Menu 45.webp";
+import menu46 from "../../assets/MenuImage/Menu 46.webp";
+import menu47 from "../../assets/MenuImage/Menu 47.webp";
+import SP3RM2 from "../../assets/MenuImage/SP3RM2.webp";
+import SP3RM3 from "../../assets/MenuImage/SP3RM3.webp";
+import HS1SN from "../../assets/MenuImage/Snacks Nonveg - HS1SN.webp";
+import HS1SV from "../../assets/MenuImage/Snacks Veg - HS1SV.webp";
 
 
 export const menuData = [
@@ -8,6 +58,7 @@ export const menuData = [
     category: "Breakfast",
     title: "Menu 5 – Breakfast (Veg)",
     foodType: "VEG",
+    image:menu5,
     items: [
       "Idly (3)",
       "Vadai (1)",
@@ -38,6 +89,7 @@ export const menuData = [
     category: "Breakfast",
     title: "Menu 18 – Breakfast (Veg)",
     foodType: "VEG",
+    image:menu18,
     items: [
       "Pongal",
       "Idly (2 Nos)",
@@ -53,6 +105,7 @@ export const menuData = [
     category: "Breakfast",
     title: "Menu 26 – Breakfast (Veg)",
     foodType: "VEG",
+    image:menu26,
     items: [
       "Idly – 2",
       "Poori with Masala",
@@ -68,6 +121,7 @@ export const menuData = [
     category: "Breakfast",
     title: "Menu 31 – Breakfast (Veg)",
     foodType: "VEG",
+    image:menu31,
     items: [
       "Idli – 2 Pc",
       "Pongal – 1 Scoop",
@@ -82,6 +136,7 @@ export const menuData = [
     category: "Breakfast",
     title: "Menu 34 – Breakfast (Veg)",
     foodType: "VEG",
+    image:menu34,
     items: [
       "Pineapple Pudding",
       "Medhu Vadai",
@@ -100,6 +155,7 @@ export const menuData = [
     category: "Breakfast",
     title: "SP3RM2",
     foodType: "VEG",
+    image:SP3RM2,
     items: [
       "Idly",
       "Pongal",
@@ -117,6 +173,7 @@ export const menuData = [
     category: "Breakfast",
     title: "SP3RM3",
     foodType: "VEG",
+    image:SP3RM3,
     items: [
       "Bonda",
       "Chutney",
@@ -137,6 +194,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 6 – Lunch (Veg)",
     foodType: "VEG",
+    image:menu6,
     items: [
       "Sambar Rice",
       "Curd Rice",
@@ -151,6 +209,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 8 – Lunch (Veg)",
     foodType: "VEG",
+    image:menu8,
     items: [
       "Sambar Rice",
       "Curd Rice",
@@ -168,6 +227,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 32 – Lunch (Veg)",
     foodType: "VEG",
+    image:menu32,
     items: [
       "Veg Biryani",
       "Curd Rice",
@@ -183,6 +243,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 33 – Lunch (North Indian) (Veg)",
     foodType: "VEG",
+    image:menu33,
     items: [
       "Veg Noodles",
       "Veg Pulao",
@@ -201,6 +262,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 35 – Lunch (Veg)",
     foodType: "VEG",
+    image:menu35,
     items: [
       "Milk Payasam",
       "Veg Vadai",
@@ -230,6 +292,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 9 – Lunch (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu9,
     items: [
       "Chicken Biryani",
       "Brinjal Gravy",
@@ -245,6 +308,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 30 – Lunch (Andhra Style) (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu30,
     items: [
       "Gummidikaya Halwa",
       "Pacha Arisi Sadham",
@@ -275,6 +339,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 43 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
+  image:menu43,
     items: [
       "Rice",
       "Sambar",
@@ -293,6 +358,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 44 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu44,
     items: [
       "Chicken biryani",
       "Brinjal curry (kathirikai)",
@@ -307,6 +373,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 45 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu45,
     items: [
       "Mutton biryani",
       "Brinjal curry",
@@ -321,6 +388,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 46 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu46,
     items: [
       "Seeraga samba biryani",
       "Brinjal curry",
@@ -334,6 +402,7 @@ export const menuData = [
     category: "Lunch",
     title: "Menu 47 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu47,
     items: [
       "Biryani (chicken or mutton)",
       "White rice",
@@ -353,6 +422,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 13 – Dinner (Veg)",
     foodType: "VEG",
+    image:menu13,
     items: [
       "Basundhi / Badham Halwa / Carrot Halwa",
       "Tomato Soup",
@@ -380,6 +450,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 14 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu14,
     items: [
       "Chicken Tikka",
       "Paneer Tikka",
@@ -409,6 +480,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 27 – Dinner (Veg)",
     foodType: "VEG",
+    image:menu27,
     items: [
       "Welcome Drink",
       "Dry Gulab Jamun",
@@ -438,6 +510,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 28 – Dinner (Veg)",
     foodType: "VEG",
+    image:menu28,
     items: [
       "Welcome Drink – Nanari Sarbath",
       "Sweet – Millet Halwa & Phirni",
@@ -459,6 +532,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 10 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu10,
     items: [
       "Crab Soup",
       "Sprout Salad",
@@ -485,6 +559,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 11 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu11,
     items: [
       "Welcome Drink",
       "Chapati",
@@ -508,6 +583,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 12 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu12,
     items: [
       "Grape Juice",
       "Spring Roll",
@@ -531,6 +607,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 15 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu15,
     items: [
       "Veg Manchow Soup",
       "Chicken Manchow Soup",
@@ -554,6 +631,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 22 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu22,
     items: [
       "Cream of Chicken Soup",
       "Baby Corn 65",
@@ -574,6 +652,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 23 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu23,
     items: [
       "Paneer Tikka",
       "Veg Spring Roll",
@@ -608,6 +687,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 24 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu24,
     items: [
       "Veg Spring Roll",
       "Veg Cutlet",
@@ -640,6 +720,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 25 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu25,
     items: [
       "Cream of Chicken Soup",
       "Gobi / Baby Corn 65",
@@ -660,6 +741,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 29 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu29,
     items: [
       "Veg Soup",
       "Fish Fry",
@@ -679,6 +761,7 @@ export const menuData = [
     category: "Dinner",
     title: "Menu 38 – Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu38,
     items: [
       "Grape Juice",
       "Spring Roll",
@@ -711,6 +794,7 @@ export const menuData = [
     category: "Snacks",
     title: "Menu 36 – Snacks (Veg)",
     foodType: "VEG",
+    image:menu36,
     items: [
       "Kachori",
       "Aloo Samosa",
@@ -726,6 +810,7 @@ export const menuData = [
     category: "Snacks",
     title: "Menu 37 – Snacks (Veg)",
     foodType: "VEG",
+    image:menu37,
     items: [
       "Pastry Box",
       "Veg Spring Roll – 1 No",
@@ -741,6 +826,7 @@ export const menuData = [
     category: "Snacks",
     title: "Snacks Veg - HS1SV",
     foodType: "VEG",
+    image:HS1SV,
     items: [
       "Veg Roll",
       "Veg Samosa",
@@ -757,6 +843,7 @@ export const menuData = [
     category: "Snacks",
     title: "Snacks Nonveg - HS1SN",
     foodType: "NON-VEG",
+    image:HS1SN,
     items: [
       "Chicken Roll",
       "Chicken Samosam",
@@ -776,6 +863,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 1 – Lunch & Dinner (Veg)",
     foodType: "VEG",
+    image:menu1,
     items: [
       "Soup : Veg Manchow Soup",
       "Starters : Gobi 65 / Veg Roll",
@@ -796,6 +884,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 2 – Lunch & Dinner (Veg)",
     foodType: "VEG",
+    image:menu2,
     items: [
       "Soup : Veg Clear Soup",
       "Starters : Panner Tikka / Veg Roll / Veg Cutlet",
@@ -816,6 +905,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 3 – Lunch & Dinner (Veg)",
     foodType: "VEG",
+    image:menu3,
     items: [
       "White Rice",
       "Sambar",
@@ -833,6 +923,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 17 – Lunch/Dinner (Veg)",
     foodType: "VEG",
+    image:menu17,
     items: [
       "Mushroom Biryani",
       "Gobi 65",
@@ -848,6 +939,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 19 – Lunch/Dinner (Veg)",
     foodType: "VEG",
+    image:menu19,
     items: [
       "White Rice",
       "Sambar",
@@ -868,6 +960,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 20 – Lunch/Dinner (Veg)",
     foodType: "VEG",
+    image:menu20,
     items: [
       "Chapati – 1 No",
       "Normal Dosa – 1 No",
@@ -888,6 +981,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 16 – Lunch/Dinner (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu16,
     items: [
       "Chicken Biryani",
       "Chicken 65",
@@ -903,6 +997,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 43 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
+   image:menu43,
     items: [
       "Rice",
       "Sambar",
@@ -921,6 +1016,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 44 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu44,
     items: [
       "Chicken biryani",
       "Brinjal curry (kathirikai)",
@@ -935,6 +1031,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 45 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu45,
     items: [
       "Mutton biryani",
       "Brinjal curry",
@@ -949,6 +1046,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 46 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu46,
     items: [
       "Seeraga samba biryani",
       "Brinjal curry",
@@ -962,6 +1060,7 @@ export const menuData = [
     category: "Lunch/Dinner",
     title: "Menu 47 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu47,
     items: [
       "Biryani (chicken or mutton)",
       "White rice",
@@ -981,6 +1080,7 @@ export const menuData = [
     category: "Breakfast/Dinner",
     title: "Menu 4 – Breakfast & Dinner (Veg)",
     foodType: "VEG",
+    image:menu4,
     items: [
       "Pineapple Pudding",
       "Idly – 2",
@@ -998,6 +1098,7 @@ export const menuData = [
     category: "Breakfast/Dinner",
     title: "SP3RM2",
     foodType: "VEG",
+    image:SP3RM2,
     items: [
       "Idly",
       "Pongal",
@@ -1015,6 +1116,7 @@ export const menuData = [
     category: "Breakfast/Dinner",
     title: "SP3RM3",
     foodType: "VEG",
+    image:SP3RM3,
     items: [
       "Bonda",
       "Chutney",
@@ -1035,6 +1137,7 @@ export const menuData = [
     category: "Breakfast/Dinner",
     title: "Menu 39 - Breakfast (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu39,
     items: [
       "Idli",
       "Idiyappam",
@@ -1048,6 +1151,7 @@ export const menuData = [
     category: "Breakfast/Dinner",
     title: "Menu 40 - Breakfast (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu40,
     items: [
       "Idiyappam",
       "Appam",
@@ -1062,6 +1166,7 @@ export const menuData = [
     category: "Breakfast/Dinner",
     title: "Menu 41 - Breakfast (Non-Veg)",
     foodType: "NON-VEG",
+    image:menu41,
     items: [
       "Idli",
       "Dosa",
@@ -1076,6 +1181,7 @@ export const menuData = [
     category: "Breakfast/Dinner",
     title: "Menu 42 - Breakfast",
     foodType: "NON-VEG",
+    image:menu42,
     items: [
       "Idli",
       "Dosa",

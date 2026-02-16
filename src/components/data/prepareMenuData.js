@@ -1,4 +1,5 @@
 import dummyImage from "../../assets/gallery/industry.webp"
+import menu5 from "../../assets/gallery/menu5.jpeg"
 
 export const prepareMenuData = [
   {
@@ -6,10 +7,14 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Lemon juice",
-        image: dummyImage,
+        image: menu5,
       },
       {
         name: "Grape juice",
+        image: dummyImage,
+      },
+      {
+        name: "Fruit juice",
         image: dummyImage,
       },
       {
@@ -58,7 +63,7 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Green salad (Veg Clear soup)",
+        name: "Green salad ",
         image: dummyImage,
       },
       {
@@ -91,11 +96,23 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
+        name: "Sweet corn veg soup",
+        image: dummyImage,
+      },
+      {
         name: "Veg Manchow soup",
         image: dummyImage,
       },
       {
         name: "Drumstick soup",
+        image: dummyImage,
+      },
+      {
+        name: "Cream of spinach soup",
+        image: dummyImage,
+      },
+      {
+        name: "Veg clear soup",
         image: dummyImage,
       },
       {
@@ -137,7 +154,11 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Chilly baby corn",
+        name: "Chrispy fried / Chilly Veg",
+        image: dummyImage,
+      },
+      {
+        name: "Cheese bolls",
         image: dummyImage,
       },
       {
@@ -149,7 +170,11 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Gobi fried baby corn",
+        name: "Golden fried baby corn",
+        image: dummyImage,
+      },
+      {
+        name: "Paneer tikka",
         image: dummyImage,
       },
       {
@@ -163,11 +188,15 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
+        name: "Chicken pepper fry",
+        image: dummyImage,
+      },
+      {
         name: "Chilly fish / Chicken",
         image: dummyImage,
       },
       {
-        name: "Fish fry",
+        name: "Fish finger/ Fish fry",
         image: dummyImage,
       },
       {
@@ -179,7 +208,7 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Chicken pepper fry",
+        name: "Chilly egg",
         image: dummyImage,
       },
       {
@@ -188,6 +217,14 @@ export const prepareMenuData = [
       },
       {
         name: "Fish pakoda",
+        image: dummyImage,
+      },
+      {
+        name: "Egg panayaram",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken Tikka",
         image: dummyImage,
       },
     ],
@@ -215,15 +252,23 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Lachha roti",
+        name: "Lacha roti",
         image: dummyImage,
       },
       {
-        name: "Rumali roti",
+        name: "Romali roti",
         image: dummyImage,
       },
       {
-        name: "Aloo / Paneer parotta",
+        name: "Aloo/ Gobi / Paneer parotta",
+        image: dummyImage,
+      },
+      {
+        name: "Poori ",
+        image: dummyImage,
+      },
+      {
+        name: " Tawa Paratha ",
         image: dummyImage,
       },
       {
@@ -256,15 +301,19 @@ export const prepareMenuData = [
     category: "Rice & Noodles",
     veg: [
       {
-        name: "Jeera veg / pulao",
+        name: "Jeera / veg / pulao",
         image: dummyImage,
       },
       {
-        name: "Veg mushroom / Biryani",
+        name: "Veg / mushroom / Biryani",
         image: dummyImage,
       },
       {
-        name: "Veg fried rice / mix veg steam noodles",
+        name: "Veg fried rice / mix ",
+        image: dummyImage,
+      },
+      {
+        name: "Veg schezwan Noodles ",
         image: dummyImage,
       },
       {
@@ -276,7 +325,7 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Veg biryani",
+        name: "Veg Hakka Noodles",
         image: dummyImage,
       },
       {
@@ -291,6 +340,10 @@ export const prepareMenuData = [
     nonVeg: [
       {
         name: "Non Veg hakka Noodles",
+        image: dummyImage,
+      },
+      {
+        name: "Non Veg schezwan Noodles",
         image: dummyImage,
       },
       {
@@ -322,7 +375,7 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Chilli gobi",
+        name: "Chilli gobi S/G ",
         image: dummyImage,
       },
       {
@@ -334,7 +387,11 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Mushroom peas masala",
+        name: "Panner butter masala /Tikka",
+        image: dummyImage,
+      },
+      {
+        name: "Mushroom peas/ masala",
         image: dummyImage,
       },
       {
@@ -350,11 +407,19 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Dal makhani / Dal tadka",
+        name: "Dal makhani / Dal tarker",
         image: dummyImage,
       },
       {
-        name: "Paneer butter masala",
+        name: "Channa masala",
+        image: dummyImage,
+      },
+      {
+        name: "Panner Butter Masala",
+        image: dummyImage,
+      },
+      {
+        name: "Mirch Baingan Masala",
         image: dummyImage,
       },
       {
@@ -380,7 +445,19 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Mutton rogan josh",
+        name: "Chicken Murg Dopiazah",
+        image: dummyImage,
+      },
+      {
+        name: "Chicken Manchurian",
+        image: dummyImage,
+      },
+      {
+        name: "Mirpakai Kozhi gravy(Chicken)",
+        image: dummyImage,
+      },
+      {
+        name: "Fish curry",
         image: dummyImage,
       },
       {
@@ -388,7 +465,7 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Mutton curry",
+        name: "Mutton Roganjosh",
         image: dummyImage,
       },
       {
@@ -432,15 +509,7 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Veg biryani",
-        image: dummyImage,
-      },
-      {
-        name: "Veg fried rice",
-        image: dummyImage,
-      },
-      {
-        name: "Veg pulao",
+        name: "Papad",
         image: dummyImage,
       },
     ],
@@ -457,7 +526,7 @@ export const prepareMenuData = [
     category: "Main Course",
     veg: [
       {
-        name: "Veg biryani",
+        name: "Vegtable biryani",
         image: dummyImage,
       },
       {
@@ -473,7 +542,11 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Peas pulao",
+        name: "Veg pulao",
+        image: dummyImage,
+      },
+      {
+        name: "Paneer pulao",
         image: dummyImage,
       },
     ],
@@ -522,18 +595,6 @@ export const prepareMenuData = [
         name: "Bisibela bath",
         image: dummyImage,
       },
-      {
-        name: "Puliyodharai",
-        image: dummyImage,
-      },
-      {
-        name: "Lemon rice",
-        image: dummyImage,
-      },
-      {
-        name: "Coconut rice",
-        image: dummyImage,
-      },
     ],
     nonVeg: [],
     other: [
@@ -560,15 +621,15 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Kashi halwa / Ashoka halwa",
+        name: "Kashi halwa / Shahi halwa",
         image: dummyImage,
       },
       {
-        name: "Payasam / Ice cream",
+        name: "Payasam / hot jelebi",
         image: dummyImage,
       },
       {
-        name: "Beeda / sweet paan",
+        name: "Beeda / water bottle",
         image: dummyImage,
       },
       {
@@ -577,6 +638,10 @@ export const prepareMenuData = [
       },
       {
         name: "Soft drinks",
+        image: dummyImage,
+      },
+      {
+        name: "Carrot Halwa",
         image: dummyImage,
       },
       {
@@ -610,15 +675,19 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Crab masala",
+        name: "Chilly prawn/ prawn",
         image: dummyImage,
       },
       {
-        name: "Fish fry",
+        name: "Grab pepper fry",
         image: dummyImage,
       },
       {
         name: "Prawn malai curry",
+        image: dummyImage,
+      },
+      {
+        name: "Chilli fish",
         image: dummyImage,
       },
     ],
@@ -632,12 +701,7 @@ export const prepareMenuData = [
 
   {
     category: "Tandoori",
-    veg: [
-      {
-        name: "Paneer tikka",
-        image: dummyImage,
-      },
-    ],
+    veg: [],
     nonVeg: [
       {
         name: "Tandoori chicken",
@@ -648,11 +712,15 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
+        name: "Rosmi/ Malai/ Kabob",
+        image: dummyImage,
+      },
+      {
         name: "Fish tikka",
         image: dummyImage,
       },
       {
-        name: "Mutton seekh kabab",
+        name: "Mutton sikka kabob",
         image: dummyImage,
       },
     ],
@@ -673,22 +741,6 @@ export const prepareMenuData = [
       },
       {
         name: "Potato chaat",
-        image: dummyImage,
-      },
-      {
-        name: "Aloo samosa",
-        image: dummyImage,
-      },
-      {
-        name: "Dahi puri",
-        image: dummyImage,
-      },
-      {
-        name: "Pani puri",
-        image: dummyImage,
-      },
-      {
-        name: "Masala puri",
         image: dummyImage,
       },
     ],
@@ -721,15 +773,27 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Rava kesari",
+        name: "Paneer spring roll",
         image: dummyImage,
       },
       {
-        name: "Soft mini idli",
+        name: "Rasamalai",
+        image: dummyImage,
+      },
+      {
+        name: "Soft mysore pak",
         image: dummyImage,
       },
       {
         name: "Rose milk 200ml",
+        image: dummyImage,
+      },
+      {
+        name: "Walnut Brownie - 50gms",
+        image: dummyImage,
+      },
+      {
+        name: "Veg Samosa",
         image: dummyImage,
       },
       {
@@ -758,6 +822,10 @@ export const prepareMenuData = [
       },
       {
         name: "Cutlet",
+        image: dummyImage,
+      },
+      {
+        name: "Veg Sandwitch",
         image: dummyImage,
       },
       {
