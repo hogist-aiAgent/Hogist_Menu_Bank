@@ -317,7 +317,6 @@ const PrepareYourMenu = () => {
             flexDirection: { xs: "column", md: "row" },
           }}
         >
-          {/* LEFT SIDE */}
           <Box sx={{ flex: 3 }}>
             {filteredItems.map((item) => (
               <Card
@@ -378,8 +377,7 @@ const PrepareYourMenu = () => {
               </Card>
             ))}
           </Box>
-
-          {/* RIGHT SIDE  */}
+          
           <Box sx={{ flex: 1 }}>
             <Card
               sx={{
