@@ -1,5 +1,9 @@
+import lemon_juice from "../../assets/MenuImage/PrepareMenuImg/lemon-juice.jpeg"
+import grape_juice from "../../assets/MenuImage/PrepareMenuImg/grape-juice.jpeg"
+import fruit_punch from "../../assets/MenuImage/PrepareMenuImg/fruit-punch.jpeg"
+import fruit_juice from "../../assets/MenuImage/PrepareMenuImg/fruit-juice.jpeg"
+import any_other_juice from "../../assets/MenuImage/PrepareMenuImg/any-other-juice.jpeg"
 import dummyImage from "../../assets/gallery/industry.webp"
-import menu5 from "../../assets/gallery/menu5.jpeg"
 
 export const prepareMenuData = [
   {
@@ -7,26 +11,26 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Lemon juice",
-        image: menu5,
+        image: lemon_juice,
       },
       {
         name: "Grape juice",
-        image: dummyImage,
+        image: grape_juice,
       },
       {
         name: "Fruit juice",
-        image: dummyImage,
+        image: fruit_juice,
       },
       {
         name: "Fruit punch",
-        image: dummyImage,
+        image: fruit_punch,
       },
     ],
     nonVeg: [],
     other: [
       {
         name: "Any other Welcome Drink",
-        image: dummyImage,
+        image: any_other_juice,
       },
     ],
   },

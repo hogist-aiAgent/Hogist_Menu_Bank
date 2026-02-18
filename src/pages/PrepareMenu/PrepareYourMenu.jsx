@@ -10,10 +10,13 @@ import {
   Snackbar,
   Alert,
   IconButton,
+  Drawer,
+  Fab,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import MenuIcon from "@mui/icons-material/Menu";
 import vegImg from "../../assets/icons/broccoli.png";
 import nonvegImg from "../../assets/icons/turkey.png";
 import both from "../../assets/icons/food.png";
@@ -36,6 +39,7 @@ const PrepareYourMenu = () => {
   );
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [filterType, setFilterType] = useState("both");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // SAVE TO LOCAL STORAGE WHENEVER selectedItems CHANGES
   useEffect(() => {
@@ -99,6 +103,7 @@ const PrepareYourMenu = () => {
 
     navigator.clipboard.writeText(menuText).then(() => {
       setOpenSnackbar(true);
+      setMobileMenuOpen(false);
     });
   };
 
@@ -146,10 +151,141 @@ const PrepareYourMenu = () => {
     );
   };
 
+  // Mobile Menu Drawer Content
+  const mobileMenuDrawer = (
+    <Box 
+      sx={{ 
+        width: '100%', 
+        p: 1.5,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Card
+        sx={{
+          p: { xs: 2, sm: 2.5 },
+          borderRadius: 4,
+          boxShadow: 4,
+          width: { xs: '85%', sm: '85%', md: '400px' },
+          maxWidth: '380px',
+          margin: '0 auto',
+        }}
+      >
+        <Typography
+          sx={{
+            fontWeight: 700,
+            mb: 2,
+            color: "#c60000",
+            fontSize: { xs: 18, sm: 20 },
+            textAlign: 'center'
+          }}
+        >
+          My Custom Menu
+        </Typography>
+
+        <Box
+          sx={{
+            maxHeight: { xs: 280, sm: 320 },
+            overflowY: "auto",
+            pr: 1,
+            mb: 2,
+          }}
+        >
+          {selectedItems.length === 0 && (
+            <Typography fontSize={{ xs: 14, sm: 15 }} color="#777" mb={2} textAlign="center">
+              No items added yet.
+            </Typography>
+          )}
+
+          {selectedItems.map((item) => (
+            <Box
+              key={item.id}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                mb: 1.5,
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1, maxWidth: '70%' }}>
+                {renderIndicator(item.type, 16)}
+                <Typography fontSize={{ xs: 14, sm: 15 }} noWrap>
+                  {item.name}
+                </Typography>
+              </Box>
+
+              <DeleteIcon
+                sx={{ cursor: "pointer", fontSize: { xs: 18, sm: 20 }, flexShrink: 0 }}
+                onClick={() => handleRemove(item)}
+              />
+            </Box>
+          ))}
+        </Box>
+
+        <Divider sx={{ my: 1.5 }} />
+
+        <Typography fontSize={{ xs: 14, sm: 15 }} mb={2} textAlign="center">
+          Total Items: {selectedItems.length}
+        </Typography>
+
+        <Box
+          sx={{
+            display: "flex",
+            gap: { xs: 1, sm: 1.5 },
+            flexDirection: { xs: 'column', sm: 'row' },
+            width: '100%',
+          }}
+        >
+          <Button
+            disabled={selectedItems.length === 0}
+            onClick={() => {
+              handleClearAll();
+              setMobileMenuOpen(false);
+            }}
+            sx={{
+              flex: 1,
+              backgroundColor: "#eeeeee",
+              color: "#c60000",
+              borderRadius: 2,
+              textTransform: "none",
+              fontWeight: 600,
+              fontSize: { xs: '0.85rem', sm: '0.9rem' },
+              py: { xs: 1, sm: 1 },
+              "&:hover": {
+                backgroundColor: "#e0e0e0",
+              },
+            }}
+          >
+            Clear All
+          </Button>
+
+          <Button
+            disabled={selectedItems.length === 0}
+            onClick={handleCopyMenu}
+            sx={{
+              flex: 1,
+              background: "linear-gradient(45deg,#ff4b2b,#c60000)",
+              color: "#fff",
+              borderRadius: 3,
+              textTransform: "none",
+              fontWeight: 600,
+              fontSize: { xs: '0.85rem', sm: '0.9rem' },
+              py: { xs: 1, sm: 1 },
+            }}
+          >
+            Copy Menu
+          </Button>
+        </Box>
+      </Card>
+    </Box>
+  );
+
   return (
     <>
-      <Box sx={{ px: 4, py: 3, backgroundColor: "#f6f6f6", minHeight: "100vh" }}>
-        <Breadcrumbs sx={{ mb: 2 }}>
+      <Box sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 3 }, backgroundColor: "#f6f6f6", minHeight: "100vh",  }}>
+        <Breadcrumbs sx={{ mb: 2, fontSize: { xs: '0.875rem', md: '1rem' }, }}>
           <Link
             component="button"
             onClick={() => navigate("/")}
@@ -163,28 +299,29 @@ const PrepareYourMenu = () => {
         <Typography
           align="center"
           sx={{
-            fontSize: { xs: 26, md: 36 },
+            fontSize: { xs: 24, sm: 26, md: 36 },
             fontWeight: 800,
             color: "#c60000",
-            mb: 4,
+            mb: { xs: 3, md: 4 },
           }}
         >
           Prepare your Menu
         </Typography>
 
         {/* CATEGORY BUTTONS */}
-        <Box sx={{ position: "relative", mb: 3 }}>
+        <Box sx={{ position: "relative", mb: 3, px: { xs: 2, md: 0 } }}>
           <IconButton
             onClick={scrollLeft}
             sx={{
               position: "absolute",
-              left: -10,
+              left: { xs: -5, md: -10 },
               top: "40%",
               transform: "translateY(-50%)",
               backgroundColor: "#fff",
               boxShadow: 2,
               zIndex: 2,
               "&:hover": { backgroundColor: "#f5f5f5" },
+              display: 'flex'
             }}
           >
             <ArrowBackIosNewIcon sx={{ fontSize: 16 }} />
@@ -195,13 +332,15 @@ const PrepareYourMenu = () => {
             sx={{
               display: "flex",
               gap: 2,
-              width: "91%",
+              width: { xs: '80%', sm: '91%' },
               overflowX: "auto",
               whiteSpace: "nowrap",
               pb: 1,
               scrollBehavior: "smooth",
               "&::-webkit-scrollbar": { display: "none" },
-              ml: 7,
+              ml: { xs: 4, sm: 7 },
+              mr: { xs: 4, sm: 0 },
+              px: { xs: 0, sm: 0 }
             }}
           >
             {prepareMenuData.map((cat) => (
@@ -216,11 +355,12 @@ const PrepareYourMenu = () => {
                       : "#fff",
                   color: activeCategory === cat.category ? "#fff" : "#c60000",
                   borderRadius: "30px",
-                  px: 3,
+                  px: { xs: 2, sm: 3 },
                   py: 1,
                   textTransform: "none",
                   fontWeight: 600,
                   boxShadow: 2,
+                  fontSize: { xs: '0.875rem', sm: '0.875rem', md: '1rem' }
                 }}
               >
                 {cat.category}
@@ -232,13 +372,14 @@ const PrepareYourMenu = () => {
             onClick={scrollRight}
             sx={{
               position: "absolute",
-              right: -10,
+              right: { xs: -5, md: -10 },
               top: "40%",
               transform: "translateY(-50%)",
               backgroundColor: "#fff",
               boxShadow: 2,
               zIndex: 2,
               "&:hover": { backgroundColor: "#f5f5f5" },
+              display: 'flex'
             }}
           >
             <ArrowForwardIosIcon sx={{ fontSize: 16 }} />
@@ -250,8 +391,11 @@ const PrepareYourMenu = () => {
           sx={{
             display: "flex",
             justifyContent: "center",
-            gap: 2,
-            mb: 5,
+            gap: { xs: 1, sm: 2 },
+            mb: { xs: 1, md: 2 },
+            flexWrap: "wrap",
+            px: { xs: 1, md: 0 },
+            width: { xs: '100%', md: 'auto' },
           }}
         >
           {["veg", "nonVeg", "both"].map((type) => {
@@ -259,13 +403,14 @@ const PrepareYourMenu = () => {
 
             const baseStyles = {
               borderRadius: "8px",
-              px: 4,
+              px: { xs: 2, sm: 3, md: 4 },
               py: 1,
               textTransform: "none",
               fontWeight: 700,
               boxShadow: 3,
               color: "#fff",
-              minWidth: 130,
+              minWidth: { xs: 90, sm: 120, md: 130 },
+              fontSize: { xs: '0.875rem', sm: '0.875rem', md: '1rem' }
             };
 
             const styles =
@@ -292,8 +437,8 @@ const PrepareYourMenu = () => {
                     src={iconSrc}
                     alt={type}
                     sx={{
-                      width: 20,
-                      height: 20,
+                      width: { xs: 18, sm: 20 },
+                      height: { xs: 18, sm: 20 },
                       objectFit: "contain",
                     }}
                   />
@@ -310,10 +455,34 @@ const PrepareYourMenu = () => {
           })}
         </Box>
 
+        {/* ACTIVE CATEGORY DISPLAY */}
+         <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            mb: { xs: 1, md: 1 },
+            mt: { xs: 3, md: 2 },
+          }}
+        >
+          <Typography
+            sx={{
+              fontSize: { xs: '1rem', sm: '1.2rem', md: '1.3rem' },
+              fontWeight: 600,
+              color: '#c60000',
+             
+              px: { xs: 1, sm: 1 },
+              py: { xs: 0.9, sm: 1 },
+              display: 'inline-block'
+            }}
+          >
+            {activeCategory}
+          </Typography>
+        </Box>
+
         <Box
           sx={{
             display: "flex",
-            gap: 4,
+            gap: { xs: 3, md: 4 },
             flexDirection: { xs: "column", md: "row" },
           }}
         >
@@ -325,30 +494,38 @@ const PrepareYourMenu = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  p: 2,
+                  p: { xs: 1.5, sm: 2 },
                   mb: 3,
                   borderRadius: 3,
                   boxShadow: 3,
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: { xs: 2, sm: 0 }
                 }}
               >
-                <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+                <Box sx={{ 
+                  display: "flex", 
+                  alignItems: "center", 
+                  gap: { xs: 2, sm: 3 },
+                  width: { xs: '100%', sm: 'auto' },
+                  flexDirection: { xs: 'row' }
+                }}>
                   <Box
                     component="img"
                     src={item.image}
                     alt={item.name}
                     sx={{
-                      width: 100,
-                      height: 80,
+                      width: { xs: 80, sm: 100 },
+                      height: { xs: 70, sm: 80 },
                       borderRadius: 2,
                       objectFit: "cover",
                     }}
                   />
 
-                  <Box>
-                    <Typography fontWeight={700}>
+                  <Box sx={{ flex: 1 }}>
+                    <Typography fontWeight={700} fontSize={{ xs: '0.95rem', sm: '1rem' }}>
                       {item.name}
                     </Typography>
-                    <Typography fontSize={14} color="#666">
+                    <Typography fontSize={{ xs: 12, sm: 14 }} color="#666">
                       Fresh mix of ingredients
                     </Typography>
                     {renderIndicator(item.type, 14)}
@@ -367,9 +544,12 @@ const PrepareYourMenu = () => {
                       : "#c60000",
                     color: "#fff",
                     borderRadius: 2,
-                    px: 3,
+                    px: { xs: 2, sm: 3 },
+                    py: { xs: 0.5, sm: 1 },
                     textTransform: "none",
                     fontWeight: 600,
+                    fontSize: { xs: '0.875rem', sm: '0.875rem' },
+                    width: { xs: '100%', sm: 'auto' }
                   }}
                 >
                   {isAdded(item) ? "✓ Added" : "+ Add"}
@@ -378,10 +558,11 @@ const PrepareYourMenu = () => {
             ))}
           </Box>
           
-          <Box sx={{ flex: 1 }}>
+          {/* Desktop My Custom Menu Card - Hidden on mobile */}
+          <Box sx={{ flex: 1, display: { xs: 'none', md: 'block' } }}>
             <Card
               sx={{
-                p: 3,
+                p: { xs: 2, sm: 3 },
                 borderRadius: 4,
                 boxShadow: 4,
                 position: { md: "sticky" },
@@ -393,7 +574,7 @@ const PrepareYourMenu = () => {
                   fontWeight: 700,
                   mb: 2,
                   color: "#c60000",
-                  fontSize: 18,
+                  fontSize: { xs: 16, sm: 18 },
                 }}
               >
                 My Custom Menu
@@ -402,14 +583,14 @@ const PrepareYourMenu = () => {
                 
               <Box
                 sx={{
-                  maxHeight: 300,
+                  maxHeight: { xs: 250, sm: 300 },
                   overflowY: "auto",
                   pr: 1,
                   mb: 2,
                 }}
               >
                 {selectedItems.length === 0 && (
-                  <Typography fontSize={14} color="#777" mb={2}>
+                  <Typography fontSize={{ xs: 13, sm: 14 }} color="#777" mb={2}>
                     No items added yet.
                   </Typography>
                 )}
@@ -426,13 +607,13 @@ const PrepareYourMenu = () => {
                   >
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       {renderIndicator(item.type, 14)}
-                      <Typography fontSize={14}>
+                      <Typography fontSize={{ xs: 13, sm: 14 }}>
                         {item.name}
                       </Typography>
                     </Box>
 
                     <DeleteIcon
-                      sx={{ cursor: "pointer", fontSize: 18 }}
+                      sx={{ cursor: "pointer", fontSize: { xs: 16, sm: 18 } }}
                       onClick={() => handleRemove(item)}
                     />
                   </Box>
@@ -441,14 +622,15 @@ const PrepareYourMenu = () => {
 
               <Divider sx={{ my: 2 }} />
 
-              <Typography fontSize={14} mb={2}>
+              <Typography fontSize={{ xs: 13, sm: 14 }} mb={2}>
                 Total Items: {selectedItems.length}
               </Typography>
 
                 <Box
                   sx={{
                     display: "flex",
-                    gap: 2,
+                    gap: { xs: 1, sm: 2 },
+                    flexDirection: { xs: 'column', sm: 'row' }
                   }}
                 >
                   <Button
@@ -461,6 +643,8 @@ const PrepareYourMenu = () => {
                       borderRadius: 2,
                       textTransform: "none",
                       fontWeight: 600,
+                      fontSize: { xs: '0.875rem', sm: '0.875rem' },
+                      py: { xs: 1, sm: 0.5 },
                       "&:hover": {
                         backgroundColor: "#e0e0e0",
                       },
@@ -479,6 +663,8 @@ const PrepareYourMenu = () => {
                       borderRadius: 3,
                       textTransform: "none",
                       fontWeight: 600,
+                      fontSize: { xs: '0.875rem', sm: '0.875rem' },
+                      py: { xs: 1, sm: 0.5 },
                     }}
                   >
                     Copy Menu
@@ -488,6 +674,56 @@ const PrepareYourMenu = () => {
           </Box>
         </Box>
       </Box>
+
+      {/* Floating Action Button for Mobile - Only visible on mobile */}
+      <Fab
+        variant="extended"
+        onClick={() => setMobileMenuOpen(true)}
+        sx={{
+          position: 'fixed',
+          bottom: 20,
+          right: 20,
+          display: { xs: 'flex', md: 'none' },
+          background: 'linear-gradient(45deg,#ff4b2b,#c60000)',
+          color: '#fff',
+          fontWeight: 600,
+          borderRadius: '30px',
+          px: 3,
+          py: 2,
+          boxShadow: 6,
+          '&:hover': {
+            background: 'linear-gradient(45deg,#c60000,#ff4b2b)',
+          },
+          zIndex: 1000,
+        }}
+      >
+        
+        <Typography sx={{ fontSize: '1rem', fontWeight: 600 }}>
+          cart {selectedItems.length > 0 && `(${selectedItems.length})`}
+        </Typography>
+      </Fab>
+
+      {/* Mobile Menu Drawer - Perfectly centered with proper sizing */}
+      <Drawer
+        anchor="bottom"
+        open={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        PaperProps={{
+          sx: {
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+            height: 'auto',
+            maxHeight: '80vh',
+            backgroundColor: 'transparent',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: 'none',
+          }
+        }}
+      >
+        {mobileMenuDrawer}
+      </Drawer>
 
       <Snackbar
         open={openSnackbar}
@@ -503,9 +739,10 @@ const PrepareYourMenu = () => {
             color: "#fff",
             fontWeight: 600,
             borderRadius: 3,
+            fontSize: { xs: '0.875rem', sm: '1rem' }
           }}
         >
-          Menu copied successfully
+          Menu copied 
         </Alert>
       </Snackbar>
     </>
