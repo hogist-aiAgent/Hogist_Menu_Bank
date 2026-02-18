@@ -27,6 +27,7 @@ import { prepareMenuData } from "../../components/data/prepareMenuData";
 const PrepareYourMenu = () => {
   const navigate = useNavigate();
   const categoryScrollRef = useRef(null);
+  const topRef = useRef(null);
 
   // LOAD FROM LOCAL STORAGE 
   const [selectedItems, setSelectedItems] = useState(() => {
@@ -118,6 +119,24 @@ const PrepareYourMenu = () => {
     categoryScrollRef.current.scrollBy({
       left: 200,
       behavior: "smooth",
+    });
+  };
+
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+    // Scroll to top of the page smoothly
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleToggleClick = (type) => {
+    setFilterType(type);
+    // Scroll to top of the page smoothly
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   };
 
@@ -284,8 +303,22 @@ const PrepareYourMenu = () => {
 
   return (
     <>
-      <Box sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 3 }, backgroundColor: "#f6f6f6", minHeight: "100vh",  }}>
-        <Breadcrumbs sx={{ mb: 2, fontSize: { xs: '0.875rem', md: '1rem' }, }}>
+      <Box sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 2 }, backgroundColor: "#f6f6f6", minHeight: "100vh" }}>
+
+        <Box
+          sx={{
+            position: "sticky",
+            top: 65,
+            zIndex: 1100, 
+            backgroundColor: "#f6f6f6",
+            py: 0.5,
+            mb: 1,
+            mx: { xs: -2, md: -4 }, 
+            px: { xs: 2, md: 4 }, 
+            boxShadow: "0 2px 6px rgba(0,0,0,0.05)", 
+          }}
+        >
+        <Breadcrumbs sx={{  fontSize: { xs: '0.875rem', md: '1rem' } }}>
           <Link
             component="button"
             onClick={() => navigate("/")}
@@ -299,17 +332,18 @@ const PrepareYourMenu = () => {
         <Typography
           align="center"
           sx={{
-            fontSize: { xs: 24, sm: 26, md: 36 },
+            fontSize: { xs: 24, sm: 26, md: 34 },
             fontWeight: 800,
             color: "#c60000",
-            mb: { xs: 3, md: 4 },
+            mb: { xs: 1.5, md: 1 },
+            mt: { xs: 1, md: -3 },
           }}
         >
           Prepare your Menu
         </Typography>
 
         {/* CATEGORY BUTTONS */}
-        <Box sx={{ position: "relative", mb: 3, px: { xs: 2, md: 0 } }}>
+        <Box sx={{ position: "relative", mb: 2, px: { xs: 2, md: 0 } }}>
           <IconButton
             onClick={scrollLeft}
             sx={{
@@ -321,10 +355,10 @@ const PrepareYourMenu = () => {
               boxShadow: 2,
               zIndex: 2,
               "&:hover": { backgroundColor: "#f5f5f5" },
-              display: 'flex'
+              display: {xs:'none',md:'flex'}
             }}
           >
-            <ArrowBackIosNewIcon sx={{ fontSize: 16 }} />
+            <ArrowBackIosNewIcon sx={{ fontSize: 14 }} />
           </IconButton>
 
           <Box
@@ -332,13 +366,13 @@ const PrepareYourMenu = () => {
             sx={{
               display: "flex",
               gap: 2,
-              width: { xs: '80%', sm: '91%' },
+              width: { xs: '116%', sm: '91%' },
               overflowX: "auto",
               whiteSpace: "nowrap",
               pb: 1,
               scrollBehavior: "smooth",
               "&::-webkit-scrollbar": { display: "none" },
-              ml: { xs: 4, sm: 7 },
+              ml: { xs: -3, sm: 8 },
               mr: { xs: 4, sm: 0 },
               px: { xs: 0, sm: 0 }
             }}
@@ -346,7 +380,7 @@ const PrepareYourMenu = () => {
             {prepareMenuData.map((cat) => (
               <Button
                 key={cat.category}
-                onClick={() => setActiveCategory(cat.category)}
+                onClick={() => handleCategoryClick(cat.category)}
                 sx={{
                   flex: "0 0 auto",
                   background:
@@ -355,12 +389,12 @@ const PrepareYourMenu = () => {
                       : "#fff",
                   color: activeCategory === cat.category ? "#fff" : "#c60000",
                   borderRadius: "30px",
-                  px: { xs: 2, sm: 3 },
-                  py: 1,
+                  px: { xs: 1.5, sm: 2 },
+                  py: 0.6,
                   textTransform: "none",
                   fontWeight: 600,
                   boxShadow: 2,
-                  fontSize: { xs: '0.875rem', sm: '0.875rem', md: '1rem' }
+                  fontSize: { xs: '13px', sm: '14px', md: '14px' }
                 }}
               >
                 {cat.category}
@@ -379,10 +413,10 @@ const PrepareYourMenu = () => {
               boxShadow: 2,
               zIndex: 2,
               "&:hover": { backgroundColor: "#f5f5f5" },
-              display: 'flex'
+              display: {xs:'none',md:'flex'}
             }}
           >
-            <ArrowForwardIosIcon sx={{ fontSize: 16 }} />
+            <ArrowForwardIosIcon sx={{ fontSize: 14 }} />
           </IconButton>
         </Box>
 
@@ -392,7 +426,7 @@ const PrepareYourMenu = () => {
             display: "flex",
             justifyContent: "center",
             gap: { xs: 1, sm: 2 },
-            mb: { xs: 1, md: 2 },
+            mb: { xs: 0, md: -4 },
             flexWrap: "wrap",
             px: { xs: 1, md: 0 },
             width: { xs: '100%', md: 'auto' },
@@ -403,13 +437,13 @@ const PrepareYourMenu = () => {
 
             const baseStyles = {
               borderRadius: "8px",
-              px: { xs: 2, sm: 3, md: 4 },
-              py: 1,
+              px: { xs: 1, sm: 3, md: 1 },
+              py: 0.3,
               textTransform: "none",
               fontWeight: 700,
               boxShadow: 3,
               color: "#fff",
-              minWidth: { xs: 90, sm: 120, md: 130 },
+              minWidth: { xs: 90, sm: 120, md: 100 },
               fontSize: { xs: '0.875rem', sm: '0.875rem', md: '1rem' }
             };
 
@@ -420,29 +454,13 @@ const PrepareYourMenu = () => {
                 ? { backgroundColor: isActive ? "#c60000" : "#d43939" }
                 : { backgroundColor: isActive ? "#424242" : "#757474" };
 
-            const iconSrc =
-              type === "veg"
-                ? vegImg
-                : type === "nonVeg"
-                ? nonvegImg
-                : both;
+            
 
             return (
               <Button
                 key={type}
-                onClick={() => setFilterType(type)}
-                startIcon={
-                  <Box
-                    component="img"
-                    src={iconSrc}
-                    alt={type}
-                    sx={{
-                      width: { xs: 18, sm: 20 },
-                      height: { xs: 18, sm: 20 },
-                      objectFit: "contain",
-                    }}
-                  />
-                }
+                onClick={() => handleToggleClick(type)}
+                
                 sx={{ ...baseStyles, ...styles }}
               >
                 {type === "both"
@@ -454,13 +472,13 @@ const PrepareYourMenu = () => {
             );
           })}
         </Box>
+      
 
         {/* ACTIVE CATEGORY DISPLAY */}
          <Box
           sx={{
             display: 'flex',
             justifyContent: 'flex-start',
-            mb: { xs: 1, md: 1 },
             mt: { xs: 3, md: 2 },
           }}
         >
@@ -471,14 +489,14 @@ const PrepareYourMenu = () => {
               color: '#c60000',
              
               px: { xs: 1, sm: 1 },
-              py: { xs: 0.9, sm: 1 },
+              py: { xs: 0.9, sm: 0 },
               display: 'inline-block'
             }}
           >
             {activeCategory}
           </Typography>
         </Box>
-
+    </Box>
         <Box
           sx={{
             display: "flex",
@@ -486,7 +504,7 @@ const PrepareYourMenu = () => {
             flexDirection: { xs: "column", md: "row" },
           }}
         >
-          <Box sx={{ flex: 3 }}>
+          <Box sx={{ flex: 3 }} ref={topRef}>
             {filteredItems.map((item) => (
               <Card
                 key={item.id}
@@ -494,12 +512,12 @@ const PrepareYourMenu = () => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  p: { xs: 1.5, sm: 2 },
-                  mb: 3,
+                  p: { xs: 1.3, sm: 1.2 },
+                  mb: 2,
                   borderRadius: 3,
                   boxShadow: 3,
                   flexDirection: { xs: "column", sm: "row" },
-                  gap: { xs: 2, sm: 0 }
+                  gap: { xs: 1, sm: 0 }
                 }}
               >
                 <Box sx={{ 
@@ -514,8 +532,8 @@ const PrepareYourMenu = () => {
                     src={item.image}
                     alt={item.name}
                     sx={{
-                      width: { xs: 80, sm: 100 },
-                      height: { xs: 70, sm: 80 },
+                      width: { xs: 80, sm: 90 },
+                      height: { xs: 70, sm: 60 },
                       borderRadius: 2,
                       objectFit: "cover",
                     }}
@@ -525,9 +543,9 @@ const PrepareYourMenu = () => {
                     <Typography fontWeight={700} fontSize={{ xs: '0.95rem', sm: '1rem' }}>
                       {item.name}
                     </Typography>
-                    <Typography fontSize={{ xs: 12, sm: 14 }} color="#666">
+                    {/* <Typography fontSize={{ xs: 12, sm: 14 }} color="#666">
                       Fresh mix of ingredients
-                    </Typography>
+                    </Typography> */}
                     {renderIndicator(item.type, 14)}
                   </Box>
                 </Box>
@@ -566,7 +584,8 @@ const PrepareYourMenu = () => {
                 borderRadius: 4,
                 boxShadow: 4,
                 position: { md: "sticky" },
-                top: 100,
+                top: 250,
+                zIndex:1100
               }}
             >
               <Typography

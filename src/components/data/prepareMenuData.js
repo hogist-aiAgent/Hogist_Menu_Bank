@@ -67,10 +67,6 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Green salad ",
-        image: dummyImage,
-      },
-      {
         name: "Pasta salad",
         image: dummyImage,
       },
