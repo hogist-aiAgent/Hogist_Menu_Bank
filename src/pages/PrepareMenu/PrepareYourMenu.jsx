@@ -20,7 +20,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import vegImg from "../../assets/icons/broccoli.png";
 import nonvegImg from "../../assets/icons/turkey.png";
 import both from "../../assets/icons/food.png";
-
+import { useMenuStore } from "../../components/store/useMenuStore";
 import { useNavigate } from "react-router-dom";
 import { prepareMenuData } from "../../components/data/prepareMenuData";
 
@@ -29,12 +29,6 @@ const PrepareYourMenu = () => {
   const categoryScrollRef = useRef(null);
   const topRef = useRef(null);
 
-  // LOAD FROM LOCAL STORAGE 
-  const [selectedItems, setSelectedItems] = useState(() => {
-    const saved = localStorage.getItem("selectedMenuItems");
-    return saved ? JSON.parse(saved) : [];
-  });
-
   const [activeCategory, setActiveCategory] = useState(
     prepareMenuData[0]?.category
   );
@@ -42,14 +36,10 @@ const PrepareYourMenu = () => {
   const [filterType, setFilterType] = useState("both");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // SAVE TO LOCAL STORAGE WHENEVER selectedItems CHANGES
-  useEffect(() => {
-    localStorage.setItem(
-      "selectedMenuItems",
-      JSON.stringify(selectedItems)
-    );
-  }, [selectedItems]);
-
+  const selectedItems = useMenuStore((state) => state.selectedItems);
+const addItem = useMenuStore((state) => state.addItem);
+const removeItem = useMenuStore((state) => state.removeItem);
+const clearAll = useMenuStore((state) => state.clearAll);
   const currentCategory = prepareMenuData.find(
     (cat) => cat.category === activeCategory
   );
@@ -76,22 +66,7 @@ const PrepareYourMenu = () => {
     return allItems.filter((item) => item.type === filterType);
   }, [allItems, filterType]);
 
-  const handleAdd = (item) => {
-    setSelectedItems((prev) => {
-      if (prev.some((i) => i.id === item.id)) return prev;
-      return [...prev, item];
-    });
-  };
-
-  const handleRemove = (item) => {
-    setSelectedItems((prev) => prev.filter((i) => i.id !== item.id));
-  };
-
-    // CLEAR ALL FUNCTION 
-  const handleClearAll = () => {
-    setSelectedItems([]);
-    localStorage.removeItem("selectedMenuItems");
-  };
+ 
 
   const isAdded = (item) => {
     return selectedItems.some((i) => i.id === item.id);
@@ -237,7 +212,7 @@ const PrepareYourMenu = () => {
 
               <DeleteIcon
                 sx={{ cursor: "pointer", fontSize: { xs: 18, sm: 20 }, flexShrink: 0 }}
-                onClick={() => handleRemove(item)}
+                onClick={() => removeItem(item)}
               />
             </Box>
           ))}
@@ -260,7 +235,7 @@ const PrepareYourMenu = () => {
           <Button
             disabled={selectedItems.length === 0}
             onClick={() => {
-              handleClearAll();
+              clearAll();
               setMobileMenuOpen(false);
             }}
             sx={{
@@ -553,8 +528,8 @@ const PrepareYourMenu = () => {
                 <Button
                   onClick={() =>
                     isAdded(item)
-                      ? handleRemove(item)
-                      : handleAdd(item)
+                      ? removeItem(item)
+                      : addItem(item)
                   }
                   sx={{
                     backgroundColor: isAdded(item)
@@ -633,7 +608,7 @@ const PrepareYourMenu = () => {
 
                     <DeleteIcon
                       sx={{ cursor: "pointer", fontSize: { xs: 16, sm: 18 } }}
-                      onClick={() => handleRemove(item)}
+                      onClick={() => removeItem(item)}
                     />
                   </Box>
                 ))}
@@ -654,7 +629,7 @@ const PrepareYourMenu = () => {
                 >
                   <Button
                     disabled={selectedItems.length === 0}
-                    onClick={handleClearAll}
+                    onClick={clearAll}
                     sx={{
                       flex: 1,
                       backgroundColor: "#eeeeee",

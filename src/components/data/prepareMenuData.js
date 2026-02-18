@@ -3,6 +3,17 @@ import grape_juice from "../../assets/MenuImage/PrepareMenuImg/grape-juice.jpeg"
 import fruit_punch from "../../assets/MenuImage/PrepareMenuImg/fruit-punch.jpeg"
 import fruit_juice from "../../assets/MenuImage/PrepareMenuImg/fruit-juice.jpeg"
 import any_other_juice from "../../assets/MenuImage/PrepareMenuImg/any-other-juice.jpeg"
+import tossed_salad from "../../assets/MenuImage/PrepareMenuImg/salad/tossed-salad.jpg"
+import Pasta_salad from "../../assets/MenuImage/PrepareMenuImg/salad/pasta-salad.jpg"
+import Kachumber_Salad from "../../assets/MenuImage/PrepareMenuImg/salad/kachumber-salad.jpg"
+import indian_style_salads_for_event from "../../assets/MenuImage/PrepareMenuImg/salad/indian-style-salads-for-event.jpg"
+import green_salad from "../../assets/MenuImage/PrepareMenuImg/salad/green-salad.png"
+import cucumber_salad from "../../assets/MenuImage/PrepareMenuImg/salad/cucumber-salad.jpg"
+import Corn_salad from "../../assets/MenuImage/PrepareMenuImg/salad/corn-salad.jpg"
+import Chilled_Dahi_Bhalla from "../../assets/MenuImage/PrepareMenuImg/salad/Chilled-Dahi-Bhalla.jpg"
+import Beans_sprout_salad from "../../assets/MenuImage/PrepareMenuImg/salad/Beans-sprout-salad.jpg"
+
+
 import dummyImage from "../../assets/gallery/industry.webp"
 
 export const prepareMenuData = [
@@ -40,42 +51,42 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Green salad",
-        image: dummyImage,
+        image: green_salad,
       },
       {
         name: "Tossed salad",
-        image: dummyImage,
+        image: tossed_salad,
       },
       {
         name: "Cucumber salad",
-        image: dummyImage,
+        image: cucumber_salad,
       },
       {
         name: "Beans sprout salad",
-        image: dummyImage,
+        image: Beans_sprout_salad,
       },
       {
         name: "Corn salad",
-        image: dummyImage,
+        image: Corn_salad,
       },
       {
         name: "Chilled Dahi Bhalla",
-        image: dummyImage,
+        image: Chilled_Dahi_Bhalla,
       },
       {
         name: "Kachumber Salad",
-        image: dummyImage,
+        image: Kachumber_Salad,
       },
       {
         name: "Pasta salad",
-        image: dummyImage,
+        image: Pasta_salad,
       },
     ],
     nonVeg: [],
     other: [
       {
         name: "Any other Salad",
-        image: dummyImage,
+        image: indian_style_salads_for_event,
       },
     ],
   },
