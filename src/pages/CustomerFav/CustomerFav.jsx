@@ -28,7 +28,21 @@ export const CustomerFav = () => {
   });
 
   return (
-    <Box sx={{ backgroundColor: "#f5f4f4", p: 3 }}>
+    <Box sx={{ backgroundColor: "#f5f4f4", p: 4, }}>
+       <Box
+                sx={{
+                  position: "sticky",
+                  top: 65,
+                  zIndex: 1100, 
+                  backgroundColor: "#f6f6f6",
+                  py: 0.5,
+                  mb: 1,
+                  mx: { xs: -2, md: -4 }, 
+                  px: { xs: 2, md: 4 }, 
+                  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.21)", 
+                  borderRadius:1
+                }}
+              >
       {/* BREADCRUMBS - Added at top left */}
       <Breadcrumbs 
         aria-label="breadcrumb" 
@@ -104,6 +118,7 @@ export const CustomerFav = () => {
         spacing={1}
         justifyContent="center"
         mt={3}
+        mb={2}
       >
         {["VEG", "NON-VEG", "BOTH"].map(type => (
           <Button
@@ -126,7 +141,7 @@ export const CustomerFav = () => {
           </Button>
         ))}
       </Stack>
-
+</Box>
       {/* MENU CARDS */}
       <Box
         mt={5}

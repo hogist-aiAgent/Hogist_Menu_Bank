@@ -3,6 +3,8 @@ import grape_juice from "../../assets/MenuImage/PrepareMenuImg/grape-juice.jpeg"
 import fruit_punch from "../../assets/MenuImage/PrepareMenuImg/fruit-punch.jpeg"
 import fruit_juice from "../../assets/MenuImage/PrepareMenuImg/fruit-juice.jpeg"
 import any_other_juice from "../../assets/MenuImage/PrepareMenuImg/any-other-juice.jpeg"
+
+//salad images
 import tossed_salad from "../../assets/MenuImage/PrepareMenuImg/salad/tossed-salad.jpg"
 import Pasta_salad from "../../assets/MenuImage/PrepareMenuImg/salad/pasta-salad.jpg"
 import Kachumber_Salad from "../../assets/MenuImage/PrepareMenuImg/salad/kachumber-salad.jpg"
@@ -12,6 +14,43 @@ import cucumber_salad from "../../assets/MenuImage/PrepareMenuImg/salad/cucumber
 import Corn_salad from "../../assets/MenuImage/PrepareMenuImg/salad/corn-salad.jpg"
 import Chilled_Dahi_Bhalla from "../../assets/MenuImage/PrepareMenuImg/salad/Chilled-Dahi-Bhalla.jpg"
 import Beans_sprout_salad from "../../assets/MenuImage/PrepareMenuImg/salad/Beans-sprout-salad.jpg"
+
+//Soup images
+import Cream_of_tomato_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Cream-of-tomato-soup.jpg"
+import Cream_of_veg_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Cream-of-veg-soup.jpg"
+import Cream_of_chicken_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Cream-of-chicken-soup.jpg"
+import drumsick_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/drumstick-soup.png"
+import Hot_sour_veg_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Hot&sour-veg-soup.jpg"
+import Lemon_coriander_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Lemon-coriander-soup.jpg"
+import Indian_Style_Tomato_Rasam from "../../assets/MenuImage/PrepareMenuImg/Soup/Indian-Style-Tomato-Rasam.jpg"
+import soup_in_indian_event from "../../assets/MenuImage/PrepareMenuImg/Soup/soups-in-indian-event.jpg"
+import Sweet_corn_veg_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Sweet-corn-veg-soup.jpg"
+import Veg_Manchow_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Veg-Manchow-soup.jpg"
+import Veg_clear_soup from "../../assets/MenuImage/PrepareMenuImg/soup/Veg-clear-soup.jpg"
+import Cream_of_spinach_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Cream-of-spinach-soup.png"
+
+//starter images
+import any_other_starter from "../../assets/MenuImage/PrepareMenuImg/starter/any-other-starter.png"
+import Baby_corn_pepper_fry from "../../assets/MenuImage/PrepareMenuImg/starter/Baby-corn-pepper-fry-in-catering-setup.jpg"
+import Cheese_balls from "../../assets/MenuImage/PrepareMenuImg/starter/Cheese-balls.jpg"
+import Chicken_65 from "../../assets/MenuImage/PrepareMenuImg/starter/chicken-65.png"
+import Chicken_Lolly_Pop from "../../assets/MenuImage/PrepareMenuImg/starter/chicken-lollypops-in-a-plate.jpg"
+import chicken_manjurian from "../../assets/MenuImage/PrepareMenuImg/starter/chicken-manchurian.jpg"
+import chicken_pepper_fry from "../../assets/MenuImage/PrepareMenuImg/starter/chicken-pepper-fry.png"
+import chicken_tikka from "../../assets/MenuImage/PrepareMenuImg/starter/chicken-tikka.png"
+import chilly_egg from "../../assets/MenuImage/PrepareMenuImg/starter/chilly-egg.png"
+import egg_paniyaram from "../../assets/MenuImage/PrepareMenuImg/starter/egg-paniyaram.png"
+import chilly_fish_chilly_chicken from "../../assets/MenuImage/PrepareMenuImg/starter/chilly-fish-chilly-chicken.png"
+import chrispy_chilly_veg  from "../../assets/MenuImage/PrepareMenuImg/starter/chrispy-chilly-veg.jpg"
+import fish_finger from "../../assets/MenuImage/PrepareMenuImg/starter/fish-finger.jpg"
+import fish_fry from "../../assets/MenuImage/PrepareMenuImg/starter/fish-fry.png"
+import French_fry from "../../assets/MenuImage/PrepareMenuImg/starter/french-fries-in-a-plate.jpg"
+import gobi_paneer_65 from "../../assets/MenuImage/PrepareMenuImg/starter/Gobi -Paneer-65.jpg"
+import golden_fried_baby_corn from "../../assets/MenuImage/PrepareMenuImg/starter/golden-fried-baby-corn.png"
+import hara_bhara_kebab from "../../assets/MenuImage/PrepareMenuImg/starter/hara-bhara-kebab.jpg"
+import mutton_pepper_fry from "../../assets/MenuImage/PrepareMenuImg/starter/mutton-pepper-fry.jpg"
+import paneer_tikka from "../../assets/MenuImage/PrepareMenuImg/starter/paneer-tikka-in-a-buffet-setup.jpg"
+import veg_cutlet from "../../assets/MenuImage/PrepareMenuImg/starter/veg-cutlet-in-a-plate.jpg"
 
 
 import dummyImage from "../../assets/gallery/industry.webp"
@@ -96,55 +135,55 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Cream of tomato",
-        image: dummyImage,
+        image: Cream_of_tomato_soup,
       },
       {
         name: "Cream of veg soup",
-        image: dummyImage,
+        image: Cream_of_veg_soup,
       },
       {
         name: "Hot & sour veg soup",
-        image: dummyImage,
+        image: Hot_sour_veg_soup,
       },
       {
         name: "Sweet corn veg soup",
-        image: dummyImage,
+        image: Sweet_corn_veg_soup,
       },
       {
         name: "Veg Manchow soup",
-        image: dummyImage,
+        image: Veg_Manchow_soup,
       },
       {
         name: "Drumstick soup",
-        image: dummyImage,
+        image: drumsick_soup,
       },
       {
         name: "Cream of spinach soup",
-        image: dummyImage,
+        image: Cream_of_spinach_soup,
       },
       {
         name: "Veg clear soup",
-        image: dummyImage,
+        image: Veg_clear_soup,
       },
       {
         name: "Lemon Coriander Soup",
-        image: dummyImage,
+        image: Lemon_coriander_soup,
       },
       {
         name: "Tomato Rasam",
-        image: dummyImage,
+        image: Indian_Style_Tomato_Rasam,
       },
     ],
     nonVeg: [
       {
         name: "Cream of Chicken Soup",
-        image: dummyImage,
+        image: Cream_of_chicken_soup,
       },
     ],
     other: [
       {
         name: "Any other Soup",
-        image: dummyImage,
+        image: soup_in_indian_event,
       },
     ],
   },
@@ -154,95 +193,91 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Veg cutlet",
-        image: dummyImage,
+        image: veg_cutlet,
       },
       {
         name: "French fry",
-        image: dummyImage,
+        image: French_fry,
       },
       {
         name: "Gobi / paneer 65",
-        image: dummyImage,
+        image: gobi_paneer_65,
       },
       {
         name: "Chrispy fried / Chilly Veg",
-        image: dummyImage,
+        image: chrispy_chilly_veg,
       },
       {
-        name: "Cheese bolls",
-        image: dummyImage,
+        name: "Cheese balls",
+        image: Cheese_balls,
       },
       {
         name: "Paneer tikka",
-        image: dummyImage,
+        image: paneer_tikka,
       },
       {
         name: "Baby corn pepper fry",
-        image: dummyImage,
+        image: Baby_corn_pepper_fry,
       },
       {
         name: "Golden fried baby corn",
-        image: dummyImage,
-      },
-      {
-        name: "Paneer tikka",
-        image: dummyImage,
+        image: golden_fried_baby_corn,
       },
       {
         name: "Hara bhara kebab",
-        image: dummyImage,
+        image: hara_bhara_kebab,
       },
     ],
     nonVeg: [
       {
         name: "Chicken 65",
-        image: dummyImage,
+        image: Chicken_65,
       },
       {
         name: "Chicken pepper fry",
-        image: dummyImage,
+        image: chicken_pepper_fry,
       },
       {
         name: "Chilly fish / Chicken",
-        image: dummyImage,
+        image: chilly_fish_chilly_chicken,
       },
       {
         name: "Fish finger/ Fish fry",
-        image: dummyImage,
+        image: fish_fry,
       },
       {
         name: "Chicken Manchurian",
-        image: dummyImage,
+        image: chicken_manjurian,
       },
       {
         name: "Chicken Lolly Pop",
-        image: dummyImage,
+        image: Chicken_Lolly_Pop,
       },
       {
         name: "Chilly egg",
-        image: dummyImage,
+        image: chilly_egg,
       },
       {
         name: "Mutton pepper fry",
-        image: dummyImage,
+        image: mutton_pepper_fry,
       },
       {
         name: "Fish pakoda",
-        image: dummyImage,
+        image: fish_finger,
       },
       {
         name: "Egg panayaram",
-        image: dummyImage,
+        image: egg_paniyaram,
       },
       {
         name: "Chicken Tikka",
-        image: dummyImage,
+        image: chicken_tikka,
       },
     ],
     other: [
       {
         name: "Any other Starter",
-        image: dummyImage,
+        image: any_other_starter,
       },
     ],
   },

@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   typography: {
-    fontFamily:'"Poppins", serif',
+    fontFamily:'"Roboto Serif", serif',
 
     body1: {
       fontSize: '0.95rem',

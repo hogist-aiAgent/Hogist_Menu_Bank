@@ -290,7 +290,8 @@ const clearAll = useMenuStore((state) => state.clearAll);
             mb: 1,
             mx: { xs: -2, md: -4 }, 
             px: { xs: 2, md: 4 }, 
-            boxShadow: "0 2px 6px rgba(0,0,0,0.05)", 
+            boxShadow: "0 2px 6px rgba(0, 0, 0, 0.21)", 
+            borderRadius:1
           }}
         >
         <Breadcrumbs sx={{  fontSize: { xs: '0.875rem', md: '1rem' } }}>
