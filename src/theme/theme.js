@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   typography: {
-    fontFamily:'"Roboto Serif", serif',
+    fontFamily:'"Roboto", sans-serif',
 
     body1: {
       fontSize: '0.95rem',
