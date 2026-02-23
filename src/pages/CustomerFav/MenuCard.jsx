@@ -125,7 +125,7 @@ const MenuCard = ({ title, items, foodType, image }) => {
               WebkitLineClamp: 2,
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
-              mt: {xs:-2, md:1},
+              mt: {xs:0, md:1},
             }}
           >
             {items.join(" • ")}
