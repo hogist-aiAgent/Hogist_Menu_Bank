@@ -1,9 +1,10 @@
 import { Avatar, Box, IconButton, Paper } from '@mui/material'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import companyLogo from '.././assets/CompanyLogos/red with white bck.png'
-import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
    <>
     <Paper elevation={3} color='none' sx={{
@@ -30,7 +31,7 @@ const Navbar = () => {
             height: "50px",
             width: "50px"
         }}>
-            
+          <HomeIcon sx={{ color: "#c60800", fontSize: "34px" }} onClick={() => navigate("/")} />
         </IconButton>
     </Paper>
 

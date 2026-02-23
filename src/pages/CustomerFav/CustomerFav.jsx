@@ -31,7 +31,7 @@ export const CustomerFav = () => {
     <Box sx={{ backgroundColor: "#f5f4f4", p: 4, }}>
        <Box
                 sx={{
-                  position: "sticky",
+                  // position: "sticky",
                   top: 65,
                   zIndex: 1100, 
                   backgroundColor: "#f6f6f6",
