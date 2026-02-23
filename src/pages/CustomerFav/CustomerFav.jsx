@@ -1,179 +1,126 @@
-import { Box, Button, Typography, Stack, Breadcrumbs, Link } from "@mui/material";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { Box, Typography, Stack, Paper, alpha, Container } from "@mui/material";
+import { useMemo, useState } from "react";
 import { menuData } from "../../components/data/MenuData";
 import MenuCard from "./MenuCard";
-
-const categories = [
-  "Breakfast",
-  "Lunch",
-  "Dinner",
-  "Snacks",
-  "Lunch/Dinner",
-  "Breakfast/Dinner",
-];
-
+import CategoryBar from "../../components/common/Category/CategoryBar";
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
+import LunchDiningIcon from '@mui/icons-material/LunchDining';
+import SetMealIcon from '@mui/icons-material/SetMeal';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import FoodBankIcon from '@mui/icons-material/FoodBank';
 export const CustomerFav = () => {
   const [activeCategory, setActiveCategory] = useState("Breakfast");
   const [foodType, setFoodType] = useState("BOTH");
-  const navigate = useNavigate(); // Initialize navigate
 
-  /* -------- FILTER MENU DATA DIRECTLY -------- */
-  const filteredMenus = menuData.filter(menu => {
-    const categoryMatch = menu.category === activeCategory;
-    const foodMatch =
-      foodType === "BOTH" || menu.foodType === foodType;
+  const categories = [
+    { label: "All", icon: <FoodBankIcon />, key: "ALL" },
+    { label: "Breakfast", icon: <ListAltIcon />, key: "Breakfast" },
+    { label: "Lunch", icon: <LunchDiningIcon />, key: "Lunch" },
+    { label: "Dinner", icon: <LocalPizzaIcon />, key: "Dinner" },
+    { label: "Lunch &", subLabel: "Dinner", icon: <RestaurantIcon />, key: "Lunch/Dinner" },
+    { label: "Breakfast &", subLabel: "Dinner", icon: <SetMealIcon />, key: "Breakfast/Dinner" },
+  ];
 
-    return categoryMatch && foodMatch;
-  });
+
+  const filteredMenus = useMemo(() => {
+    return menuData.filter((menu) => {
+      const categoryMatch = activeCategory === "ALL" || menu.category === activeCategory;
+      const foodMatch = foodType === "BOTH" || menu.foodType === foodType;
+      return categoryMatch && foodMatch;
+    });
+  }, [activeCategory, foodType]);
 
   return (
-    <Box sx={{ backgroundColor: "#f5f4f4", p: 4, }}>
-       <Box
-                sx={{
-                  position: "sticky",
-                  top: 65,
-                  zIndex: 1100, 
-                  backgroundColor: "#f6f6f6",
-                  py: 0.5,
-                  mb: 1,
-                  mx: { xs: -2, md: -4 }, 
-                  px: { xs: 2, md: 4 }, 
-                  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.21)", 
-                  borderRadius:1
-                }}
-              >
-      {/* BREADCRUMBS - Added at top left */}
-      <Breadcrumbs 
-        aria-label="breadcrumb" 
-        sx={{ mb: 2, }}
-      >
-        <Link
-          component="button"
-         onClick={() => navigate("/")}
+    <Box sx={{ backgroundColor: "#f5f4f4", minHeight: "100vh", pb: 6 }}>
+      <Box sx={{ pt: 2, px: { xs: 1, sm: 2 } }}>
+        <CategoryBar 
+          setFoodType={setFoodType} 
+          categories={categories} 
+          activeCategory={activeCategory} 
+          setActiveCategory={setActiveCategory} 
+        />
+      </Box>
+
+      
+      <Container maxWidth="xl">
+        <Paper
+          elevation={0}
           sx={{
-            fontWeight:600,
-            textDecoration:"none"
+            mt: 4,
+            p: { xs: 2, md: 4 },
+            borderRadius: "24px", // Matches the soft look of the CategoryBar
+            backgroundColor: "#fafafa",
+            border: "1px solid",
+            borderColor: alpha("#000", 0.06),
+            boxShadow: "0px 4px 20px rgba(0,0,0,0.02)", // Very subtle lift
           }}
         >
-          Home
-        </Link>
-        <Typography  sx={{  fontWeight:600 }}>
-          {activeCategory}
-        </Typography>
-      </Breadcrumbs>
-
-      {/* TITLE */}
-      <Typography
-        component="p"
-        align="center"
-        color="#c60000"
-        
-        sx={{fontSize:{xs:"28px",md:"36px"}}}
-        fontWeight={700}
-        mb={2}
-      >
-        Customer Favorites
-      </Typography>
-
-      {/* CATEGORY BUTTONS */}
-      <Stack
-      
-        direction="row"
-        justifyContent="center"
-        flexWrap="wrap"
-        gap={2}
-        sx={{
-          "& .MuiButton-root": {
-            width: { xs: "45%", sm: "auto" },
-          },
-        }}
-      >
-        {categories.map(cat => (
-          <Button
-           component="p"
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            variant={activeCategory === cat ? "contained" : "outlined"}
-            sx={{
-              borderRadius: 5,
-              textTransform: "none",
-              background:
-          activeCategory === cat
-            ? "linear-gradient(45deg,#ff4b2b,#a00000)"
-            : "transparent",
-              color:
-                activeCategory === cat ? "white" : "#000",
-              borderColor: "#d32f2f",
-            }}
+          {/* Internal Header: Context for the user */}
+          <Stack 
+            direction="row" 
+            justifyContent="space-between" 
+            alignItems="flex-end" 
+            sx={{ mb: 4, px: 0.5 }}
           >
-            {cat}
-          </Button>
-        ))}
-      </Stack>
-
-      {/* VEG / NON-VEG / BOTH */}
-      <Stack
-        direction="row"
-        spacing={1}
-        justifyContent="center"
-        mt={3}
-        mb={2}
-      >
-        {["VEG", "NON-VEG", "BOTH"].map(type => (
-          <Button
-           component="p"
-            key={type}
-            size="small"
-            variant={foodType === type ? "contained" : "outlined"}
-           sx={{
-              background:
-                foodType === type
-                  ? "linear-gradient(45deg,#ff4b2b,#a00000)"
-                  : "transparent",
-              color: foodType === type ? "white" : "#000",
-              borderColor: "#d32f2f",
-            }}
-
-            onClick={() => setFoodType(type)}
-          >
-            {type}
-          </Button>
-        ))}
-      </Stack>
-</Box>
-      {/* MENU CARDS */}
-      <Box
-        mt={5}
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 3,
-          justifyContent: "center",
-        }}
-      >
-        {filteredMenus.length > 0 ? (
-          filteredMenus.map(menu => (
-            <Box
-              key={menu.id}
-              sx={{
-                width: {
-                  xs: "100%",
-                  sm: "48%",
-                  md: "23%",
-                },
-              }}
-            >
-              
-              <MenuCard title={menu.title} items={menu.items}  foodType={menu.foodType} image={menu.image} />
+            <Box>
+              <Typography variant="h5" sx={{ fontWeight: 900, color: "#1A1C1E" }}>
+                {activeCategory} {activeCategory === "All" ? "Collection" : "Selection"}
+              </Typography>
+              <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 500 }}>
+                {filteredMenus.length} items curated for you
+              </Typography>
             </Box>
-          ))
-        ) : (
-          <Typography align="center" color="text.secondary" mt={4}>
-            No menu items available
-          </Typography>
-        )}
-      </Box>
+          </Stack>
+
+          {/* 3. RESPONSIVE GRID LISTING */}
+          <Box
+            sx={{
+              display: "grid",
+              gap: { xs: 2, md: 3 },
+              // Using Grid for perfect alignment
+              gridTemplateColumns: {
+                xs: "1fr",               // 1 card
+                sm: "repeat(2, 1fr)",    // 2 cards
+                md: "repeat(3, 1fr)",    // 3 cards
+                lg: "repeat(4, 1fr)",    // 4 cards
+              }
+            }}
+          >
+            {filteredMenus.length > 0 ? (
+              filteredMenus.map((menu) => (
+                <Box 
+                  key={menu.id} 
+                  sx={{ 
+                    transition: 'transform 0.2s ease-in-out',
+                    '&:hover': { transform: 'translateY(-4px)' } 
+                  }}
+                >
+                  <MenuCard 
+                    title={menu.title} 
+                    items={menu.items} 
+                    foodType={menu.foodType} 
+                    image={menu.image} 
+                  />
+                </Box>
+              ))
+            ) : (
+              <Stack 
+                alignItems="center" 
+                justifyContent="center" 
+                sx={{ gridColumn: "1 / -1", py: 10 }}
+              >
+                <Typography variant="h6" color="text.secondary" fontWeight={700}>
+                  No items found
+                </Typography>
+                <Typography variant="body2" color="text.disabled">
+                  Try adjusting your diet filters or checking another category.
+                </Typography>
+              </Stack>
+            )}
+          </Box>
+        </Paper>
+      </Container>
     </Box>
   );
 };
