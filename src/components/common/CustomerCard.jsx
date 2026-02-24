@@ -39,19 +39,19 @@ const CustomerCard = ({ index = 0 }) => {
   return (
     <Card
       sx={{
-        width: {xs:"90%",md:"100%"},
+        width: { xs: "90%", md: "100%" },
         height: 173,
         borderRadius: "16px",
         mt: 2,
         mb: 6,
-        ml:{xs:0.5,},
+        ml: { xs: 0.5 },
         position: "relative",
         overflow: "hidden",
         backgroundColor: "#fff",
         color: "#000",
         transition: "transform 0.3s ease",
         zIndex: 1,
-        boxShadow:"0px 1px 8px #29282871",
+        boxShadow: "0px 1px 8px #29282871",
 
         /* CURVED RADIAL FILL (Swigo-like) */
         "&::before": {
@@ -76,7 +76,9 @@ const CustomerCard = ({ index = 0 }) => {
         },
       }}
     >
-      <CardContent sx={{ display: "flex", alignItems: "center", gap: 2, pb: 1 }}>
+      <CardContent
+        sx={{ display: "flex", alignItems: "center", gap: 2, pb: 1 }}
+      >
         <Avatar
           sx={{
             width: 25,
@@ -88,13 +90,17 @@ const CustomerCard = ({ index = 0 }) => {
         >
           {testimonial.name.charAt(0)}
         </Avatar>
-        <Typography component="p" fontWeight={600} sx={{fontSize:{xs:"12px",md:"16px"}}}>
+        <Typography
+          component="p"
+          fontWeight={600}
+          sx={{ fontSize: { xs: "12px", md: "16px" } }}
+        >
           {testimonial.name}
         </Typography>
       </CardContent>
 
       <CardContent
-      component="p"
+        component="p"
         sx={{
           pt: 0,
           fontSize: { xs: "10px", md: "11px" },

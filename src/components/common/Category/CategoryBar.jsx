@@ -40,13 +40,13 @@ const CategoryBar = ({
 
   // Placeholder height logic
   const DESKTOP_HEIGHT = 160;
-  const MOBILE_HEIGHT = 110;
+  const MOBILE_HEIGHT = 10;
 
   // UI stays primary color regardless of selection
   // {["VEG", "NON-VEG", "BOTH"].map(type => (
 
   const diets = {
-    all: { label: "All Food", icon: <FilterList fontSize="small" /> },
+    all: { label: "Both ", icon: <FilterList fontSize="small" /> },
     veg: {
       label: "Pure Veg",
       icon: <FiberManualRecord sx={{ fontSize: 10, color: "#4caf50" }} />,
@@ -83,7 +83,7 @@ const CategoryBar = ({
   };
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 60);
+    const handleScroll = () => setIsScrolled(window.scrollY > 340);
     window.addEventListener("scroll", handleScroll);
     checkScroll();
     return () => window.removeEventListener("scroll", handleScroll);
@@ -107,14 +107,32 @@ const CategoryBar = ({
       }}
     >
       <Box
+        // sx={{
+        //   position: isScrolled ? "fixed" : "relative",
+        //   top: isScrolled ? (isMobile ? '50%' : 70) : 0,
+        //   left: 0,
+        //   right: 0,
+        //   zIndex: 1100,
+        //   px: isScrolled && !isMobile ? { sm: 4 } : 0,
+        //   transition: "0.3s ease-in-out",
+        // }}
         sx={{
           position: isScrolled ? "fixed" : "relative",
-          top: isScrolled ? (isMobile ? 70 : 70) : 0,
-          left: 0,
-          right: 0,
+
+          top: isScrolled ? (isMobile ? "10px" : 70) : 0,
+
+          left: isScrolled && isMobile ? "50%" : 0,
+          right: isScrolled && isMobile ? "auto" : 0,
+
+          transform: isScrolled && isMobile ? "translate(-50%, 0%)" : "none",
+
+          width: isScrolled && isMobile ? "95%" : "auto",
+
           zIndex: 1100,
+
           px: isScrolled && !isMobile ? { sm: 4 } : 0,
-          transition: "0.3s ease-in-out",
+
+          transition: "0.5s ease-in-out",
         }}
       >
         <Paper
@@ -125,7 +143,7 @@ const CategoryBar = ({
               isScrolled && !isMobile
                 ? "24px"
                 : isScrolled && isMobile
-                  ? "0px"
+                  ? "16px"
                   : "16px",
             background: "#ffffff",
             borderBottom: "1px solid",
@@ -140,7 +158,7 @@ const CategoryBar = ({
             mb={isScrolled && isMobile ? 0.8 : 1.5}
           >
             <Stack direction="row" spacing={1} alignItems="center">
-              {  (
+              {
                 <Box
                   sx={{
                     display: "flex",
@@ -152,40 +170,83 @@ const CategoryBar = ({
                 >
                   <CategoryOutlined fontSize="small" />
                 </Box>
-              )}
+              }
               <Typography
                 variant="h6"
                 sx={{
-             
-                  fontSize: isScrolled && isMobile ? "0.9rem" : "1.05rem",
+                  fontSize: isScrolled || isMobile ? "0.9rem" : "1.05rem",
                   fontWeight: 800,
                 }}
               >
-                { "Menu Categories"}
+                {"Menu Categories"}
               </Typography>
             </Stack>
 
             <Stack direction="row" spacing={1} alignItems="center">
-              <ButtonBase
-                onClick={handleOpen}
+              <Box
                 sx={{
-                  height: 32,
-                  px: 1.5,
-                  borderRadius: "50px",
-                  bgcolor: alpha(theme.palette.text.primary, 0.04),
-                  color: "text.primary",
+                  display: "flex",
+                  p: 0.5,
+                  bgcolor: alpha(theme.palette.text.primary, 0.05),
+                  borderRadius: "12px",
                   border: "1px solid",
-                  borderColor: alpha(theme.palette.divider, 0.2),
-                  gap: 1,
+                  borderColor: alpha(theme.palette.divider, 0.1),
+                  // Prevent the whole bar from shrinking
+                  flexShrink: 0,
                 }}
               >
-                {diets[diet].icon}
-                <Typography sx={{ fontSize: "0.7rem", fontWeight: 700 }}>
-                  {diets[diet].label}
-                </Typography>
-                <KeyboardArrowDown sx={{ fontSize: 14 }} />
-              </ButtonBase>
+                {Object.entries(diets).map(([key, value]) => {
+                  const isSelected = diet === key;
+                  return (
+                    <ButtonBase
+                      key={key}
+                      onClick={() => {
+                        const dietKeyMap = {
+                          all: "BOTH",
+                          veg: "VEG",
+                          "non-veg": "NON-VEG",
+                        };
+                        setDiet(key);
+                        setFoodType(dietKeyMap[key]);
+                      }}
+                      sx={{
+                        // Thinner padding on mobile to prevent overflow
+                        px: { xs: 1.2, sm: 2 },
+                        py: 0.8,
+                        borderRadius: "10px",
+                        transition: "all 0.2s ease",
+                        bgcolor: isSelected ? "#ffffff" : "transparent",
+                        boxShadow: isSelected
+                          ? "0 2px 8px rgba(0,0,0,0.1)"
+                          : "none",
+                        color: isSelected ? "#c60800" : "text.secondary",
+                      }}
+                    >
+                      <Stack direction="row" alignItems="center" spacing={0.5}>
+                        {value.icon}
+                        {/* Hide text on extra small screens unless it's the selected one, or hide all labels */}
+                        <Typography
+                          sx={{
+                            fontSize: "0.7rem",
+                            fontWeight: 800,
+                            display: {
+                              xs: isSelected ? "block" : "none",
+                              sm: "block",
+                            },
+                            whiteSpace: "nowrap",
+                            ml: 0.5,
+                          }}
+                        >
+                          {value.label.replace(" Food", "")}{" "}
+                          {/* Shorten "All Food" to "All" for mobile */}
+                        </Typography>
+                      </Stack>
+                    </ButtonBase>
+                  );
+                })}
+              </Box>
 
+              {/* Only show arrows on desktop */}
               {!isMobile && (canScroll.left || canScroll.right) && (
                 <Stack direction="row" spacing={0.5}>
                   <IconButton
@@ -229,12 +290,8 @@ const CategoryBar = ({
                   sx={{
                     flexShrink: 0,
                     flexDirection: "row",
-                    minWidth: isScrolled
-                      ? isMobile
-                        ? "90px"
-                        : "120px"
-                      : "140px",
-                    height: isScrolled && isMobile ? "36px" : "50px",
+                    minWidth: isMobile ? "90px" : "140px",
+                    height: isScrolled || isMobile ? "36px" : "50px",
                     borderRadius: isScrolled ? "50px" : "12px",
                     px: 1.8,
                     gap: 1,
@@ -251,7 +308,7 @@ const CategoryBar = ({
                 >
                   <Box
                     sx={{
-                      fontSize: isScrolled && isMobile ? "1rem" : "1.2rem",
+                      fontSize: isScrolled || isMobile ? "1rem" : "1.2rem",
                       color: isActive ? "white" : theme.palette.primary.main,
                       display: "flex",
                     }}
@@ -261,7 +318,7 @@ const CategoryBar = ({
                   <Stack alignItems="flex-start" spacing={-0.3}>
                     <Typography
                       sx={{
-                        fontSize: isScrolled && isMobile ? "0.7rem" : "0.8rem",
+                        fontSize: isScrolled || isMobile ? "0.7rem" : "0.8rem",
                         fontWeight: 700,
                         whiteSpace: "nowrap",
                       }}
@@ -274,10 +331,9 @@ const CategoryBar = ({
                         variant="caption"
                         sx={{
                           fontSize:
-                            isScrolled && isMobile ? "0.55rem" : "0.6rem",
-                          opacity: 0.6,
-                          fontWeight: 500,
-                          display: isScrolled && isMobile ? "none" : "block", // Cleanest look on mobile scroll
+                            isScrolled || isMobile ? "0.7rem" : "0.8rem",
+                          fontWeight: 700,
+                          whiteSpace: "nowrap",
                         }}
                       >
                         {cat.subLabel}

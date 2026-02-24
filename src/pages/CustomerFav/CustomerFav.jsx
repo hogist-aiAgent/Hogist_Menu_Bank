@@ -9,6 +9,7 @@ import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import SetMealIcon from '@mui/icons-material/SetMeal';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 export const CustomerFav = () => {
   const [activeCategory, setActiveCategory] = useState("Breakfast");
   const [foodType, setFoodType] = useState("BOTH");
@@ -33,6 +34,97 @@ export const CustomerFav = () => {
 
   return (
     <Box sx={{ backgroundColor: "#f5f4f4", minHeight: "100vh", pb: 6 }}>
+      <Container maxWidth="xl" sx={{ pt: 6, pb: 4 }}>
+  <Stack 
+    direction={{ xs: 'column', lg: 'row' }} 
+    justifyContent="space-between" 
+    alignItems={{ xs: 'flex-start', lg: 'center' }} 
+    spacing={4}
+  >
+    {/* LEFT SIDE: Content */}
+    <Box>
+      <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1.5 }}>
+        <Box 
+          sx={{ 
+            bgcolor: "#c60800", 
+            color: "white",
+            px: 1.5, py: 0.5, 
+            borderRadius: '50px',
+            display: 'flex', alignItems: 'center', gap: 1,
+            boxShadow: `0 4px 12px ${alpha("#c60800", 0.3)}`
+          }}
+        >
+          <FavoriteIcon sx={{ fontSize: 14 }} />
+          <Typography variant="caption" sx={{ fontWeight: 800, letterSpacing: 1 }}>
+            BEST SELLERS
+          </Typography>
+        </Box>
+          
+      </Stack>
+      
+      <Typography 
+        variant="h3" 
+        sx={{ 
+          fontWeight: 900, 
+          color: "#1A1C1E",
+          letterSpacing: "-1.5px",
+          fontSize: { xs: '2.5rem', md: '3.8rem' },
+          lineHeight: 1
+        }}
+      >
+        Customer <Box component="span" sx={{ color: "#c60800" }}>Favorites</Box>
+      </Typography>
+      <Typography variant="body1" sx={{ color: "text.secondary", mt: 2, maxWidth: 480, fontSize: '1.15rem', lineHeight: 1.6 }}>
+        The dishes our community is currently obsessed with. 
+        Highly rated, expertly prepared, and always fresh.
+      </Typography>
+    </Box>
+
+    {/* RIGHT SIDE: Visual Stats (No Search) */}
+    <Stack 
+      direction="row" 
+      spacing={3} 
+      sx={{ 
+        alignItems: 'center',
+        // Adds a subtle divider between the two stats
+        '& > :not(:last-child)': {
+          borderRight: { sm: `1px solid ${alpha('#000', 0.1)}` },
+          pr: { sm: 3 }
+        }
+      }}
+    >
+      {/* Stat 1: Rating */}
+      <Box sx={{ textAlign: { xs: 'left', sm: 'center' } }}>
+        <Typography variant="h4" sx={{ fontWeight: 900, color: '#1A1C1E' }}>
+          4.7<Box component="span" sx={{ fontSize: '1.2rem', color: '#FFB400', ml: 0.5 }}>★</Box>
+        </Typography>
+        <Typography variant="caption" sx={{ fontWeight: 700, color: 'text.secondary', display: 'block' }}>
+          GOOGLE RATING
+        </Typography>
+      </Box>
+
+      {/* Stat 2: Popularity */}
+      <Box sx={{ textAlign: { xs: 'left', sm: 'center' } }}>
+        <Typography variant="h4" sx={{ fontWeight: 900, color: '#1A1C1E' }}>
+          7
+        </Typography>
+        <Typography variant="caption" sx={{ fontWeight: 700, color: 'text.secondary', display: 'block' }}>
+          YEARS OF  EXPERIENCE
+        </Typography>
+      </Box>
+
+     <Box sx={{ textAlign: { xs: 'left', sm: 'center' } }}>
+        <Typography variant="h4" sx={{ fontWeight: 900, color: '#1A1C1E' }}>
+          200+
+        </Typography>
+        <Typography variant="caption" sx={{ fontWeight: 700, color: 'text.secondary', display: 'block' }}>
+          COMPANIES SERVED IN CHENNAI
+        </Typography>
+      </Box>
+    </Stack>
+  </Stack>
+</Container>
+      
       <Box sx={{ pt: 2, px: { xs: 1, sm: 2 } }}>
         <CategoryBar 
           setFoodType={setFoodType} 
