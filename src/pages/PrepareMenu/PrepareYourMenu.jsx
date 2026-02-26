@@ -1,45 +1,43 @@
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import {
   Box,
-  Typography,
-  Button,
-  Card,
-  Breadcrumbs,
-  Link,
-  Divider,
   Snackbar,
   Alert,
-  IconButton,
   Drawer,
   Fab,
+  Card,
+  Typography,
+  Divider,
+  Button
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import MenuIcon from "@mui/icons-material/Menu";
-import vegImg from "../../assets/icons/broccoli.png";
-import nonvegImg from "../../assets/icons/turkey.png";
-import both from "../../assets/icons/food.png";
+import Zoom from "@mui/material/Zoom";
 import { useMenuStore } from "../../components/store/useMenuStore";
-import { useNavigate } from "react-router-dom";
 import { prepareMenuData } from "../../components/data/prepareMenuData";
+import DeleteIcon from "@mui/icons-material/Delete";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
+import MenuContent from "./MenuContent";
 
 const PrepareYourMenu = () => {
-  const navigate = useNavigate();
   const categoryScrollRef = useRef(null);
   const topRef = useRef(null);
 
   const [activeCategory, setActiveCategory] = useState(
-    prepareMenuData[0]?.category
+    prepareMenuData[0]?.category || "Breakfast"
   );
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [filterType, setFilterType] = useState("both");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [selectedItemForDialog, setSelectedItemForDialog] = useState(null);
+  const [copySuccess, setCopySuccess] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState({});
 
   const selectedItems = useMenuStore((state) => state.selectedItems);
-const addItem = useMenuStore((state) => state.addItem);
-const removeItem = useMenuStore((state) => state.removeItem);
-const clearAll = useMenuStore((state) => state.clearAll);
+  const addItem = useMenuStore((state) => state.addItem);
+  const removeItem = useMenuStore((state) => state.removeItem);
+  const clearAll = useMenuStore((state) => state.clearAll);
+
   const currentCategory = prepareMenuData.find(
     (cat) => cat.category === activeCategory
   );
@@ -52,24 +50,42 @@ const clearAll = useMenuStore((state) => state.clearAll);
         ...item,
         type,
         id: `${activeCategory}-${type}-${item.name}-${index}`,
+        items: item.items || [],
       }));
 
     return [
       ...mapItems(currentCategory.veg, "veg"),
-      ...mapItems(currentCategory.nonVeg, "nonVeg"),
+      ...mapItems(currentCategory.nonVeg, "non-veg"),
       ...mapItems(currentCategory.other, "other"),
     ];
   }, [currentCategory, activeCategory]);
 
   const filteredItems = useMemo(() => {
-    if (filterType === "both") return allItems;
-    return allItems.filter((item) => item.type === filterType);
+    if (!filterType || filterType.toLowerCase() === "both") {
+      return allItems;
+    }
+
+    return allItems.filter(
+      (item) =>
+        item.type &&
+        item.type.toLowerCase() === filterType.toLowerCase()
+    );
   }, [allItems, filterType]);
 
- 
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
-  const isAdded = (item) => {
-    return selectedItems.some((i) => i.id === item.id);
+  const handleToggleClick = (type) => {
+    setFilterType(type);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   const handleCopyMenu = () => {
@@ -83,36 +99,36 @@ const clearAll = useMenuStore((state) => state.clearAll);
     });
   };
 
-  const scrollLeft = () => {
-    categoryScrollRef.current.scrollBy({
-      left: -200,
-      behavior: "smooth",
+  const handleCopyDialogMenu = () => {
+    if (!selectedItemForDialog) return;
+    
+    const menuText = selectedItemForDialog.items.join("\n");
+    navigator.clipboard.writeText(menuText).then(() => {
+      setCopySuccess(true);
     });
   };
 
-  const scrollRight = () => {
-    categoryScrollRef.current.scrollBy({
-      left: 200,
-      behavior: "smooth",
-    });
+  const handleOpenDialog = (item) => {
+    setSelectedItemForDialog(item);
+    setOpen(true);
   };
 
-  const handleCategoryClick = (category) => {
-    setActiveCategory(category);
-    // Scroll to top of the page smoothly
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+  const handleCloseDialog = () => {
+    setOpen(false);
+    setSelectedItemForDialog(null);
   };
 
-  const handleToggleClick = (type) => {
-    setFilterType(type);
-    // Scroll to top of the page smoothly
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+  const handleImageLoad = (itemId) => {
+    setImageLoaded(prev => ({ ...prev, [itemId]: true }));
+  };
+
+  const getThemeColor = (type) => {
+    switch(type) {
+      case "veg": return "#2e7d32";
+      case "non-veg": return "#c62828";
+      case "other": return "#f9d935";
+      default: return "#c60000";
+    }
   };
 
   const renderIndicator = (type, size = 16) => {
@@ -278,399 +294,39 @@ const clearAll = useMenuStore((state) => state.clearAll);
 
   return (
     <>
-      <Box sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 2 }, backgroundColor: "#f6f6f6", minHeight: "100vh" }}>
+      <MenuContent
+        activeCategory={activeCategory}
+        setActiveCategory={handleCategoryClick}
+        filterType={filterType}
+        setFilterType={handleToggleClick}
+        filteredItems={filteredItems}
+        selectedItems={selectedItems}
+        addItem={addItem}
+        removeItem={removeItem}
+        clearAll={clearAll}
+        topRef={topRef}
+        open={open}
+        setOpen={setOpen}
+        selectedItemForDialog={selectedItemForDialog}
+        setSelectedItemForDialog={setSelectedItemForDialog}
+        copySuccess={copySuccess}
+        setCopySuccess={setCopySuccess}
+        imageLoaded={imageLoaded}
+        setImageLoaded={setImageLoaded}
+        openSnackbar={openSnackbar}
+        setOpenSnackbar={setOpenSnackbar}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        handleOpenDialog={handleOpenDialog}
+        handleCloseDialog={handleCloseDialog}
+        handleCopyDialogMenu={handleCopyDialogMenu}
+        handleCopyMenu={handleCopyMenu}
+        getThemeColor={getThemeColor}
+        renderIndicator={renderIndicator}
+        mobileMenuDrawer={mobileMenuDrawer}
+        Zoom={Zoom}
+      />
 
-        <Box
-          sx={{
-            position: "sticky",
-            top: 65,
-            zIndex: 1100, 
-            backgroundColor: "#f6f6f6",
-            py: 0.5,
-            mb: 1,
-            mx: { xs: -2, md: -4 }, 
-            px: { xs: 2, md: 4 }, 
-            boxShadow: "0 2px 6px rgba(0, 0, 0, 0.21)", 
-            borderRadius:1
-          }}
-        >
-        <Breadcrumbs sx={{  fontSize: { xs: '0.875rem', md: '1rem' } }}>
-          <Link
-            component="button"
-            onClick={() => navigate("/")}
-            sx={{ fontWeight: 600, textDecoration: "none" }}
-          >
-            Home
-          </Link>
-          <Typography fontWeight={600}>Prepare Your Menu</Typography>
-        </Breadcrumbs>
-
-        <Typography
-          align="center"
-          sx={{
-            fontSize: { xs: 24, sm: 26, md: 34 },
-            fontWeight: 800,
-            color: "#c60000",
-            mb: { xs: 1.5, md: 1 },
-            mt: { xs: 1, md: -3 },
-          }}
-        >
-          Prepare your Menu
-        </Typography>
-
-        {/* CATEGORY BUTTONS */}
-        <Box sx={{ position: "relative", mb: 2, px: { xs: 2, md: 0 } }}>
-          <IconButton
-            onClick={scrollLeft}
-            sx={{
-              position: "absolute",
-              left: { xs: -5, md: -10 },
-              top: "40%",
-              transform: "translateY(-50%)",
-              backgroundColor: "#fff",
-              boxShadow: 2,
-              zIndex: 2,
-              "&:hover": { backgroundColor: "#f5f5f5" },
-              display: {xs:'none',md:'flex'}
-            }}
-          >
-            <ArrowBackIosNewIcon sx={{ fontSize: 14 }} />
-          </IconButton>
-
-          <Box
-            ref={categoryScrollRef}
-            sx={{
-              display: "flex",
-              gap: 2,
-              width: { xs: '116%', sm: '91%' },
-              overflowX: "auto",
-              whiteSpace: "nowrap",
-              pb: 1,
-              scrollBehavior: "smooth",
-              "&::-webkit-scrollbar": { display: "none" },
-              ml: { xs: -3, sm: 8 },
-              mr: { xs: 4, sm: 0 },
-              px: { xs: 0, sm: 0 }
-            }}
-          >
-            {prepareMenuData.map((cat) => (
-              <Button
-                key={cat.category}
-                onClick={() => handleCategoryClick(cat.category)}
-                sx={{
-                  flex: "0 0 auto",
-                  background:
-                    activeCategory === cat.category
-                      ? "linear-gradient(45deg,#ff4b2b,#c60000)"
-                      : "#fff",
-                  color: activeCategory === cat.category ? "#fff" : "#c60000",
-                  borderRadius: "30px",
-                  px: { xs: 1.5, sm: 2 },
-                  py: 0.6,
-                  textTransform: "none",
-                  fontWeight: 600,
-                  boxShadow: 2,
-                  fontSize: { xs: '13px', sm: '14px', md: '14px' }
-                }}
-              >
-                {cat.category}
-              </Button>
-            ))}
-          </Box>
-
-          <IconButton
-            onClick={scrollRight}
-            sx={{
-              position: "absolute",
-              right: { xs: -5, md: -10 },
-              top: "40%",
-              transform: "translateY(-50%)",
-              backgroundColor: "#fff",
-              boxShadow: 2,
-              zIndex: 2,
-              "&:hover": { backgroundColor: "#f5f5f5" },
-              display: {xs:'none',md:'flex'}
-            }}
-          >
-            <ArrowForwardIosIcon sx={{ fontSize: 14 }} />
-          </IconButton>
-        </Box>
-
-        {/* UPDATED TOGGLE BUTTONS WITH IMAGE ICONS */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            gap: { xs: 1, sm: 2 },
-            mb: { xs: 0, md: -4 },
-            flexWrap: "wrap",
-            px: { xs: 1, md: 0 },
-            width: { xs: '100%', md: 'auto' },
-          }}
-        >
-          {["veg", "nonVeg", "both"].map((type) => {
-            const isActive = filterType === type;
-
-            const baseStyles = {
-              borderRadius: "8px",
-              px: { xs: 1, sm: 3, md: 1 },
-              py: 0.3,
-              textTransform: "none",
-              fontWeight: 700,
-              boxShadow: 3,
-              color: "#fff",
-              minWidth: { xs: 90, sm: 120, md: 100 },
-              fontSize: { xs: '0.875rem', sm: '0.875rem', md: '1rem' }
-            };
-
-            const styles =
-              type === "veg"
-                ? { backgroundColor: isActive ? "#226125" : "#3b8e3f" }
-                : type === "nonVeg"
-                ? { backgroundColor: isActive ? "#c60000" : "#d43939" }
-                : { backgroundColor: isActive ? "#424242" : "#757474" };
-
-            
-
-            return (
-              <Button
-                key={type}
-                onClick={() => handleToggleClick(type)}
-                
-                sx={{ ...baseStyles, ...styles }}
-              >
-                {type === "both"
-                  ? "Both"
-                  : type === "veg"
-                  ? "Veg"
-                  : "Non-Veg"}
-              </Button>
-            );
-          })}
-        </Box>
-      
-
-        {/* ACTIVE CATEGORY DISPLAY */}
-         <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-start',
-            mt: { xs: 3, md: 2 },
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: { xs: '1rem', sm: '1.2rem', md: '1.3rem' },
-              fontWeight: 600,
-              color: '#c60000',
-             
-              px: { xs: 1, sm: 1 },
-              py: { xs: 0.9, sm: 0 },
-              display: 'inline-block'
-            }}
-          >
-            {activeCategory}
-          </Typography>
-        </Box>
-    </Box>
-        <Box
-          sx={{
-            display: "flex",
-            gap: { xs: 3, md: 4 },
-            flexDirection: { xs: "column", md: "row" },
-          }}
-        >
-          <Box sx={{ flex: 3 }} ref={topRef}>
-            {filteredItems.map((item) => (
-              <Card
-                key={item.id}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  p: { xs: 1.3, sm: 1.2 },
-                  mb: 2,
-                  borderRadius: 3,
-                  boxShadow: 3,
-                  flexDirection: { xs: "column", sm: "row" },
-                  gap: { xs: 1, sm: 0 }
-                }}
-              >
-                <Box sx={{ 
-                  display: "flex", 
-                  alignItems: "center", 
-                  gap: { xs: 2, sm: 3 },
-                  width: { xs: '100%', sm: 'auto' },
-                  flexDirection: { xs: 'row' }
-                }}>
-                  <Box
-                    component="img"
-                    src={item.image}
-                    alt={item.name}
-                    sx={{
-                      width: { xs: 80, sm: 90 },
-                      height: { xs: 70, sm: 60 },
-                      borderRadius: 2,
-                      objectFit: "cover",
-                    }}
-                  />
-
-                  <Box sx={{ flex: 1 }}>
-                    <Typography fontWeight={700} fontSize={{ xs: '0.95rem', sm: '1rem' }}>
-                      {item.name}
-                    </Typography>
-                    {/* <Typography fontSize={{ xs: 12, sm: 14 }} color="#666">
-                      Fresh mix of ingredients
-                    </Typography> */}
-                    {renderIndicator(item.type, 14)}
-                  </Box>
-                </Box>
-
-                <Button
-                  onClick={() =>
-                    isAdded(item)
-                      ? removeItem(item)
-                      : addItem(item)
-                  }
-                  sx={{
-                    backgroundColor: isAdded(item)
-                      ? "#2e7d32"
-                      : "#c60000",
-                    color: "#fff",
-                    borderRadius: 2,
-                    px: { xs: 2, sm: 3 },
-                    py: { xs: 0.5, sm: 1 },
-                    textTransform: "none",
-                    fontWeight: 600,
-                    fontSize: { xs: '0.875rem', sm: '0.875rem' },
-                    width: { xs: '100%', sm: 'auto' }
-                  }}
-                >
-                  {isAdded(item) ? "✓ Added" : "+ Add"}
-                </Button>
-              </Card>
-            ))}
-          </Box>
-          
-          {/* Desktop My Custom Menu Card - Hidden on mobile */}
-          <Box sx={{ flex: 1, display: { xs: 'none', md: 'block' } }}>
-            <Card
-              sx={{
-                p: { xs: 2, sm: 3 },
-                borderRadius: 4,
-                boxShadow: 4,
-                position: { md: "sticky" },
-                top: 250,
-                zIndex:1100
-              }}
-            >
-              <Typography
-                sx={{
-                  fontWeight: 700,
-                  mb: 2,
-                  color: "#c60000",
-                  fontSize: { xs: 16, sm: 18 },
-                }}
-              >
-                My Custom Menu
-              </Typography>
-
-                
-              <Box
-                sx={{
-                  maxHeight: { xs: 250, sm: 300 },
-                  overflowY: "auto",
-                  pr: 1,
-                  mb: 2,
-                }}
-              >
-                {selectedItems.length === 0 && (
-                  <Typography fontSize={{ xs: 13, sm: 14 }} color="#777" mb={2}>
-                    No items added yet.
-                  </Typography>
-                )}
-
-                {selectedItems.map((item) => (
-                  <Box
-                    key={item.id}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      mb: 1.5,
-                    }}
-                  >
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      {renderIndicator(item.type, 14)}
-                      <Typography fontSize={{ xs: 13, sm: 14 }}>
-                        {item.name}
-                      </Typography>
-                    </Box>
-
-                    <DeleteIcon
-                      sx={{ cursor: "pointer", fontSize: { xs: 16, sm: 18 } }}
-                      onClick={() => removeItem(item)}
-                    />
-                  </Box>
-                ))}
-              </Box>
-
-              <Divider sx={{ my: 2 }} />
-
-              <Typography fontSize={{ xs: 13, sm: 14 }} mb={2}>
-                Total Items: {selectedItems.length}
-              </Typography>
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    gap: { xs: 1, sm: 2 },
-                    flexDirection: { xs: 'column', sm: 'row' }
-                  }}
-                >
-                  <Button
-                    disabled={selectedItems.length === 0}
-                    onClick={clearAll}
-                    sx={{
-                      flex: 1,
-                      backgroundColor: "#eeeeee",
-                      color: "#c60000",
-                      borderRadius: 2,
-                      textTransform: "none",
-                      fontWeight: 600,
-                      fontSize: { xs: '0.875rem', sm: '0.875rem' },
-                      py: { xs: 1, sm: 0.5 },
-                      "&:hover": {
-                        backgroundColor: "#e0e0e0",
-                      },
-                    }}
-                  >
-                    Clear All
-                  </Button>
-
-                  <Button
-                    disabled={selectedItems.length === 0}
-                    onClick={handleCopyMenu}
-                    sx={{
-                      flex: 1,
-                      background: "linear-gradient(45deg,#ff4b2b,#c60000)",
-                      color: "#fff",
-                      borderRadius: 3,
-                      textTransform: "none",
-                      fontWeight: 600,
-                      fontSize: { xs: '0.875rem', sm: '0.875rem' },
-                      py: { xs: 1, sm: 0.5 },
-                    }}
-                  >
-                    Copy Menu
-                  </Button>
-                </Box>
-            </Card>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* Floating Action Button for Mobile - Only visible on mobile */}
       <Fab
         variant="extended"
         onClick={() => setMobileMenuOpen(true)}
@@ -692,13 +348,11 @@ const clearAll = useMenuStore((state) => state.clearAll);
           zIndex: 1000,
         }}
       >
-        
         <Typography sx={{ fontSize: '1rem', fontWeight: 600 }}>
           cart {selectedItems.length > 0 && `(${selectedItems.length})`}
         </Typography>
       </Fab>
 
-      {/* Mobile Menu Drawer - Perfectly centered with proper sizing */}
       <Drawer
         anchor="bottom"
         open={mobileMenuOpen}
@@ -737,7 +391,7 @@ const clearAll = useMenuStore((state) => state.clearAll);
             fontSize: { xs: '0.875rem', sm: '1rem' }
           }}
         >
-          Menu copied 
+          Menu copied
         </Alert>
       </Snackbar>
     </>

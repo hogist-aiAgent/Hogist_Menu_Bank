@@ -1,11 +1,11 @@
 import menu1 from "../../assets/MenuImage/Menu 1.webp";
-import menu2 from "../../assets/MenuImage/Menu 2.webp";
+import menu2 from "../../assets/MenuImage/menu2.jpeg";
 import menu3 from "../../assets/MenuImage/Menu 3.webp";
 import menu4 from "../../assets/MenuImage/Menu 4.webp";
-import menu5 from "../../assets/MenuImage/Menu 5.webp";
-import menu6 from "../../assets/MenuImage/Menu 6.webp";
+import menu5 from "../../assets/MenuImage/menu5.jpeg";
+import menu6 from "../../assets/MenuImage/menu6.jpeg";
 import menu7 from "../../assets/MenuImage/Menu 7.webp";
-import menu8 from "../../assets/MenuImage/Menu 8.webp";
+import menu8 from "../../assets/MenuImage/menu8.jpeg";
 import menu9 from "../../assets/MenuImage/Menu 9.webp";
 import menu10 from "../../assets/MenuImage/Menu 10.webp";
 import menu11 from "../../assets/MenuImage/Menu 11.webp";
@@ -23,29 +23,29 @@ import menu22 from "../../assets/MenuImage/Menu 22.webp";
 import menu23 from "../../assets/MenuImage/Menu 23.webp";
 import menu24 from "../../assets/MenuImage/Menu 24.webp";
 import menu25 from "../../assets/MenuImage/Menu 25.webp";
-import menu26 from "../../assets/MenuImage/Menu 26.webp";
+import menu26 from "../../assets/MenuImage/menu26.jpeg";
 import menu27 from "../../assets/MenuImage/Menu 27.webp";
 import menu28 from "../../assets/MenuImage/Menu 28.webp";
 import menu29 from "../../assets/MenuImage/Menu 29.webp";
-import menu30 from "../../assets/MenuImage/Menu 30.webp";
-import menu31 from "../../assets/MenuImage/Menu 31.webp";
-import menu32 from "../../assets/MenuImage/Menu 32.webp";
-import menu33 from "../../assets/MenuImage/Menu 33.webp";
-import menu34 from "../../assets/MenuImage/Menu 34.webp";
+import menu30 from "../../assets/MenuImage/menu30.jpeg";
+import menu31 from "../../assets/MenuImage/menu31.jpeg";
+import menu32 from "../../assets/MenuImage/menu32.jpeg";
+import menu33 from "../../assets/MenuImage/menu33.jpeg";
+import menu34 from "../../assets/MenuImage/menu34.jpeg";
 import menu35 from "../../assets/MenuImage/Menu 35.webp";
 import menu36 from "../../assets/MenuImage/Menu 36.webp";
 import menu37 from "../../assets/MenuImage/Menu 37.webp";
 import menu38 from "../../assets/MenuImage/Menu 38.webp";
 import menu39 from "../../assets/MenuImage/Menu 39.webp";
 import menu40 from "../../assets/MenuImage/Menu 40.webp";
-import menu41 from "../../assets/MenuImage/Menu 41.webp";
+import menu41 from "../../assets/MenuImage/menu41.jpeg";
 import menu42 from "../../assets/MenuImage/Menu 42.webp";
 import menu43 from "../../assets/MenuImage/Menu 43.webp";
-import menu44 from "../../assets/MenuImage/Menu 44.webp";
+import menu44 from "../../assets/MenuImage/menu44.jpeg";
 import menu45 from "../../assets/MenuImage/Menu 45.webp";
-import menu46 from "../../assets/MenuImage/Menu 46.webp";
+import menu46 from "../../assets/MenuImage/menu46.jpeg";
 import menu47 from "../../assets/MenuImage/Menu 47.webp";
-import SP3RM2 from "../../assets/MenuImage/SP3RM2.webp";
+import SP3RM2 from "../../assets/MenuImage/SP3RM2.jpeg";
 import SP3RM3 from "../../assets/MenuImage/SP3RM3.webp";
 import HS1SN from "../../assets/MenuImage/Snacks Nonveg - HS1SN.webp";
 import HS1SV from "../../assets/MenuImage/Snacks Veg - HS1SV.webp";
@@ -934,98 +934,12 @@ export const menuData = [
       "Raita",
     ],
   },
-  {
-    id: 43,
-    category: "Lunch/Dinner",
-    title: "Menu 19 – Lunch/Dinner (Veg)",
-    foodType: "VEG",
-    image:menu19,
-    items: [
-      "White Rice",
-      "Sambar",
-      "Rasam",
-      "Kootu",
-      "Carrot and Beans Poriyal",
-      "Pappad",
-      "Pickle",
-      "Vada",
-      "Gobi Manjurian",
-      "Buttermilk",
-      "Semiya Payasam",
-      "Banana Leaf",
-    ],
-  },
-  {
-    id: 44,
-    category: "Lunch/Dinner",
-    title: "Menu 20 – Lunch/Dinner (Veg)",
-    foodType: "VEG",
-    image:menu20,
-    items: [
-      "Chapati – 1 No",
-      "Normal Dosa – 1 No",
-      "Bisibelabath",
-      "White Rice",
-      "Rasam",
-      "Veg Roll",
-      "Poriyal",
-      "Appalam",
-      "Pickle",
-      "Banana Leaf",
-    ],
-  },
+
+
 
   // 5. LUNCH/DINNER: Non Veg
-  {
-    id: 45,
-    category: "Lunch/Dinner",
-    title: "Menu 16 – Lunch/Dinner (Non-Veg)",
-    foodType: "NON-VEG",
-    image:menu16,
-    items: [
-      "Chicken Biryani",
-      "Chicken 65",
-      "Chapathi",
-      "Chicken Gravy",
-      "Bread Halwa",
-      "Brinjal Gravy",
-      "Raita",
-    ],
-  },
-  {
-    id: 46,
-    category: "Lunch/Dinner",
-    title: "Menu 43 - Lunch (Non-Veg)",
-    foodType: "NON-VEG",
-   image:menu43,
-    items: [
-      "Rice",
-      "Sambar",
-      "Rasam",
-      "Veg poriyal",
-      "Chicken curry",
-      "Chicken fry / 65",
-      "Mutton kulambu",
-      "Cappalam",
-      "Sweet",
-      "Curd",
-    ],
-  },
-  {
-    id: 47,
-    category: "Lunch/Dinner",
-    title: "Menu 44 - Lunch (Non-Veg)",
-    foodType: "NON-VEG",
-    image:menu44,
-    items: [
-      "Chicken biryani",
-      "Brinjal curry (kathirikai)",
-      "Onion raita",
-      "Chicken 65 / chicken fry",
-      "Boiled egg",
-      "Sweet (kesari / halwa)",
-    ],
-  },
+  
+
   {
     id: 48,
     category: "Lunch/Dinner",

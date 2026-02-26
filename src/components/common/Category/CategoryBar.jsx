@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import {
   Box,
   Stack,
@@ -18,7 +18,6 @@ import {
   FiberManualRecord,
   ChevronLeft,
   ChevronRight,
-  KeyboardArrowDown,
   FilterList,
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
@@ -38,17 +37,13 @@ const CategoryBar = ({
   const [anchorEl, setAnchorEl] = useState(null);
   const [canScroll, setCanScroll] = useState({ left: false, right: false });
 
-  // Placeholder height logic
   const DESKTOP_HEIGHT = 160;
-  const MOBILE_HEIGHT = 10;
-
-  // UI stays primary color regardless of selection
-  // {["VEG", "NON-VEG", "BOTH"].map(type => (
+  const MOBILE_HEIGHT = 70;
 
   const diets = {
     all: { label: "Both ", icon: <FilterList fontSize="small" /> },
     veg: {
-      label: "Pure Veg",
+      label: "Veg",
       icon: <FiberManualRecord sx={{ fontSize: 10, color: "#4caf50" }} />,
     },
     "non-veg": {
@@ -57,14 +52,12 @@ const CategoryBar = ({
     },
   };
 
-  const handleOpen = (event) => setAnchorEl(event.currentTarget);
   const handleClose = (type) => {
     const dietKey = {
       all: "BOTH",
       veg: "VEG",
       "non-veg": "NON-VEG",
     };
-    console.log("Selected diet type:", type); // Debug log
     if (type) {
       setDiet(type);
       setFoodType(dietKey[type]);
@@ -72,24 +65,42 @@ const CategoryBar = ({
     setAnchorEl(null);
   };
 
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScroll({
-        left: scrollLeft > 10,
-        right: scrollLeft < scrollWidth - clientWidth - 10,
-      });
-    }
-  };
+  const checkScroll = useCallback(() => {
+    if (!scrollRef.current) return;
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 340);
-    window.addEventListener("scroll", handleScroll);
-    checkScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    requestAnimationFrame(() => {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+
+      const newState = {
+        left: scrollLeft > 5,
+        right: scrollLeft < scrollWidth - clientWidth - 5,
+      };
+
+      setCanScroll((prev) =>
+        prev.left !== newState.left || prev.right !== newState.right
+          ? newState
+          : prev
+      );
+    });
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 340);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    checkScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [checkScroll]);
+
+  useEffect(() => {
+    checkScroll();
+  }, [categories, checkScroll]);
+
   const scroll = (direction) => {
+    if (!scrollRef.current) return;
     scrollRef.current.scrollBy({
       left: direction === "left" ? -250 : 250,
       behavior: "smooth",
@@ -99,7 +110,7 @@ const CategoryBar = ({
   return (
     <Box
       sx={{
-        minHeight: isScrolled
+        height: isScrolled
           ? isMobile
             ? MOBILE_HEIGHT
             : DESKTOP_HEIGHT
@@ -107,70 +118,64 @@ const CategoryBar = ({
       }}
     >
       <Box
-        // sx={{
-        //   position: isScrolled ? "fixed" : "relative",
-        //   top: isScrolled ? (isMobile ? '50%' : 70) : 0,
-        //   left: 0,
-        //   right: 0,
-        //   zIndex: 1100,
-        //   px: isScrolled && !isMobile ? { sm: 4 } : 0,
-        //   transition: "0.3s ease-in-out",
-        // }}
         sx={{
           position: isScrolled ? "fixed" : "relative",
-
-          top: isScrolled ? (isMobile ? "10px" : 70) : 0,
-
-          left: isScrolled && isMobile ? "50%" : 0,
-          right: isScrolled && isMobile ? "auto" : 0,
-
-          transform: isScrolled && isMobile ? "translate(-50%, 0%)" : "none",
-
-          width: isScrolled && isMobile ? "95%" : "auto",
-
+          top: isScrolled ? (isMobile ? 0 : 70) : 0,
+          left: 0,
+          right: 0,
           zIndex: 1100,
-
           px: isScrolled && !isMobile ? { sm: 4 } : 0,
 
-          transition: "0.5s ease-in-out",
+          /* 🔥 Smoothness added here */
+          transform: isScrolled
+            ? "translateY(0px)"
+            : "translateY(0px)",
+          opacity: isScrolled ? 1 : 1,
+          transition:
+            "transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease, padding 0.25s ease",
+          willChange: "transform",
+          backfaceVisibility: "hidden",
         }}
       >
         <Paper
           elevation={isScrolled ? 4 : 0}
           sx={{
-            p: isScrolled && isMobile ? 1.2 : 2,
+            p: isScrolled && isMobile ? 2.5 : 2,
             borderRadius:
               isScrolled && !isMobile
                 ? "24px"
                 : isScrolled && isMobile
-                  ? "16px"
-                  : "16px",
+                ? "0px"
+                : "16px",
             background: "#ffffff",
             borderBottom: "1px solid",
             borderColor: alpha(theme.palette.divider, 0.1),
+            transition:
+              "border-radius 0.35s cubic-bezier(0.4,0,0.2,1), padding 0.25s ease",
           }}
         >
-          {/* Header Row */}
           <Stack
             direction="row"
             justifyContent="space-between"
             alignItems="center"
             mb={isScrolled && isMobile ? 0.8 : 1.5}
+            sx={{
+              flexWrap: isMobile ? "wrap" : "nowrap",
+              gap: isMobile ? 1 : 0,
+            }}
           >
             <Stack direction="row" spacing={1} alignItems="center">
-              {
-                <Box
-                  sx={{
-                    display: "flex",
-                    p: 0.8,
-                    borderRadius: 1.5,
-                    bgcolor: alpha(theme.palette.primary.main, 0.1),
-                    color: theme.palette.primary.main,
-                  }}
-                >
-                  <CategoryOutlined fontSize="small" />
-                </Box>
-              }
+              <Box
+                sx={{
+                  display: "flex",
+                  p: 0.9,
+                  borderRadius: 1.5,
+                  bgcolor: alpha(theme.palette.primary.main, 0.1),
+                  color: theme.palette.primary.main,
+                }}
+              >
+                <CategoryOutlined fontSize="small" />
+              </Box>
               <Typography
                 variant="h6"
                 sx={{
@@ -178,7 +183,7 @@ const CategoryBar = ({
                   fontWeight: 800,
                 }}
               >
-                {"Menu Categories"}
+                Menu Categories
               </Typography>
             </Stack>
 
@@ -191,7 +196,6 @@ const CategoryBar = ({
                   borderRadius: "12px",
                   border: "1px solid",
                   borderColor: alpha(theme.palette.divider, 0.1),
-                  // Prevent the whole bar from shrinking
                   flexShrink: 0,
                 }}
               >
@@ -210,7 +214,6 @@ const CategoryBar = ({
                         setFoodType(dietKeyMap[key]);
                       }}
                       sx={{
-                        // Thinner padding on mobile to prevent overflow
                         px: { xs: 1.2, sm: 2 },
                         py: 0.8,
                         borderRadius: "10px",
@@ -224,7 +227,6 @@ const CategoryBar = ({
                     >
                       <Stack direction="row" alignItems="center" spacing={0.5}>
                         {value.icon}
-                        {/* Hide text on extra small screens unless it's the selected one, or hide all labels */}
                         <Typography
                           sx={{
                             fontSize: "0.7rem",
@@ -237,8 +239,7 @@ const CategoryBar = ({
                             ml: 0.5,
                           }}
                         >
-                          {value.label.replace(" Food", "")}{" "}
-                          {/* Shorten "All Food" to "All" for mobile */}
+                          {value.label}
                         </Typography>
                       </Stack>
                     </ButtonBase>
@@ -246,7 +247,6 @@ const CategoryBar = ({
                 })}
               </Box>
 
-              {/* Only show arrows on desktop */}
               {!isMobile && (canScroll.left || canScroll.right) && (
                 <Stack direction="row" spacing={0.5}>
                   <IconButton
@@ -268,7 +268,6 @@ const CategoryBar = ({
             </Stack>
           </Stack>
 
-          {/* Categories List */}
           <Box
             ref={scrollRef}
             onScroll={checkScroll}
@@ -276,6 +275,7 @@ const CategoryBar = ({
               display: "flex",
               gap: 1.2,
               overflowX: "auto",
+              WebkitOverflowScrolling: "touch",
               scrollBehavior: "smooth",
               "::-webkit-scrollbar": { display: "none" },
               py: 0.2,
@@ -325,7 +325,6 @@ const CategoryBar = ({
                     >
                       {cat.label}
                     </Typography>
-                    {/* Sub-label remains visible but scales down on mobile scroll */}
                     {cat.subLabel && (
                       <Typography
                         variant="caption"

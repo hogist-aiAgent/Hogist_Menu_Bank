@@ -9,27 +9,41 @@ import {
   Button,
   Stack,
   Zoom,
-  CircularProgress
+  CircularProgress,
+  Snackbar,
+  Alert
 } from "@mui/material";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import defaultImage from "../../assets/gallery/industry.webp";
 
 const MenuCard = ({ title, items, foodType, image }) => {
   const [open, setOpen] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   const isVeg = foodType?.toUpperCase() === "VEG";
   const themeColor = isVeg ? "#00a854" : "#d32f2f";
   const themebgColor = isVeg ? "#00a854a3" : "#d32f2fa4";
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  const handleCopyMenu = async () => {
+    const menuText = `${title}\n\n${items.join("\n")}`;
+    try {
+      await navigator.clipboard.writeText(menuText);
+      setCopySuccess(true);
+    } catch (err) {
+      console.error("Copy failed", err);
+    }
+  };
+
   return (
     <>
       <Card
         sx={{
           width: "100%",
-          height: 380, 
+          height: 380,
           borderRadius: "20px",
           overflow: "hidden",
           boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
@@ -43,10 +57,8 @@ const MenuCard = ({ title, items, foodType, image }) => {
         }}
       >
         {/* IMAGE SECTION */}
-        <Box sx={{ position: "relative", height: 180, flexShrink: 0,p:2, }}>
-         
+        <Box sx={{ position: "relative", height: 180, flexShrink: 0, padding: "6px" }}>
           <Box sx={{ position: "relative" }}>
-            
             {!imageLoaded && (
               <Box
                 sx={{
@@ -74,11 +86,11 @@ const MenuCard = ({ title, items, foodType, image }) => {
                 filter: imageLoaded ? "blur(0px)" : "blur(12px)",
                 transition: "filter 0.4s ease, opacity 0.4s ease",
                 opacity: imageLoaded ? 1 : 0.7,
-                borderRadius: "12px",
+                borderRadius: "15px",
               }}
             />
           </Box>
-          
+
           <Box
             sx={{
               position: "absolute",
@@ -108,8 +120,8 @@ const MenuCard = ({ title, items, foodType, image }) => {
               fontWeight: 900,
               fontSize: "1.2rem",
               color: "#c60800",
-             lineHeight: 1.2,
-              height: "3rem", 
+              lineHeight: 1.2,
+              height: "3rem",
               overflow: "hidden"
             }}
           >
@@ -125,7 +137,7 @@ const MenuCard = ({ title, items, foodType, image }) => {
               WebkitLineClamp: 2,
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
-              mt: {xs:0, md:1},
+              mt: { xs: 0, md: 1 },
             }}
           >
             {items.join(" • ")}
@@ -133,13 +145,13 @@ const MenuCard = ({ title, items, foodType, image }) => {
 
           <Box sx={{ flexGrow: 0 }} />
 
-          <Button 
+          <Button
             onClick={() => setOpen(true)}
             fullWidth
-            sx={{ 
-              mt: {xs:1.5, md:2}, 
-              border: "2px solid #eee", 
-              borderRadius: "8px", 
+            sx={{
+              mt: { xs: 1.5, md: 2 },
+              border: "2px solid #eee",
+              borderRadius: "8px",
               py: 0.5,
               color: "#696969",
               fontSize: "11px",
@@ -154,148 +166,164 @@ const MenuCard = ({ title, items, foodType, image }) => {
         </Box>
       </Card>
 
-    {/* --- COMPACT POPUP  --- */}
-<Dialog
-  open={open}
-  onClose={() => setOpen(false)}
-  TransitionComponent={Zoom}
-  PaperProps={{
-    sx: { 
-      borderRadius: "24px",
-      width: "360px",
-      overflow: "hidden",
-      borderTop: `6px solid ${themeColor}`,
-      boxShadow: "0 20px 60px rgba(0,0,0,0.15)"
-    },
-  }}
->
-
-  {/* Close Button */}
-  
-  <Box sx={{ position: "absolute", right: 18, top: 10, zIndex: 10 }}>
-    <IconButton 
-      onClick={() => setOpen(false)} 
-      sx={{ 
-        width: 25,
-        height: 25,
-        borderRadius: "50%",
-        backgroundColor: "#fff",
-        border: `1px solid ${themeColor}30`,
-        boxShadow: `0 4px 12px ${themeColor}25`,
-        transition: "all 0.25s ease",
-        "&:hover": { 
-          backgroundColor: themeColor,
-          transform: "rotate(90deg)",
-          boxShadow: `0 6px 18px ${themeColor}40`,
-          "& .MuiSvgIcon-root": {
-            color: "#fff"
-          }
-        }
-      }}
-    >
-      <CloseIcon sx={{ fontSize: 18, color: themeColor, transition: "0.25s" }} />
-    </IconButton>
-  </Box>
-
-
-
-  <DialogContent sx={{ p: 0 }}>
-
-    {/* ===== TITLE HEADER CARD ===== */}
-    <Box
-      sx={{
-        background: `linear-gradient(135deg, ${themeColor}15, ${themeColor}05)`,
-        px: 3,
-        py: 3,
-        textAlign: "center",
-        borderBottom: `1px solid ${themeColor}20`,
-      }}
-    >
-      <Typography
-        sx={{
-          fontWeight: 900,
-          fontSize: "1.35rem",
-          color: themeColor,
-          letterSpacing: 0.5
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        TransitionComponent={Zoom}
+        PaperProps={{
+          sx: {
+            borderRadius: "24px",
+            width: "360px",
+            height: "500px",
+            display: "flex",
+            flexDirection: "column",
+            overflow: "hidden",
+            borderTop: `6px solid ${themeColor}`,
+            boxShadow: "0 20px 60px rgba(0,0,0,0.15)"
+          },
         }}
       >
-        {title}
-      </Typography>
 
-      <Box
-        sx={{
-          width: 50,
-          height: 4,
-          bgcolor: themeColor,
-          borderRadius: 2,
-          mx: "auto",
-          mt: 1.5
-        }}
-      />
-    </Box>
+        <Snackbar
+          open={copySuccess}
+          autoHideDuration={2000}
+          onClose={() => setCopySuccess(false)}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          sx={{
+            mt: { xs: 6, sm: 0 }  // 🔥 moved slightly down on mobile
+          }}
+        >
+          <Alert
+            onClose={() => setCopySuccess(false)}
+            severity="success"
+            sx={{ width: {xs:"70%",md:"90%"} }}
+          >
+            Menu copied successfully!
+          </Alert>
+        </Snackbar>
 
-    {/* ===== MENU ITEMS SECTION ===== */}
-    <Box sx={{ px: 3, py: 2 }}>
-      <Stack spacing={0.2}>
-        {items.map((item, index) => (
-          <Box
-            key={index}
+        <Box sx={{ position: "absolute", right: 18, top: 10, zIndex: 10 }}>
+          <IconButton
+            onClick={() => setOpen(false)}
             sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1.5,
-              p: 1,
-              borderRadius: 2,
-              transition: "0.2s",
+              width: 25,
+              height: 25,
+              borderRadius: "50%",
+              backgroundColor: "#fff",
+              border: `1px solid ${themeColor}30`,
+              boxShadow: `0 4px 12px ${themeColor}25`,
+              transition: "all 0.25s ease",
               "&:hover": {
-                bgcolor: `${themeColor}10`
+                backgroundColor: themeColor,
+                transform: "rotate(90deg)",
+                boxShadow: `0 6px 18px ${themeColor}40`,
+                "& .MuiSvgIcon-root": {
+                  color: "#fff"
+                }
               }
             }}
           >
-            <FiberManualRecordIcon 
-              sx={{ 
-                fontSize: "9px", 
-                color: themeColor 
-              }} 
-            />
+            <CloseIcon sx={{ fontSize: 18, color: themeColor, transition: "0.25s" }} />
+          </IconButton>
+        </Box>
+
+        <DialogContent sx={{ p: 0, display: "flex", flexDirection: "column", flex: 1 }}>
+          <Box
+            sx={{
+              background: `linear-gradient(135deg, ${themeColor}15, ${themeColor}05)`,
+              px: 3,
+              py: 3,
+              textAlign: "center",
+              borderBottom: `1px solid ${themeColor}20`,
+              flexShrink: 0
+            }}
+          >
             <Typography
               sx={{
-                fontSize: "14px",
-                color: "#444",
-                fontWeight: 600,
+                fontWeight: 900,
+                fontSize: "1.35rem",
+                color: themeColor,
+                letterSpacing: 0.5
               }}
             >
-              {item}
+              {title}
             </Typography>
+
+            <Box
+              sx={{
+                width: 50,
+                height: 4,
+                bgcolor: themeColor,
+                borderRadius: 2,
+                mx: "auto",
+                mt: 1.5
+              }}
+            />
           </Box>
-        ))}
-      </Stack>
 
-      {/* ===== ORDER BUTTON ===== */}
-      <Button
-        fullWidth
-        variant="contained"
-        sx={{
-          mt: 4,
-          background: `linear-gradient(45deg, ${themeColor}, ${themeColor}cc)`,
-          color: "#fff",
-          borderRadius: "12px",
-          py: 1.3,
-          fontWeight: 800,
-          letterSpacing: 1,
-          boxShadow: `0 6px 20px ${themeColor}40`,
-          "&:hover": {
-            opacity: 0.9,
-            background: `linear-gradient(45deg, ${themeColor}, ${themeColor})`,
-          }
-        }}
-      >
-        ORDER NOW
-      </Button>
-    </Box>
+          <Box sx={{ flex: 1, overflowY: "auto", px: 3, py: 2 }}>
+            <Stack spacing={0.2}>
+              {items.map((item, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1.5,
+                    p: 1,
+                    borderRadius: 2,
+                    transition: "0.2s",
+                    "&:hover": {
+                      bgcolor: `${themeColor}10`
+                    }
+                  }}
+                >
+                  <FiberManualRecordIcon
+                    sx={{
+                      fontSize: "9px",
+                      color: themeColor
+                    }}
+                  />
+                  <Typography
+                    sx={{
+                      fontSize: "14px",
+                      color: "#444",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                </Box>
+              ))}
+            </Stack>
+          </Box>
 
-  </DialogContent>
-</Dialog>
+          <Box sx={{ px: 3, py: 2, borderTop: "1px solid #eee", flexShrink: 0 }}>
+            <Button
+              onClick={handleCopyMenu}
+              startIcon={<ContentCopyIcon />}
+              fullWidth
+              variant="contained"
+              sx={{
+                background: `linear-gradient(45deg, ${themeColor}, ${themeColor}cc)`,
+                color: "#fff",
+                borderRadius: "12px",
+                py: 1.3,
+                fontWeight: 800,
+                letterSpacing: 1,
+                boxShadow: `0 6px 20px ${themeColor}40`,
+                "&:hover": {
+                  opacity: 0.9,
+                  background: `linear-gradient(45deg, ${themeColor}, ${themeColor})`,
+                }
+              }}
+            >
+              COPY MENU
+            </Button>
+          </Box>
+
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
