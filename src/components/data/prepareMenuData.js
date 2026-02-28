@@ -725,7 +725,7 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Grab pepper fry",
+        name: "Crab pepper fry",
         image: dummyImage,
       },
       {
