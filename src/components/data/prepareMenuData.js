@@ -68,6 +68,20 @@ import Roti_Naan from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Roti-Na
 import Stuffed_kulcha from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Stuffed-kulcha.webp'
 import Tawa_Paratha from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Tawa-Paratha.webp'
 
+//rice and noodles images
+import Any_other_Rice_Noodles from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Any-other-Rice-Noodles.webp"
+import Jeera_veg_pulao from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Jeera-veg-pulao.webp"
+import Navarathan_pulao from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Navarathan-pulao.webp"
+import Non_Veg_hakka_Noodles from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Non-Veg-hakka-Noodles.webp"
+import Non_veg_noodles from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Non-veg-noodles.webp"
+import Non_Veg_schezwan_Noodles from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Non-Veg-schezwan-Noodles.webp"
+import Steam_rice from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Steam-rice.webp"
+import Veg_fried_rice_mix from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Veg-fried-rice-mix.webp"
+import Veg_Hakka_Noodles from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Veg-Hakka-Noodles.webp"
+import Veg_mushroom_Biryani from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Veg-mushroom-Biryani.webp"
+import Veg_noodles from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Veg-noodles.webp"
+import Veg_pulao from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Veg-pulao.webp"
+import Veg_schezwan_Noodles from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Veg-schezwan-Noodles.webp"
 
 import dummyImage from "../../assets/gallery/industry.webp"
 
@@ -303,58 +317,58 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Roti / Naan",
-        image: dummyImage,
+        image: Roti_Naan,
       },
       {
         name: "Chapathi",
-        image: dummyImage,
+        image: Chapathi,
       },
       {
         name: "Stuffed kulcha",
-        image: dummyImage,
+        image: Stuffed_kulcha,
       },
       {
         name: "Lacha roti",
-        image: dummyImage,
+        image: Lacha_roti,
       },
       {
         name: "Romali roti",
-        image: dummyImage,
+        image: Romali_roti,
       },
       {
         name: "Aloo/ Gobi / Paneer parotta",
-        image: dummyImage,
+        image: Aloo_Gobi_Paneer_parotta,
       },
       {
         name: "Poori ",
-        image: dummyImage,
+        image: poori,
       },
       {
         name: " Tawa Paratha ",
-        image: dummyImage,
+        image: Tawa_Paratha,
       },
       {
         name: "Butter naan",
-        image: dummyImage,
+        image: Butter_naan,
       },
       {
         name: "Butter roti",
-        image: dummyImage,
+        image: Butter_roti,
       },
       {
         name: "Aloo paratha",
-        image: dummyImage,
+        image: Aloo_paratha,
       },
       {
         name: "Pulka",
-        image: dummyImage,
+        image: Pulka,
       },
     ],
     nonVeg: [],
     other: [
       {
         name: "Any other Indian Bread",
-        image: dummyImage,
+        image: Any_other_indian_bread,
       },
     ],
   },
@@ -364,59 +378,59 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Jeera / veg / pulao",
-        image: dummyImage,
+        image: Jeera_veg_pulao,
       },
       {
         name: "Veg / mushroom / Biryani",
-        image: dummyImage,
+        image: Veg_mushroom_Biryani,
       },
       {
         name: "Veg fried rice / mix ",
-        image: dummyImage,
+        image: Veg_fried_rice_mix,
       },
       {
         name: "Veg schezwan Noodles ",
-        image: dummyImage,
+        image: Veg_schezwan_Noodles,
       },
       {
         name: "Steam rice",
-        image: dummyImage,
+        image: Steam_rice,
       },
       {
         name: "Navarathan pulao",
-        image: dummyImage,
+        image: Navarathan_pulao,
       },
       {
         name: "Veg Hakka Noodles",
-        image: dummyImage,
+        image: Veg_Hakka_Noodles,
       },
       {
         name: "Veg noodles",
-        image: dummyImage,
+        image: Veg_noodles,
       },
       {
         name: "Veg pulao",
-        image: dummyImage,
+        image: Veg_pulao,
       },
     ],
     nonVeg: [
       {
         name: "Non Veg hakka Noodles",
-        image: dummyImage,
+        image: Non_Veg_hakka_Noodles,
       },
       {
         name: "Non Veg schezwan Noodles",
-        image: dummyImage,
+        image: Non_Veg_schezwan_Noodles,
       },
       {
         name: "Non veg noodles",
-        image: dummyImage,
+        image: Non_veg_noodles,
       },
     ],
     other: [
       {
         name: "Any other Rice & Noodles",
-        image: dummyImage,
+        image: Any_other_Rice_Noodles,
       },
     ],
   },
@@ -774,7 +788,7 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Rosmi/ Malai/ Kabob",
+        name: "Reshmi/ Malai/ Kabab",
         image: dummyImage,
       },
       {
@@ -782,7 +796,7 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "Mutton sikka kabob",
+        name: "Mutton sikka kabab",
         image: dummyImage,
       },
     ],
