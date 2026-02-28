@@ -52,6 +52,22 @@ import mutton_pepper_fry from "../../assets/MenuImage/PrepareMenuImg/starter/mut
 import paneer_tikka from "../../assets/MenuImage/PrepareMenuImg/starter/paneer-tikka-in-a-buffet-setup.jpg"
 import veg_cutlet from "../../assets/MenuImage/PrepareMenuImg/starter/veg-cutlet-in-a-plate.jpg"
 
+//indian bread images
+
+import Aloo_Gobi_Paneer_parotta from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Aloo-Gobi-Paneer-parotta.webp'
+import Aloo_paratha from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Aloo-paratha.webp'
+import Any_other_indian_bread from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Any-other-indian-bread.webp'
+import Butter_naan from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Butter-naan.webp'
+import Butter_roti from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Butter-roti.webp'
+import Chapathi from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Chapathi.webp'
+import Lacha_roti from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Lacha-roti.webp'
+import poori from '../../assets/MenuImage/PrepareMenuImg/IndianBread/poori.webp'
+import Pulka from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Pulka.webp'
+import Romali_roti from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Romali-roti.webp'
+import Roti_Naan from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Roti-Naan.webp'
+import Stuffed_kulcha from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Stuffed-kulcha.webp'
+import Tawa_Paratha from '../../assets/MenuImage/PrepareMenuImg/IndianBread/Tawa-Paratha.webp'
+
 
 import dummyImage from "../../assets/gallery/industry.webp"
 
