@@ -44,7 +44,15 @@ import Soup from '../../assets/icons/prepareMenuIcons/soup.png'
 import Starter from '../../assets/icons/prepareMenuIcons/starter.png'
 import Bread  from '../../assets/icons/prepareMenuIcons/bread.png'
 import RiceNoodles from '../../assets/icons/prepareMenuIcons/food.png'
-// import Starter from '../../assets/icons/prepareMenuIcons/starter.png'
+import Gravy from '../../assets/icons/prepareMenuIcons/gravy.png'
+import MainCourse from '../../assets/icons/prepareMenuIcons/mainCourse.png'
+import VarietyRice from '../../assets/icons/prepareMenuIcons/varietyrice.png'
+import Dessert from '../../assets/icons/prepareMenuIcons/dessert.png'
+import SeaFood from '../../assets/icons/prepareMenuIcons/seaFood.png'
+import Tandoori from '../../assets/icons/prepareMenuIcons/tantoori.png'
+import Chaat from '../../assets/icons/prepareMenuIcons/chaat.png'
+import Snacks from '../../assets/icons/prepareMenuIcons/snacks.png'
+import SideDish from '../../assets/icons/prepareMenuIcons/sideDish.png'
 
 // Create a wrapper component that handles the active state
 const CategoryIcon = ({ src, isActive, children }) => {
@@ -161,7 +169,7 @@ const MenuContent = (props) => {
       label: "Gravy", 
       icon: (active) => (
         <CategoryIcon 
-          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=GV" 
+          src={Gravy}
           isActive={activeCategory === "Gravy" || hoveredCategory === "Gravy"} 
         />
       ), 
@@ -171,7 +179,7 @@ const MenuContent = (props) => {
       label: "Side Dishes", 
       icon: (active) => (
         <CategoryIcon 
-          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=SD" 
+          src={SideDish}
           isActive={activeCategory === "Side Dishes" || hoveredCategory === "Side Dishes"} 
         />
       ), 
@@ -181,7 +189,7 @@ const MenuContent = (props) => {
       label: "Main Course", 
       icon: (active) => (
         <CategoryIcon 
-          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=MC" 
+          src={MainCourse}
           isActive={activeCategory === "Main Course" || hoveredCategory === "Main Course"} 
         />
       ), 
@@ -191,7 +199,7 @@ const MenuContent = (props) => {
       label: "Variety Rice", 
       icon: (active) => (
         <CategoryIcon 
-          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=VR" 
+          src={VarietyRice}
           isActive={activeCategory === "Variety Rice" || hoveredCategory === "Variety Rice"} 
         />
       ), 
@@ -201,7 +209,7 @@ const MenuContent = (props) => {
       label: "Dessert", 
       icon: (active) => (
         <CategoryIcon 
-          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=DS" 
+          src={Dessert} 
           isActive={activeCategory === "Dessert" || hoveredCategory === "Dessert"} 
         />
       ), 
@@ -211,7 +219,7 @@ const MenuContent = (props) => {
       label: "Sea Food", 
       icon: (active) => (
         <CategoryIcon 
-          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=SF" 
+          src={SeaFood}
           isActive={activeCategory === "Sea Food" || hoveredCategory === "Sea Food"} 
         />
       ), 
@@ -221,7 +229,7 @@ const MenuContent = (props) => {
       label: "Tandoori", 
       icon: (active) => (
         <CategoryIcon 
-          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=TN" 
+          src={Tandoori} 
           isActive={activeCategory === "Tandoori" || hoveredCategory === "Tandoori"} 
         />
       ), 
@@ -231,7 +239,7 @@ const MenuContent = (props) => {
       label: "Chaat", 
       icon: (active) => (
         <CategoryIcon 
-          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=CH" 
+          src={Chaat} 
           isActive={activeCategory === "Chaat" || hoveredCategory === "Chaat"} 
         />
       ), 
@@ -241,7 +249,7 @@ const MenuContent = (props) => {
       label: "Snacks", 
       icon: (active) => (
         <CategoryIcon 
-          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=SN" 
+          src={Snacks}
           isActive={activeCategory === "Snacks" || hoveredCategory === "Snacks"} 
         />
       ), 

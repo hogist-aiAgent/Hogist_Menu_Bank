@@ -10,7 +10,7 @@ import PrepareYourMenu  from '../pages/PrepareMenu/PrepareYourMenu';
 
 const MainRoutes = () => {
     return (
-        <BrowserRouter basename='prepare-your-own-menu1' >
+        <BrowserRouter basename='/prepare-your-own-menu1/' >
         <ScrollToTop />
         <Routes>
             <Route element={<Navbar/>}>
