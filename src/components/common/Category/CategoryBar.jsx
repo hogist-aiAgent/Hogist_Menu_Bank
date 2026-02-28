@@ -24,9 +24,11 @@ import { useTheme } from "@mui/material/styles";
 
 const CategoryBar = ({
   categories = [],
+  isScrollable=true,
   activeCategory,
   setActiveCategory,
   setFoodType,
+  animationDuration = "0.35s", 
 }) => {
   const scrollRef = useRef(null);
   const theme = useTheme();
@@ -39,6 +41,10 @@ const CategoryBar = ({
 
   const DESKTOP_HEIGHT = 160;
   const MOBILE_HEIGHT = 70;
+   
+
+
+  
 
   const diets = {
     all: { label: "Both ", icon: <FilterList fontSize="small" /> },
@@ -98,7 +104,10 @@ const CategoryBar = ({
   useEffect(() => {
     checkScroll();
   }, [categories, checkScroll]);
-
+useEffect(()=>{
+setIsScrolled(false);
+setCanScroll({ left: false, right: false });
+},[isScrollable])
   const scroll = (direction) => {
     if (!scrollRef.current) return;
     scrollRef.current.scrollBy({
@@ -106,6 +115,7 @@ const CategoryBar = ({
       behavior: "smooth",
     });
   };
+
 
   return (
     <Box
@@ -123,7 +133,7 @@ const CategoryBar = ({
           top: isScrolled ? (isMobile ? 0 : 70) : 0,
           left: 0,
           right: 0,
-          zIndex: 1100,
+          zIndex:!isScrolled?0:1100,
           px: isScrolled && !isMobile ? { sm: 4 } : 0,
 
           /* 🔥 Smoothness added here */
@@ -131,8 +141,7 @@ const CategoryBar = ({
             ? "translateY(0px)"
             : "translateY(0px)",
           opacity: isScrolled ? 1 : 1,
-          transition:
-            "transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease, padding 0.25s ease",
+          transition: `transform ${animationDuration} cubic-bezier(0.4,0,0.2,1), box-shadow ${animationDuration} ease, padding 0.25s ease`,
           willChange: "transform",
           backfaceVisibility: "hidden",
         }}
@@ -150,8 +159,7 @@ const CategoryBar = ({
             background: "#ffffff",
             borderBottom: "1px solid",
             borderColor: alpha(theme.palette.divider, 0.1),
-            transition:
-              "border-radius 0.35s cubic-bezier(0.4,0,0.2,1), padding 0.25s ease",
+            transition: `border-radius ${animationDuration} cubic-bezier(0.4,0,0.2,1), padding 0.25s ease`,
           }}
         >
           <Stack

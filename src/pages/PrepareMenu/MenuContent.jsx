@@ -38,6 +38,32 @@ import ClearAllIcon from '@mui/icons-material/ClearAll';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 
+import welcomeDrink from '../../assets/icons/prepareMenuIcons/drink.png'
+import Salad from '../../assets/icons/prepareMenuIcons/salad.png'
+import Soup from '../../assets/icons/prepareMenuIcons/soup.png'
+import Starter from '../../assets/icons/prepareMenuIcons/starter.png'
+import Bread  from '../../assets/icons/prepareMenuIcons/bread.png'
+import RiceNoodles from '../../assets/icons/prepareMenuIcons/food.png'
+// import Starter from '../../assets/icons/prepareMenuIcons/starter.png'
+
+// Create a wrapper component that handles the active state
+const CategoryIcon = ({ src, isActive, children }) => {
+  return (
+    <Box
+      component="img"
+      src={src}
+      alt="category icon"
+      sx={{
+        width: 24,
+        height: 24,
+        objectFit: 'contain',
+        filter: isActive ? 'brightness(0) invert(1)' : 'none',
+        transition: 'filter 0.2s ease'
+      }}
+    />
+  );
+};
+
 const MenuContent = (props) => {
   const navigate = useNavigate();
   const {
@@ -66,22 +92,161 @@ const MenuContent = (props) => {
     mobileMenuDrawer
   } = props;
 
+  // Create a state to track which category is active for icon color
+  const [hoveredCategory, setHoveredCategory] = React.useState(null);
+
+  // UPDATED: Using actual images with filter styling based on active state
   const categories = [
-    { label: "Welcome Drink", icon: <FoodBankIcon />, key: "Welcome Drink" },
-    { label: "Salad", icon: <ListAltIcon />, key: "Salad" },
-    { label: "Soup", icon: <LunchDiningIcon />, key: "Soup" },
-    { label: "Starter", icon: <LocalPizzaIcon />, key: "Starter" },
-    { label: "Indian Bread", icon: <RestaurantIcon />, key: "Indian Bread" },
-    { label: "Rice & Noodles", icon: <SetMealIcon />, key: "Rice & Noodles" },
-    { label: "Gravy", icon: <SetMealIcon />, key: "Gravy" },
-    { label: "Side Dishes", icon: <SetMealIcon />, key: "Side Dishes" },
-    { label: "Main Course", icon: <SetMealIcon />, key: "Main Course" },
-    { label: "Variety Rice", icon: <SetMealIcon />, key: "Variety Rice" },
-    { label: "Dessert", icon: <SetMealIcon />, key: "Dessert" },
-    { label: "Sea Food", icon: <SetMealIcon />, key: "Sea Food" },
-    { label: "Tandoori", icon: <SetMealIcon />, key: "Tandoori" },
-    { label: "Chaat", icon: <SetMealIcon />, key: "Chaat" },
-    { label: "Snacks", icon: <SetMealIcon />, key: "Snacks" },
+    { 
+      label: "Welcome Drink", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={welcomeDrink} 
+          isActive={activeCategory === "Welcome Drink" || hoveredCategory === "Welcome Drink"} 
+        />
+      ), 
+      key: "Welcome Drink" 
+    },
+    { 
+      label: "Salad", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={Salad} 
+          isActive={activeCategory === "Salad" || hoveredCategory === "Salad"} 
+        />
+      ), 
+      key: "Salad" 
+    },
+    { 
+      label: "Soup", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={Soup} 
+          isActive={activeCategory === "Soup" || hoveredCategory === "Soup"} 
+        />
+      ), 
+      key: "Soup" 
+    },
+    { 
+      label: "Starter", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={Starter} 
+          isActive={activeCategory === "Starter" || hoveredCategory === "Starter"} 
+        />
+      ), 
+      key: "Starter" 
+    },
+    { 
+      label: "Indian Bread", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={Bread}
+          isActive={activeCategory === "Indian Bread" || hoveredCategory === "Indian Bread"} 
+        />
+      ), 
+      key: "Indian Bread" 
+    },
+    { 
+      label: "Rice & Noodles", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={RiceNoodles}
+          isActive={activeCategory === "Rice & Noodles" || hoveredCategory === "Rice & Noodles"} 
+        />
+      ), 
+      key: "Rice & Noodles" 
+    },
+    { 
+      label: "Gravy", 
+      icon: (active) => (
+        <CategoryIcon 
+          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=GV" 
+          isActive={activeCategory === "Gravy" || hoveredCategory === "Gravy"} 
+        />
+      ), 
+      key: "Gravy" 
+    },
+    { 
+      label: "Side Dishes", 
+      icon: (active) => (
+        <CategoryIcon 
+          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=SD" 
+          isActive={activeCategory === "Side Dishes" || hoveredCategory === "Side Dishes"} 
+        />
+      ), 
+      key: "Side Dishes" 
+    },
+    { 
+      label: "Main Course", 
+      icon: (active) => (
+        <CategoryIcon 
+          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=MC" 
+          isActive={activeCategory === "Main Course" || hoveredCategory === "Main Course"} 
+        />
+      ), 
+      key: "Main Course" 
+    },
+    { 
+      label: "Variety Rice", 
+      icon: (active) => (
+        <CategoryIcon 
+          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=VR" 
+          isActive={activeCategory === "Variety Rice" || hoveredCategory === "Variety Rice"} 
+        />
+      ), 
+      key: "Variety Rice" 
+    },
+    { 
+      label: "Dessert", 
+      icon: (active) => (
+        <CategoryIcon 
+          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=DS" 
+          isActive={activeCategory === "Dessert" || hoveredCategory === "Dessert"} 
+        />
+      ), 
+      key: "Dessert" 
+    },
+    { 
+      label: "Sea Food", 
+      icon: (active) => (
+        <CategoryIcon 
+          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=SF" 
+          isActive={activeCategory === "Sea Food" || hoveredCategory === "Sea Food"} 
+        />
+      ), 
+      key: "Sea Food" 
+    },
+    { 
+      label: "Tandoori", 
+      icon: (active) => (
+        <CategoryIcon 
+          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=TN" 
+          isActive={activeCategory === "Tandoori" || hoveredCategory === "Tandoori"} 
+        />
+      ), 
+      key: "Tandoori" 
+    },
+    { 
+      label: "Chaat", 
+      icon: (active) => (
+        <CategoryIcon 
+          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=CH" 
+          isActive={activeCategory === "Chaat" || hoveredCategory === "Chaat"} 
+        />
+      ), 
+      key: "Chaat" 
+    },
+    { 
+      label: "Snacks", 
+      icon: (active) => (
+        <CategoryIcon 
+          src="https://via.placeholder.com/24x24/FF0000/FFFFFF?text=SN" 
+          isActive={activeCategory === "Snacks" || hoveredCategory === "Snacks"} 
+        />
+      ), 
+      key: "Snacks" 
+    },
   ];
 
   const defaultImage = "https://via.placeholder.com/300x200?text=No+Image";
@@ -104,9 +269,14 @@ const MenuContent = (props) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Custom handler for category click to update active state
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+  };
+
   return (
     <>
-      <Box sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 5 }, backgroundColor: "#f6f6f6", minHeight: "100vh" }}>
+      <Box sx={{ px: { xs: 1, md: 4 }, py: { xs: 1, md: 5 }, backgroundColor: "#f6f6f6", minHeight: "100vh" }}>
         <Breadcrumbs 
           separator={<NavigateNextIcon fontSize="small" />} 
           aria-label="breadcrumb"
@@ -131,18 +301,28 @@ const MenuContent = (props) => {
         </Breadcrumbs>
 
         <Box sx={{ mb: 1, mx: { xs: -2, md: -4 }, px: { xs: 2, md: 4 } }}>
-          <Box sx={{ mb: 2 }}>
+          <Box 
+            sx={{ mb: 2 }}
+            onMouseLeave={() => setHoveredCategory(null)}
+          >
             <CategoryBar 
               setFoodType={setFilterType} 
-              categories={categories} 
+              categories={categories.map(cat => ({
+                ...cat,
+                icon: cat.icon(activeCategory === cat.key)
+              }))} 
               activeCategory={activeCategory} 
-              setActiveCategory={setActiveCategory} 
+              setActiveCategory={handleCategoryClick} 
+              animationDuration="0.15s" 
+              onHoverCategory={setHoveredCategory}
             />
           </Box>
         </Box>
 
+        {/* Rest of your component remains exactly the same */}
         <Box sx={{ display: "flex", gap: { xs: 3, md: 4 }, flexDirection: { xs: "column", md: "row" } }}>
-          <Box sx={{ flex: 3 }} ref={topRef}>
+          {/* Main content area with scrollable cards */}
+          <Box sx={{ flex: 3, height: 'calc(100vh - 250px)', overflowY: 'auto', pr: 1 }} ref={topRef}>
             <Container maxWidth="xl" sx={{ p: { xs: "0px 8px" }, width:{xs: "100%"} , }}>
               <Paper
                 elevation={0}
@@ -155,7 +335,7 @@ const MenuContent = (props) => {
                   boxShadow: "0px 4px 20px rgba(0,0,0,0.02)",
                 }}
               >
-          
+                {/* Cards container */}
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
                   
                   {filteredItems.length === 0 ? (
@@ -351,7 +531,6 @@ const MenuContent = (props) => {
           </Box>
 
           {/* Desktop My Custom Menu Card */}
-                
           <Box sx={{ flex: 1, display: { xs: 'none', md: 'block' } }}>
             <Card
               sx={{
@@ -384,7 +563,6 @@ const MenuContent = (props) => {
                   mb: 4,
                   display: 'flex',
                   flexDirection: 'column',
-                  
                 }}
               >
                 {selectedItems.length === 0 ? (

@@ -551,7 +551,7 @@ export const prepareMenuData = [
         image: dummyImage,
       },
       {
-        name: "More milagai",
+        name: "Mor milagai",
         image: dummyImage,
       },
       {

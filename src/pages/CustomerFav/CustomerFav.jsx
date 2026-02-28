@@ -248,13 +248,13 @@ export const CustomerFav = () => {
             direction="row" 
             justifyContent="space-between" 
             alignItems="flex-end" 
-            sx={{ mb: 2, px: 0.5 }}
+            sx={{ mb: 1, px: 0.5 }}
           >
             <Box>
-              <Typography variant="h5" sx={{ fontWeight: 900, color: "#1A1C1E" }}>
+              <Typography variant="h5" sx={{ fontWeight: 900, color: "#1A1C1E", fontSize: { xs: '1.1rem', md: '1.8rem' } }}>
                 {activeCategory} {activeCategory === "All" ? "Collection" : "Selection"}
               </Typography>
-              <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 500 }}>
+              <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 500, fontSize: { xs: '0.8rem', md: '0.9rem' } }}>
                 {filteredMenus.length} items curated for you
               </Typography>
             </Box>
@@ -298,12 +298,12 @@ export const CustomerFav = () => {
               <Stack 
                 alignItems="center" 
                 justifyContent="center" 
-                sx={{ gridColumn: "1 / -1", py: 2 }}
+                sx={{ gridColumn: "1 / -1", py: 1 }}
               >
-                <Typography variant="h6" color="text.secondary" fontWeight={700}>
+                <Typography variant="h6" color="text.secondary" fontWeight={700} sx={{fontSize: { xs: '1rem', md: '1.3rem' }}}>
                   No items found
                 </Typography>
-                <Typography variant="body2" color="text.disabled">
+                <Typography variant="body2" color="text.disabled" sx={{ mt: 0, fontSize: { xs: '0.6rem', md: '0.9rem' }, textAlign: 'center',}}>
                   Try adjusting your diet filters or checking another category.
                 </Typography>
               </Stack>
