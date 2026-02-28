@@ -2,6 +2,7 @@
   "name": "menus-website",
   "private": true,
   "version": "0.0.0",
+  "homepage": "/prepare-your-own-menu1/",
   "type": "module",
   "scripts": {
     "dev": "vite",
