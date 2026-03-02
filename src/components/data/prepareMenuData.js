@@ -837,7 +837,7 @@ export const prepareMenuData = [
       },
       {
         name: "Beeda / water bottle",
-        image: Bread_halwa,
+        image: Beeda_water_bottle,
       },
       {
         name: "Sweet lassi",

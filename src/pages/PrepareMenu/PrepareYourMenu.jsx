@@ -18,7 +18,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import FiberManualRecord from "@mui/icons-material/FiberManualRecord";
 import MenuContent from "./MenuContent";
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const PrepareYourMenu = () => {
   const categoryScrollRef = useRef(null);
   const topRef = useRef(null);
@@ -412,31 +412,39 @@ const PrepareYourMenu = () => {
         Zoom={Zoom}
       />
 
-      <Fab
-        variant="extended"
-        onClick={() => setMobileMenuOpen(true)}
-        sx={{
-          position: 'fixed',
-          bottom: 20,
-          right: 20,
-          display: { xs: 'flex', md: 'none' },
-          background: 'linear-gradient(45deg,#ff4b2b,#c60000)',
-          color: '#fff',
-          fontWeight: 600,
-          borderRadius: '30px',
-          px: 3,
-          py: 2,
-          boxShadow: 6,
-          '&:hover': {
-            background: 'linear-gradient(45deg,#c60000,#ff4b2b)',
-          },
-          zIndex: 1000,
-        }}
-      >
-        <Typography sx={{ fontSize: '1rem', fontWeight: 600 }}>
-          cart {selectedItems.length > 0 && `(${selectedItems.length})`}
-        </Typography>
-      </Fab>
+     <Fab
+  variant="extended"
+  onClick={() => setMobileMenuOpen(true)}
+  sx={{
+    position: 'fixed',
+    bottom: 20,
+    right: 20,
+    display: { xs: 'flex', md: 'none' },
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 1,
+    background: 'linear-gradient(45deg,#ff4b2b,#c60000)',
+    color: '#fff',
+    fontWeight: 600,
+    borderRadius: '30px',
+    px: 3,
+    py: 2,
+    boxShadow: 6,
+    '&:hover': {
+      background: 'linear-gradient(45deg,#c60000,#ff4b2b)',
+    },
+    zIndex: 1000,
+  }}
+>
+  <ShoppingCartIcon
+    sx={{
+      fontSize: { xs: 20, sm: 20 },
+    }}
+  />
+  <Typography sx={{ fontSize: '1rem', fontWeight: 600 }}>
+    Cart {selectedItems.length > 0 && `(${selectedItems.length})`}
+  </Typography>
+</Fab>
 
       <Drawer
         anchor="bottom"
