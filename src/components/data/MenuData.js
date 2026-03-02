@@ -857,10 +857,10 @@ export const menuData = [
     ],
   },
 
-  // 5. LUNCH/DINNER: Veg
+  // 5. Lunch & Dinner: Veg
   {
     id: 39,
-    category: "Lunch/Dinner",
+    category: "Lunch & Dinner",
     title: "Menu 1 – Lunch & Dinner (Veg)",
     foodType: "VEG",
     image:menu1,
@@ -881,7 +881,7 @@ export const menuData = [
   },
   {
     id: 40,
-    category: "Lunch/Dinner",
+    category: "Lunch & Dinner",
     title: "Menu 2 – Lunch & Dinner (Veg)",
     foodType: "VEG",
     image:menu2,
@@ -902,7 +902,7 @@ export const menuData = [
   },
   {
     id: 41,
-    category: "Lunch/Dinner",
+    category: "Lunch & Dinner",
     title: "Menu 3 – Lunch & Dinner (Veg)",
     foodType: "VEG",
     image:menu3,
@@ -920,8 +920,8 @@ export const menuData = [
   },
   {
     id: 42,
-    category: "Lunch/Dinner",
-    title: "Menu 17 – Lunch/Dinner (Veg)",
+    category: "Lunch & Dinner",
+    title: "Menu 17 – Lunch & Dinner (Veg)",
     foodType: "VEG",
     image:menu17,
     items: [
@@ -937,12 +937,12 @@ export const menuData = [
 
 
 
-  // 5. LUNCH/DINNER: Non Veg
+  // 5. Lunch & Dinner: Non Veg
   
 
   {
     id: 48,
-    category: "Lunch/Dinner",
+    category: "Lunch & Dinner",
     title: "Menu 45 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
     image:menu45,
@@ -957,7 +957,7 @@ export const menuData = [
   },
   {
     id: 49,
-    category: "Lunch/Dinner",
+    category: "Lunch & Dinner",
     title: "Menu 46 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
     image:menu46,
@@ -971,7 +971,7 @@ export const menuData = [
   },
   {
     id: 50,
-    category: "Lunch/Dinner",
+    category: "Lunch & Dinner",
     title: "Menu 47 - Lunch (Non-Veg)",
     foodType: "NON-VEG",
     image:menu47,
@@ -988,10 +988,10 @@ export const menuData = [
     ],
   },
 
-  // 6. BREAKFAST/DINNER: Veg
+  // 6. Breakfast & Dinner: Veg
   {
     id: 51,
-    category: "Breakfast/Dinner",
+    category: "Breakfast & Dinner",
     title: "Menu 4 – Breakfast & Dinner (Veg)",
     foodType: "VEG",
     image:menu4,
@@ -1009,7 +1009,7 @@ export const menuData = [
   },
   {
     id: 52,
-    category: "Breakfast/Dinner",
+    category: "Breakfast & Dinner",
     title: "SP3RM2",
     foodType: "VEG",
     image:SP3RM2,
@@ -1027,7 +1027,7 @@ export const menuData = [
   },
   {
     id: 53,
-    category: "Breakfast/Dinner",
+    category: "Breakfast & Dinner",
     title: "SP3RM3",
     foodType: "VEG",
     image:SP3RM3,
@@ -1045,10 +1045,10 @@ export const menuData = [
     ],
   },
 
-  // 6. BREAKFAST/DINNER: Non Veg
+  // 6. Breakfast & Dinner: Non Veg
   {
     id: 54,
-    category: "Breakfast/Dinner",
+    category: "Breakfast & Dinner",
     title: "Menu 39 - Breakfast (Non-Veg)",
     foodType: "NON-VEG",
     image:menu39,
@@ -1062,7 +1062,7 @@ export const menuData = [
   },
   {
     id: 55,
-    category: "Breakfast/Dinner",
+    category: "Breakfast & Dinner",
     title: "Menu 40 - Breakfast (Non-Veg)",
     foodType: "NON-VEG",
     image:menu40,
@@ -1077,7 +1077,7 @@ export const menuData = [
   },
   {
     id: 56,
-    category: "Breakfast/Dinner",
+    category: "Breakfast & Dinner",
     title: "Menu 41 - Breakfast (Non-Veg)",
     foodType: "NON-VEG",
     image:menu41,
@@ -1092,7 +1092,7 @@ export const menuData = [
   },
   {
     id: 57,
-    category: "Breakfast/Dinner",
+    category: "Breakfast & Dinner",
     title: "Menu 42 - Breakfast",
     foodType: "NON-VEG",
     image:menu42,
