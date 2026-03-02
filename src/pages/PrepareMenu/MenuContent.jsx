@@ -25,14 +25,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import HomeIcon from '@mui/icons-material/Home';
-import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import CategoryBar from "../../components/common/Category/CategoryBar";
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
-import LunchDiningIcon from '@mui/icons-material/LunchDining';
-import SetMealIcon from '@mui/icons-material/SetMeal';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import FoodBankIcon from '@mui/icons-material/FoodBank';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
@@ -441,7 +434,14 @@ const MenuContent = (props) => {
                                 boxShadow: "0 2px 8px rgba(0, 0, 0, 0.26)",
                               }}
                             >
-                              <Box sx={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: themeColor }} />
+                              {item.type === "veg & non-veg" ? (
+                                <Box sx={{ display: "flex", alignItems: "center", gap: 0.3 }}>
+                                  <Box sx={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#4caf50" }} />
+                                  <Box sx={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#f44336" }} />
+                                </Box>
+                              ) : (
+                                <Box sx={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: themeColor }} />
+                              )}
                               <Typography sx={{ fontSize: "10px", fontWeight: 800, color: "#333", letterSpacing: 1 }}>
                                 {item.type?.toUpperCase()}
                               </Typography>
@@ -585,56 +585,105 @@ const MenuContent = (props) => {
                     </Typography>
                   </Box>
                 ) : (
-                  selectedItems.map((item) => (
-                    <Box
-                      key={item.id}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        mb: 1.5,
-                        p: 1,
-                        borderRadius: 2,
-                        backgroundColor: "#fafafa",
-                        "&:hover": {
-                          backgroundColor: "#f5f5f5"
-                        }
-                      }}
-                    >
-                      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flex: 1 }}>
-                        <Box
-                          component="img"
-                          src={item.image || defaultImage}
-                          alt={item.name}
-                          sx={{
-                            width: 40,
-                            height: 40,
-                            borderRadius: 2,
-                            objectFit: "cover",
-                            border: "1px solid #eee"
-                          }}
-                        />
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                          {renderIndicator(item.type, 14)}
-                          <Typography fontSize={{ xs: 13, sm: 14 }} sx={{ fontWeight: 500 }}>
-                            {item.name}
-                          </Typography>
-                        </Box>
-                      </Box>
-
-                      <DeleteIcon
-                        sx={{ 
-                          cursor: "pointer", 
-                          fontSize: { xs: 16, sm: 18 },
-                          color: "#c60000",
+                  selectedItems.map((item) => {
+                    const isVegNonVeg = item.type === "veg & non-veg";
+                    
+                    return (
+                      <Box
+                        key={item.id}
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          mb: 1.5,
+                          p: 1,
+                          borderRadius: 2,
+                          backgroundColor: "#fafafa",
                           "&:hover": {
-                            color: "#b30000"
+                            backgroundColor: "#f5f5f5"
                           }
                         }}
-                        onClick={() => removeItem(item)}
-                      />
-                    </Box>
-                  ))
+                      >
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flex: 1 }}>
+                          <Box
+                            component="img"
+                            src={item.image || defaultImage}
+                            alt={item.name}
+                            sx={{
+                              width: 40,
+                              height: 40,
+                              borderRadius: 2,
+                              objectFit: "cover",
+                              border: "1px solid #eee"
+                            }}
+                          />
+                          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                            {isVegNonVeg ? (
+                              <Box sx={{ display: "flex", alignItems: "center", gap: 0.2 }}>
+                                <Box
+                                  sx={{
+                                    width: 12,
+                                    height: 12,
+                                    border: `2px solid #2e7d32`,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                  }}
+                                >
+                                  <Box
+                                    sx={{
+                                      width: 0,
+                                      height: 0,
+                                      borderLeft: `4px solid transparent`,
+                                      borderRight: `4px solid transparent`,
+                                      borderBottom: `6px solid #2e7d32`,
+                                    }}
+                                  />
+                                </Box>
+                                <Box
+                                  sx={{
+                                    width: 12,
+                                    height: 12,
+                                    border: `2px solid #c62828`,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                  }}
+                                >
+                                  <Box
+                                    sx={{
+                                      width: 0,
+                                      height: 0,
+                                      borderLeft: `4px solid transparent`,
+                                      borderRight: `4px solid transparent`,
+                                      borderBottom: `6px solid #c62828`,
+                                    }}
+                                  />
+                                </Box>
+                              </Box>
+                            ) : (
+                              renderIndicator(item.type, 14)
+                            )}
+                            <Typography fontSize={{ xs: 13, sm: 14 }} sx={{ fontWeight: 500 }}>
+                              {item.name}
+                            </Typography>
+                          </Box>
+                        </Box>
+
+                        <DeleteIcon
+                          sx={{ 
+                            cursor: "pointer", 
+                            fontSize: { xs: 16, sm: 18 },
+                            color: "#c60000",
+                            "&:hover": {
+                              color: "#b30000"
+                            }
+                          }}
+                          onClick={() => removeItem(item)}
+                        />
+                      </Box>
+                    );
+                  })
                 )}
               </Box>
 

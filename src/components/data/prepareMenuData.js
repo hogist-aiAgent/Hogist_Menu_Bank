@@ -83,6 +83,137 @@ import Veg_noodles from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Veg-n
 import Veg_pulao from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Veg-pulao.webp"
 import Veg_schezwan_Noodles from "../../assets/MenuImage/PrepareMenuImg/RiceNoodles/Veg-schezwan-Noodles.webp"
 
+//main course
+import Any_other_Main_Course from '../../assets/MenuImage/PrepareMenuImg/Main course/Any-other-Main-Course.webp'
+import Bengali_biryani from '../../assets/MenuImage/PrepareMenuImg/Main course/Bengali-biryani.webp'
+import Chicken_briyani from '../../assets/MenuImage/PrepareMenuImg/Main course/Chicken-briyani.webp'
+import Egg_briyani from '../../assets/MenuImage/PrepareMenuImg/Main course/Egg-briyani.webp'
+import fish_briyani from '../../assets/MenuImage/PrepareMenuImg/Main course/fish-briyani.webp'
+import Mutton_Briyani from '../../assets/MenuImage/PrepareMenuImg/Main course/Mutton-Briyani.webp'
+import Paneer_pulao from '../../assets/MenuImage/PrepareMenuImg/Main course/Paneer-pulao.webp'
+import Peas_pulao from '../../assets/MenuImage/PrepareMenuImg/Main course/Peas-pulao.webp'
+import Steamrice from '../../assets/MenuImage/PrepareMenuImg/Main course/Steam-rice.webp'
+import Vegetable_briyani from '../../assets/MenuImage/PrepareMenuImg/Main course/Vegetable-briyani.webp'
+import Veg_fried_rice from '../../assets/MenuImage/PrepareMenuImg/Main course/Veg-fried-rice.webp'
+import Vegpulao from '../../assets/MenuImage/PrepareMenuImg/Main course/Veg-pulao.webp'
+
+//variety rice
+import Sambar_rice from '../../assets/MenuImage/PrepareMenuImg/Variety Rice/Sambar-rice.webp'
+import curd_rice from '../../assets/MenuImage/PrepareMenuImg/Variety Rice/curd-rice.webp'
+import Bisibela_bath from '../../assets/MenuImage/PrepareMenuImg/Variety Rice/Bisibela-bath.webp'
+import Any_other_Variety_Rice from '../../assets/MenuImage/PrepareMenuImg/Variety Rice/Any-other-Variety-Rice.webp'
+
+//side dish
+
+import Any_other_Side_Dish from '../../assets/MenuImage/PrepareMenuImg/Side dish/Any-other-Side-Dish.webp'
+import Appalam from '../../assets/MenuImage/PrepareMenuImg/Side dish/Appalam.webp'
+import Mor_milagai from '../../assets/MenuImage/PrepareMenuImg/Side dish/Mor-milagai.webp'
+import Papad from '../../assets/MenuImage/PrepareMenuImg/Side dish/Papad.webp'
+import Pickle from '../../assets/MenuImage/PrepareMenuImg/Side dish/Pickle.webp'
+import Vathal from '../../assets/MenuImage/PrepareMenuImg/Side dish/Vathal.webp'
+
+//dessert
+
+import Any_other_Dessert from '../../assets/MenuImage/PrepareMenuImg/Dessert/Any-other-Dessert.webp'
+import Badam_Halwa from '../../assets/MenuImage/PrepareMenuImg/Dessert/Badam-Halwa.webp'
+import Basundi from '../../assets/MenuImage/PrepareMenuImg/Dessert/Basundi.webp'
+import Beeda_water_bottle from '../../assets/MenuImage/PrepareMenuImg/Dessert/Beeda-water-bottle.webp'
+import Bread_halwa from '../../assets/MenuImage/PrepareMenuImg/Dessert/Bread-halwa.webp'
+import Carrot_Halwa from '../../assets/MenuImage/PrepareMenuImg/Dessert/Carrot-Halwa.webp'
+import Gajar_ka_halwa from '../../assets/MenuImage/PrepareMenuImg/Dessert/Gajar-ka-halwa.webp'
+import Gulab_jamun_Rasgulla from '../../assets/MenuImage/PrepareMenuImg/Dessert/Gulab-jamun-Rasgulla.webp'
+import Kashi_halwa_Shahi_halwa from '../../assets/MenuImage/PrepareMenuImg/Dessert/Kashi-halwa-Shahi-halwa.webp'
+import Payasam_hot_jelebi from '../../assets/MenuImage/PrepareMenuImg/Dessert/Payasam-hot-jelebi.webp'
+import Soft_drinks from '../../assets/MenuImage/PrepareMenuImg/Dessert/Soft-drinks.webp'
+import Sweet_lassi from '../../assets/MenuImage/PrepareMenuImg/Dessert/Sweet-lassi.webp'
+import Vanilla_ice_cream from '../../assets/MenuImage/PrepareMenuImg/Dessert/Vanilla-ice-cream.webp'
+
+//Tandoori
+import Any_other_Tandoori from '../../assets/MenuImage/PrepareMenuImg/tandoori/Any-other-Tandoori.webp'
+import Chikken_Tikka from '../../assets/MenuImage/PrepareMenuImg/tandoori/Chikken-Tikka.webp'
+import Fish_tikka from '../../assets/MenuImage/PrepareMenuImg/tandoori/Fish-tikka.webp'
+import Mutton_sikka_kabab from '../../assets/MenuImage/PrepareMenuImg/tandoori/Mutton sikka kabab.webp'
+import Reshmi_Malai_Kabab from '../../assets/MenuImage/PrepareMenuImg/tandoori/Reshmi-Malai-Kabab.webp'
+import Tandoori_chicken from '../../assets/MenuImage/PrepareMenuImg/tandoori/Tandoori-chicken.webp'
+
+//seafood
+import Any_other_SeaFood from '../../assets/MenuImage/PrepareMenuImg/seafood/Any-other-Sea-Food.webp'
+import Chilli_fish from '../../assets/MenuImage/PrepareMenuImg/seafood/Chilli-fish.webp'
+import Chilly_prawn from '../../assets/MenuImage/PrepareMenuImg/seafood/Chilly-prawn.webp'
+import Crab_pepper_fry from '../../assets/MenuImage/PrepareMenuImg/seafood/Crab-pepper-fry.webp'
+import Prawn_malai_curry from '../../assets/MenuImage/PrepareMenuImg/seafood/Prawn-malai-curry.webp'
+import Prawn_pepper_fry from '../../assets/MenuImage/PrepareMenuImg/seafood/Prawn-pepper-fry.webp'
+
+//chaat
+
+import Any_other_chaat from '../../assets/MenuImage/PrepareMenuImg/chaat/Any-other-chaat.webp'
+import Channa_chaat from '../../assets/MenuImage/PrepareMenuImg/chaat/Channa-chaat.webp'
+import Potato_chaat from '../../assets/MenuImage/PrepareMenuImg/chaat/Potato-chaat.webp'
+
+//snacks
+import chicken_popcorn from '../../assets/MenuImage/PrepareMenuImg/snacks/chicken-popcorn.webp'
+import Chicken_roll from '../../assets/MenuImage/PrepareMenuImg/snacks/Chicken-roll.webp'
+import Chicken_samosa from '../../assets/MenuImage/PrepareMenuImg/snacks/Chicken-samosa.webp'
+import Cream_cake from '../../assets/MenuImage/PrepareMenuImg/snacks/Cream-cake.webp'
+import curd_vada from '../../assets/MenuImage/PrepareMenuImg/snacks/curd-vada.webp'
+import Cutlet from '../../assets/MenuImage/PrepareMenuImg/snacks/Cutlet.webp'
+import Donut_special from '../../assets/MenuImage/PrepareMenuImg/snacks/Donut-special.webp'
+import French_fries from '../../assets/MenuImage/PrepareMenuImg/snacks/French-fries.webp'
+import Kachori from '../../assets/MenuImage/PrepareMenuImg/snacks/Kachori.webp'
+import Paneer_spring_roll from '../../assets/MenuImage/PrepareMenuImg/snacks/Paneer-spring-roll.webp'
+import puddings from '../../assets/MenuImage/PrepareMenuImg/snacks/puddings.webp'
+import Rasamalai from '../../assets/MenuImage/PrepareMenuImg/snacks/Rasamalai.webp'
+import Rose_milk_200ml from '../../assets/MenuImage/PrepareMenuImg/snacks/Rose-milk-200ml.webp'
+import Soft_mysore_pak from '../../assets/MenuImage/PrepareMenuImg/snacks/Soft-mysore-pak.webp'
+import Special_vadai from '../../assets/MenuImage/PrepareMenuImg/snacks/Special-vadai.webp'
+import Vada_pav from '../../assets/MenuImage/PrepareMenuImg/snacks/Vada-pav.webp'
+import Vada_with_chutney from '../../assets/MenuImage/PrepareMenuImg/snacks/Vada-with-chutney.webp'
+import Veg_bonda from '../../assets/MenuImage/PrepareMenuImg/snacks/Veg-bonda.webp'
+import Veg_burger from '../../assets/MenuImage/PrepareMenuImg/snacks/Veg-burger.webp'
+import Veg_momos from '../../assets/MenuImage/PrepareMenuImg/snacks/Veg-momos.webp'
+import Veg_puff from '../../assets/MenuImage/PrepareMenuImg/snacks/Veg-puff.webp'
+import Veg_Samosa from '../../assets/MenuImage/PrepareMenuImg/snacks/Veg-Samosa.webp'
+import Veg_Sandwitch from '../../assets/MenuImage/PrepareMenuImg/snacks/Veg-Sandwitch.webp'
+import Walnut_Brownie_50gms from '../../assets/MenuImage/PrepareMenuImg/snacks/Walnut-Brownie - 50gms.webp'
+import Aloo_samosa from '../../assets/MenuImage/PrepareMenuImg/snacks/Aloo-samosa.webp'
+import Any_other_Snacks from '../../assets/MenuImage/PrepareMenuImg/snacks/Any-other-Snacks.webp'
+import Chicken_fingers from '../../assets/MenuImage/PrepareMenuImg/snacks/Chicken-fingers.webp'
+import Chicken_momos from '../../assets/MenuImage/PrepareMenuImg/snacks/Chicken-momos.webp'
+import chicken_nuggets from '../../assets/MenuImage/PrepareMenuImg/snacks/chicken-nuggets.webp'
+
+//gravy
+
+import Aloo_gobi_masala from  '../../assets/MenuImage/PrepareMenuImg/gravy/Aloo-gobi-masala.webp'
+import Aloo_jeera_dum_aloo from  '../../assets/MenuImage/PrepareMenuImg/gravy/Aloo-jeera-dum-aloo.webp'
+import Amritsari_channa from  '../../assets/MenuImage/PrepareMenuImg/gravy/Amritsari-channa.webp'
+import Any_other_gravy from  '../../assets/MenuImage/PrepareMenuImg/gravy/Any-other-gravy.webp'
+import Bhindi_jaipuri from  '../../assets/MenuImage/PrepareMenuImg/gravy/Bhindi-jaipuri.webp'
+import Channa_masala from  '../../assets/MenuImage/PrepareMenuImg/gravy/Channa-masala.webp'
+import Chicken_chettinad from  '../../assets/MenuImage/PrepareMenuImg/gravy/Chicken-chettinad.webp'
+import Chicken_Manchurian from  '../../assets/MenuImage/PrepareMenuImg/gravy/Chicken-Manchurian.webp'
+import Chicken_Murg_Dopiazah from  '../../assets/MenuImage/PrepareMenuImg/gravy/Chicken-Murg-Dopiazah.webp'
+import Chicken_pepper_masala from  '../../assets/MenuImage/PrepareMenuImg/gravy/Chicken-pepper-masala.webp'
+import Chikken_tikka_masala from  '../../assets/MenuImage/PrepareMenuImg/gravy/Chikken-tikka-masala.webp'
+import Chilli_gobi_SG from  '../../assets/MenuImage/PrepareMenuImg/gravy/Chilli-gobi-SG.webp'
+import Dal_makhani_Dal_tarker from  '../../assets/MenuImage/PrepareMenuImg/gravy/Dal-makhani-Dal-tarker.webp'
+import Egg_curry from  '../../assets/MenuImage/PrepareMenuImg/gravy/Egg-curry.webp'
+import Fish_curry from  '../../assets/MenuImage/PrepareMenuImg/gravy/Fish-curry.webp'
+import Gobi_manchurian from  '../../assets/MenuImage/PrepareMenuImg/gravy/Gobi-manchurian.webp'
+import Kadai_chicken from  '../../assets/MenuImage/PrepareMenuImg/gravy/Kadai-chicken.webp'
+import Kadai_mutton_Sukka from  '../../assets/MenuImage/PrepareMenuImg/gravy/Kadai-mutton-Sukka.webp'
+import Kadai_vegetables from  '../../assets/MenuImage/PrepareMenuImg/gravy/Kadai-vegetables.webp'
+import Malai_kofta_curry from  '../../assets/MenuImage/PrepareMenuImg/gravy/Malai-kofta-curry.webp'
+import Mirch_Baingan_Masala from  '../../assets/MenuImage/PrepareMenuImg/gravy/Mirch-Baingan-Masala.webp'
+import Mirpakai_Kozhi_gravy from  '../../assets/MenuImage/PrepareMenuImg/gravy/Mirpakai-Kozhi-gravy.webp'
+import Mix_veg_curry from  '../../assets/MenuImage/PrepareMenuImg/gravy/Mix-veg-curry.webp'
+import Mushroom_peas_masala from  '../../assets/MenuImage/PrepareMenuImg/gravy/Mushroom-peas-masala.webp'
+import Mutton_kosha_Bengali_style from  '../../assets/MenuImage/PrepareMenuImg/gravy/Mutton-kosha-Bengali-style.webp'
+import Mutton_Roganjosh from  '../../assets/MenuImage/PrepareMenuImg/gravy/Mutton-Roganjosh.webp'
+import Mutton_vindaloo from  '../../assets/MenuImage/PrepareMenuImg/gravy/Mutton-vindaloo.webp'
+import Paneer_shahi_kurma from  '../../assets/MenuImage/PrepareMenuImg/gravy/Paneer-shahi-kurma.webp'
+import Panner_butter_masala_Tikka from  '../../assets/MenuImage/PrepareMenuImg/gravy/Panner-butter-masala-Tikka.webp'
+import Panner_Butter_Masala from  '../../assets/MenuImage/PrepareMenuImg/gravy/Panner-Butter-Masala.webp'
+//default image
 import dummyImage from "../../assets/gallery/industry.webp"
 
 export const prepareMenuData = [
@@ -440,127 +571,127 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Aloo jeera / dum aloo",
-        image: dummyImage,
+        image: Aloo_jeera_dum_aloo,
       },
       {
         name: "Aloo gobi masala",
-        image: dummyImage,
+        image: Aloo_gobi_masala,
       },
       {
         name: "Bhindi jaipuri",
-        image: dummyImage,
+        image: Bhindi_jaipuri,
       },
       {
         name: "Chilli gobi S/G ",
-        image: dummyImage,
+        image: Chilli_gobi_SG,
       },
       {
         name: "Gobi manchurian",
-        image: dummyImage,
+        image: Gobi_manchurian,
       },
       {
         name: "Kadai vegetables",
-        image: dummyImage,
+        image: Kadai_vegetables,
       },
       {
         name: "Panner butter masala /Tikka",
-        image: dummyImage,
+        image: Panner_butter_masala_Tikka,
       },
       {
         name: "Mushroom peas/ masala",
-        image: dummyImage,
+        image: Mushroom_peas_masala,
       },
       {
         name: "Malai kofta curry",
-        image: dummyImage,
+        image: Malai_kofta_curry,
       },
       {
         name: "Paneer shahi kurma",
-        image: dummyImage,
+        image: Paneer_shahi_kurma,
       },
       {
         name: "Mix veg curry",
-        image: dummyImage,
+        image: Mix_veg_curry,
       },
       {
         name: "Dal makhani / Dal tarker",
-        image: dummyImage,
+        image: Dal_makhani_Dal_tarker,
       },
       {
         name: "Channa masala",
-        image: dummyImage,
+        image: Channa_masala,
       },
       {
         name: "Panner Butter Masala",
-        image: dummyImage,
+        image: Panner_Butter_Masala,
       },
       {
         name: "Mirch Baingan Masala",
-        image: dummyImage,
+        image: Mirch_Baingan_Masala,
       },
       {
         name: "Amritsari channa",
-        image: dummyImage,
+        image: Amritsari_channa,
       },
     ],
     nonVeg: [
       {
         name: "Chicken chettinad",
-        image: dummyImage,
+        image: Chicken_chettinad,
       },
       {
         name: "Chicken pepper masala",
-        image: dummyImage,
+        image: Chicken_pepper_masala,
       },
       {
         name: "Chicken tikka masala",
-        image: dummyImage,
+        image: Chikken_tikka_masala 
       },
       {
         name: "Kadai chicken",
-        image: dummyImage,
+        image: Kadai_chicken,
       },
       {
         name: "Chicken Murg Dopiazah",
-        image: dummyImage,
+        image: Chicken_Murg_Dopiazah,
       },
       {
         name: "Chicken Manchurian",
-        image: dummyImage,
+        image: Chicken_Manchurian,
       },
       {
         name: "Mirpakai Kozhi gravy(Chicken)",
-        image: dummyImage,
+        image: Mirpakai_Kozhi_gravy,
       },
       {
         name: "Fish curry",
-        image: dummyImage,
+        image: Fish_curry,
       },
       {
         name: "Mutton vindaloo",
-        image: dummyImage,
+        image: Mutton_vindaloo,
       },
       {
         name: "Mutton Roganjosh",
-        image: dummyImage,
+        image: Mutton_Roganjosh,
       },
       {
         name: "Kadai mutton / Sukka",
-        image: dummyImage,
+        image: Kadai_mutton_Sukka,
       },
       {
         name: "Mutton kosha / Bengali style",
-        image: dummyImage,
+        image: Mutton_kosha_Bengali_style,
       },
       {
         name: "Egg curry",
-        image: dummyImage,
+        image: Egg_curry,
       },
     ],
     other: [
       {
         name: "Any other Gravy",
-        image: dummyImage,
+        image: Any_other_gravy,
       },
     ],
   },
@@ -570,30 +701,30 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Appalam",
-        image: dummyImage,
+        image: Appalam,
       },
       {
         name: "Vathal",
-        image: dummyImage,
+        image: Vathal,
       },
       {
         name: "Pickle",
-        image: dummyImage,
+        image: Pickle,
       },
       {
         name: "Mor milagai",
-        image: dummyImage,
+        image: Mor_milagai,
       },
       {
         name: "Papad",
-        image: dummyImage,
+        image: Papad,
       },
     ],
     nonVeg: [],
     other: [
       {
         name: "Any other Side Dish",
-        image: dummyImage,
+        image: Any_other_Side_Dish,
       },
     ],
   },
@@ -603,55 +734,55 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Vegtable biryani",
-        image: dummyImage,
+        image: Vegetable_briyani,
       },
       {
         name: "Steamed rice",
-        image: dummyImage,
+        image: Steamrice,
       },
       {
         name: "Peas pulao",
-        image: dummyImage,
+        image: Peas_pulao,
       },
       {
         name: "Veg fried rice",
-        image: dummyImage,
+        image: Veg_fried_rice,
       },
       {
         name: "Veg pulao",
-        image: dummyImage,
+        image: Vegpulao,
       },
       {
         name: "Paneer pulao",
-        image: dummyImage,
+        image: Paneer_pulao,
       },
     ],
     nonVeg: [
       {
         name: "Mutton biryani",
-        image: dummyImage,
+        image: Mutton_Briyani,
       },
       {
         name: "Chicken biryani",
-        image: dummyImage,
+        image: Chicken_briyani,
       },
       {
         name: "Egg biryani",
-        image: dummyImage,
+        image: Egg_briyani,
       },
       {
         name: "Fish biryani",
-        image: dummyImage,
+        image: fish_briyani,
       },
       {
         name: "Bengali biryani",
-        image: dummyImage,
+        image: Bengali_biryani,
       },
     ],
     other: [
       {
         name: "Any other Main Course",
-        image: dummyImage,
+        image: Any_other_Main_Course,
       },
     ],
   },
@@ -661,22 +792,22 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Curd rice",
-        image: dummyImage,
+        image: curd_rice,
       },
       {
         name: "Sambar rice",
-        image: dummyImage,
+        image: Sambar_rice,
       },
       {
         name: "Bisibela bath",
-        image: dummyImage,
+        image: Bisibela_bath,
       },
     ],
     nonVeg: [],
     other: [
       {
         name: "Any other Variety Rice",
-        image: dummyImage,
+        image: Any_other_Variety_Rice,
       },
     ],
   },
@@ -686,58 +817,58 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Gulab jamun / Rasgulla",
-        image: dummyImage,
+        image: Gulab_jamun_Rasgulla,
       },
       {
         name: "Bread halwa",
-        image: dummyImage,
+        image: Bread_halwa,
       },
       {
         name: "Gajar ka halwa",
-        image: dummyImage,
+        image: Gajar_ka_halwa,
       },
       {
         name: "Kashi halwa / Shahi halwa",
-        image: dummyImage,
+        image: Kashi_halwa_Shahi_halwa,
       },
       {
         name: "Payasam / hot jelebi",
-        image: dummyImage,
+        image: Payasam_hot_jelebi,
       },
       {
         name: "Beeda / water bottle",
-        image: dummyImage,
+        image: Bread_halwa,
       },
       {
         name: "Sweet lassi",
-        image: dummyImage,
+        image: Sweet_lassi,
       },
       {
         name: "Soft drinks",
-        image: dummyImage,
+        image: Soft_drinks,
       },
       {
         name: "Carrot Halwa",
-        image: dummyImage,
+        image: Carrot_Halwa,
       },
       {
         name: "Vanilla ice cream",
-        image: dummyImage,
+        image: Vanilla_ice_cream,
       },
       {
         name: "Basundi",
-        image: dummyImage,
+        image: Basundi,
       },
       {
         name: "Badam halwa",
-        image: dummyImage,
+        image: Badam_Halwa,
       },
     ],
     nonVeg: [],
     other: [
       {
         name: "Any other Dessert",
-        image: dummyImage,
+        image: Any_other_Dessert,
       },
     ],
   },
@@ -748,29 +879,29 @@ export const prepareMenuData = [
     nonVeg: [
       {
         name: "Prawn pepper fry",
-        image: dummyImage,
+        image: Prawn_pepper_fry,
       },
       {
         name: "Chilly prawn/ prawn",
-        image: dummyImage,
+        image: Chilly_prawn,
       },
       {
         name: "Crab pepper fry",
-        image: dummyImage,
+        image: Crab_pepper_fry,
       },
       {
         name: "Prawn malai curry",
-        image: dummyImage,
+        image: Prawn_malai_curry,
       },
       {
         name: "Chilli fish",
-        image: dummyImage,
+        image: Chilli_fish,
       },
     ],
     other: [
       {
         name: "Any other Sea Food",
-        image: dummyImage,
+        image: Any_other_SeaFood,
       },
     ],
   },
@@ -781,29 +912,29 @@ export const prepareMenuData = [
     nonVeg: [
       {
         name: "Tandoori chicken",
-        image: dummyImage,
+        image: Tandoori_chicken,
       },
       {
         name: "Chicken tikka",
-        image: dummyImage,
+        image: Chikken_Tikka,
       },
       {
         name: "Reshmi/ Malai/ Kabab",
-        image: dummyImage,
+        image: Reshmi_Malai_Kabab,
       },
       {
         name: "Fish tikka",
-        image: dummyImage,
+        image: Fish_tikka,
       },
       {
         name: "Mutton sikka kabab",
-        image: dummyImage,
+        image: Mutton_sikka_kabab,
       },
     ],
     other: [
       {
         name: "Any other Tandoori",
-        image: dummyImage,
+        image: Any_other_Tandoori,
       },
     ],
   },
@@ -813,18 +944,18 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Channa chaat",
-        image: dummyImage,
+        image: Channa_chaat,
       },
       {
         name: "Potato chaat",
-        image: dummyImage,
+        image: Potato_chaat,
       },
     ],
     nonVeg: [],
     other: [
       {
         name: "Any other Chaat",
-        image: dummyImage,
+        image: Any_other_chaat,
       },
     ],
   },
@@ -834,123 +965,126 @@ export const prepareMenuData = [
     veg: [
       {
         name: "Special vadai",
-        image: dummyImage,
+        image: Special_vadai,
       },
       {
         name: "Kachori",
-        image: dummyImage,
+        image: Kachori,
       },
       {
         name: "Aloo samosa",
-        image: dummyImage,
+        image: Aloo_samosa,
       },
       {
         name: "Vada pav",
-        image: dummyImage,
+        image: Vada_pav,
       },
       {
         name: "Paneer spring roll",
-        image: dummyImage,
+        image: Paneer_spring_roll,
       },
       {
         name: "Rasamalai",
-        image: dummyImage,
+        image: Rasamalai,
       },
       {
         name: "Soft mysore pak",
-        image: dummyImage,
+        image: Soft_mysore_pak,
       },
       {
         name: "Rose milk 200ml",
-        image: dummyImage,
+        image: Rose_milk_200ml,
       },
       {
         name: "Walnut Brownie - 50gms",
-        image: dummyImage,
+        image: Walnut_Brownie_50gms,
       },
       {
         name: "Veg Samosa",
-        image: dummyImage,
+        image: Veg_Samosa,
       },
       {
         name: "Curd vadai",
-        image: dummyImage,
+        image: curd_vada,
       },
       {
         name: "Veg bonda",
-        image: dummyImage,
+        image: Veg_bonda
+,
       },
       {
         name: "Veg puff",
-        image: dummyImage,
+        image: Veg_puff,
       },
       {
         name: "Puddings",
-        image: dummyImage,
+        image: puddings,
       },
       {
         name: "Donut special",
-        image: dummyImage,
+        image: Donut_special,
       },
       {
         name: "Cream cake",
-        image: dummyImage,
+        image: Cream_cake,
       },
       {
         name: "Cutlet",
-        image: dummyImage,
+        image: Cutlet,
       },
       {
-        name: "Veg Sandwitch",
-        image: dummyImage,
+        name: "Veg Sandwich",
+        image: Veg_Sandwitch,
       },
       {
         name: "Vada with chutney",
-        image: dummyImage,
+        image: Vada_with_chutney,
       },
       {
         name: "French fries",
-        image: dummyImage,
+        image: French_fries,
       },
       {
         name: "Veg momos",
-        image: dummyImage,
+        image:Veg_momos 
+,
       },
       {
         name: "Veg burger",
-        image: dummyImage,
+        image: Veg_burger
+,
       },
     ],
     nonVeg: [
       {
         name: "Chicken roll",
-        image: dummyImage,
+        image: Chicken_roll,
       },
       {
         name: "Chicken samosa",
-        image: dummyImage,
+        image: Chicken_samosa,
       },
       {
         name: "Chicken fingers",
-        image: dummyImage,
+        image: Chicken_fingers,
       },
       {
         name: "Chicken momos",
-        image: dummyImage,
+        image: Chicken_momos,
       },
       {
         name: "Chicken popcorn",
-        image: dummyImage,
+        image: chicken_popcorn,
       },
       {
         name: "Chicken nuggets",
-        image: dummyImage,
+        image: chicken_nuggets,
       },
     ],
     other: [
       {
         name: "Any other Snacks",
-        image: dummyImage,
+        image: Any_other_Snacks,
       },
     ],
   },

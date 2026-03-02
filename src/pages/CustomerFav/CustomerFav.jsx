@@ -4,17 +4,36 @@ import { useNavigate } from "react-router-dom";
 import { menuData } from "../../components/data/MenuData";
 import MenuCard from "./MenuCard";
 import CategoryBar from "../../components/common/Category/CategoryBar";
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
-import LunchDiningIcon from '@mui/icons-material/LunchDining';
-import SetMealIcon from '@mui/icons-material/SetMeal';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import FoodBankIcon from '@mui/icons-material/FoodBank';
+
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import HomeIcon from '@mui/icons-material/Home';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+
+import Breakfast from '../../assets/icons/prepareMenuIcons/breakfast.png'
+import Lunch from '../../assets/icons/prepareMenuIcons/sideDish.png'
+import Dinner from '../../assets/icons/prepareMenuIcons/dinner.png'
+import BreakfastDinner from '../../assets/icons/prepareMenuIcons/breakfastDinner.png'
+import LunchDinner from '../../assets/icons/prepareMenuIcons/lunchDinner.png'
+
+// Create a wrapper component that handles the active state
+const CategoryIcon = ({ src, isActive, children }) => {
+  return (
+    <Box
+      component="img"
+      src={src}
+      alt="category icon"
+      sx={{
+        width: 24,
+        height: 24,
+        objectFit: 'contain',
+        filter: isActive ? 'brightness(0) invert(1)' : 'none',
+        transition: 'filter 0.2s ease'
+      }}
+    />
+  );
+};
 
 export const CustomerFav = () => {
   const navigate = useNavigate();
@@ -25,13 +44,60 @@ export const CustomerFav = () => {
   const paperRef = useRef(null);
   const [hasEmptyCards, setHasEmptyCards] = useState(false);
   const [paperPosition, setPaperPosition] = useState({ top: 0, bottom: 0 });
+  const [hoveredCategory, setHoveredCategory] = useState(null);
 
+  // UPDATED: Using actual images with filter styling based on active state
   const categories = [
-    { label: "Breakfast", icon: <ListAltIcon />, key: "Breakfast" },
-    { label: "Lunch", icon: <LunchDiningIcon />, key: "Lunch" },
-    { label: "Dinner", icon: <LocalPizzaIcon />, key: "Dinner" },
-    { label: "Lunch &", subLabel: "Dinner", icon: <RestaurantIcon />, key: "Lunch/Dinner" },
-    { label: "Breakfast &", subLabel: "Dinner", icon: <SetMealIcon />, key: "Breakfast/Dinner" },
+    { 
+      label: "Breakfast", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={Breakfast} 
+          isActive={activeCategory === "Breakfast" || hoveredCategory === "Breakfast"} 
+        />
+      ), 
+      key: "Breakfast" 
+    },
+    { 
+      label: "Lunch", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={Lunch} 
+          isActive={activeCategory === "Lunch" || hoveredCategory === "Lunch"} 
+        />
+      ), 
+      key: "Lunch" 
+    },
+    { 
+      label: "Dinner", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={Dinner} 
+          isActive={activeCategory === "Dinner" || hoveredCategory === "Dinner"} 
+        />
+      ), 
+      key: "Dinner" 
+    },
+    { 
+      label: "Lunch & Dinner", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={LunchDinner} 
+          isActive={activeCategory === "Lunch & Dinner" || hoveredCategory === "Lunch & Dinner"} 
+        />
+      ), 
+      key: "Lunch/Dinner" 
+    },
+    { 
+      label: "Breakfast & Dinner", 
+      icon: (active) => (
+        <CategoryIcon 
+          src={BreakfastDinner}
+          isActive={activeCategory === "Breakfast & Dinner" || hoveredCategory === "Breakfast & Dinner"} 
+        />
+      ), 
+      key: "Breakfast/Dinner" 
+    },
   ];
 
   const filteredMenus = useMemo(() => {
@@ -101,6 +167,10 @@ export const CustomerFav = () => {
   const handleCustomerFavClick = (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
   };
 
   return (
@@ -221,12 +291,17 @@ export const CustomerFav = () => {
           pt: 2,
           px: { xs: 1, sm: 2 }
         }}
+        onMouseLeave={() => setHoveredCategory(null)}
       >
         <CategoryBar 
           setFoodType={setFoodType} 
-          categories={categories} 
+          categories={categories.map(cat => ({
+            ...cat,
+            icon: cat.icon(activeCategory === cat.key)
+          }))} 
           activeCategory={activeCategory} 
-          setActiveCategory={setActiveCategory} 
+          setActiveCategory={handleCategoryClick} 
+          onHoverCategory={setHoveredCategory}
         />
       </Box>
 

@@ -16,6 +16,7 @@ import { prepareMenuData } from "../../components/data/prepareMenuData";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
+import FiberManualRecord from "@mui/icons-material/FiberManualRecord";
 import MenuContent from "./MenuContent";
 
 const PrepareYourMenu = () => {
@@ -56,7 +57,7 @@ const PrepareYourMenu = () => {
     return [
       ...mapItems(currentCategory.veg, "veg"),
       ...mapItems(currentCategory.nonVeg, "non-veg"),
-      ...mapItems(currentCategory.other, "other"),
+      ...mapItems(currentCategory.other, "veg & non-veg"),
     ];
   }, [currentCategory, activeCategory]);
 
@@ -126,13 +127,97 @@ const PrepareYourMenu = () => {
     switch(type) {
       case "veg": return "#2e7d32";
       case "non-veg": return "#c62828";
-      case "other": return "#f9d935";
+      case "veg & non-veg": return "#f9d935";
       default: return "#c60000";
     }
   };
 
-  const renderIndicator = (type, size = 16) => {
-    if (type === "other") return null;
+  // Indicator for menu cards (keeps dots for "veg & non-veg")
+  const renderCardIndicator = (type, size = 16) => {
+    if (type === "veg & non-veg") {
+      return (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0.3 }}>
+          <FiberManualRecord sx={{ fontSize: size - 4, color: "#4caf50" }} />
+          <FiberManualRecord sx={{ fontSize: size - 4, color: "#f44336" }} />
+        </Box>
+      );
+    }
+    const isVeg = type === "veg";
+
+    return (
+      <Box
+        sx={{
+          width: size,
+          height: size,
+          border: `2px solid ${isVeg ? "#2e7d32" : "#c62828"}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Box
+          sx={{
+            width: 0,
+            height: 0,
+            borderLeft: `${size / 3}px solid transparent`,
+            borderRight: `${size / 3}px solid transparent`,
+            borderBottom: `${size / 2}px solid ${
+              isVeg ? "#2e7d32" : "#c62828"
+            }`,
+          }}
+        />
+      </Box>
+    );
+  };
+
+  // Indicator for My Custom Menu (uses two triangles for "veg & non-veg")
+  const renderMenuIndicator = (type, size = 14) => {
+    if (type === "veg & non-veg") {
+      return (
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0.2 }}>
+          <Box
+            sx={{
+              width: size - 2,
+              height: size - 2,
+              border: `2px solid #2e7d32`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Box
+              sx={{
+                width: 0,
+                height: 0,
+                borderLeft: `${(size - 2) / 3}px solid transparent`,
+                borderRight: `${(size - 2) / 3}px solid transparent`,
+                borderBottom: `${(size - 2) / 2}px solid #2e7d32`,
+              }}
+            />
+          </Box>
+          <Box
+            sx={{
+              width: size - 2,
+              height: size - 2,
+              border: `2px solid #c62828`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Box
+              sx={{
+                width: 0,
+                height: 0,
+                borderLeft: `${(size - 2) / 3}px solid transparent`,
+                borderRight: `${(size - 2) / 3}px solid transparent`,
+                borderBottom: `${(size - 2) / 2}px solid #c62828`,
+              }}
+            />
+          </Box>
+        </Box>
+      );
+    }
     const isVeg = type === "veg";
 
     return (
@@ -220,7 +305,7 @@ const PrepareYourMenu = () => {
               }}
             >
               <Box sx={{ display: "flex", alignItems: "center", gap: 1, maxWidth: '70%' }}>
-                {renderIndicator(item.type, 16)}
+                {renderMenuIndicator(item.type, 16)}
                 <Typography fontSize={{ xs: 14, sm: 15 }} noWrap>
                   {item.name}
                 </Typography>
@@ -322,7 +407,7 @@ const PrepareYourMenu = () => {
         handleCopyDialogMenu={handleCopyDialogMenu}
         handleCopyMenu={handleCopyMenu}
         getThemeColor={getThemeColor}
-        renderIndicator={renderIndicator}
+        renderIndicator={renderCardIndicator}
         mobileMenuDrawer={mobileMenuDrawer}
         Zoom={Zoom}
       />

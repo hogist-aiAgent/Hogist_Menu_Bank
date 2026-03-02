@@ -47,7 +47,12 @@ const CategoryBar = ({
   
 
   const diets = {
-    all: { label: "Both ", icon: <FilterList fontSize="small" /> },
+    all: { label: "Both ", icon: (
+        <>
+          <FiberManualRecord sx={{ fontSize: 10, color: "#4caf50" }} />
+          <FiberManualRecord sx={{ fontSize: 10, color: "#f44336" }} />
+        </>
+      ) },
     veg: {
       label: "Veg",
       icon: <FiberManualRecord sx={{ fontSize: 10, color: "#4caf50" }} />,
