@@ -42,7 +42,7 @@ import chilly_egg from "../../assets/MenuImage/PrepareMenuImg/starter/chilly-egg
 import egg_paniyaram from "../../assets/MenuImage/PrepareMenuImg/starter/egg-paniyaram.png"
 import chilly_fish_chilly_chicken from "../../assets/MenuImage/PrepareMenuImg/starter/chilly-fish-chilly-chicken.png"
 import chrispy_chilly_veg  from "../../assets/MenuImage/PrepareMenuImg/starter/Chrispy-Chilly-Veg.jpg"
-import fish_finger from "../../assets/MenuImage/PrepareMenuImg/starter/Fish-Finger.jpg"
+import fish_finger from "../../assets/MenuImage/PrepareMenuImg/starter/Fish-finger.jpg"
 import fish_fry from "../../assets/MenuImage/PrepareMenuImg/starter/fish-fry.png"
 import French_fry from "../../assets/MenuImage/PrepareMenuImg/starter/French-fries-in-a-plate.jpg"
 import gobi_paneer_65 from "../../assets/MenuImage/PrepareMenuImg/starter/Gobi -paneer-65.jpg"
