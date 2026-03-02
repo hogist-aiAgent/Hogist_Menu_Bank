@@ -26,7 +26,7 @@ import Indian_Style_Tomato_Rasam from "../../assets/MenuImage/PrepareMenuImg/Sou
 import soup_in_indian_event from "../../assets/MenuImage/PrepareMenuImg/Soup/soups-in-indian-event.jpg"
 import Sweet_corn_veg_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Sweet-corn-veg-soup.jpg"
 import Veg_Manchow_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Veg-Manchow-soup.jpg"
-import Veg_clear_soup from "../../assets/MenuImage/PrepareMenuImg/soup/Veg-clear-soup.jpg"
+import Veg_clear_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Veg-clear-soup.jpg"
 import Cream_of_spinach_soup from "../../assets/MenuImage/PrepareMenuImg/Soup/Cream-of-spinach-soup.png"
 
 //starter images
