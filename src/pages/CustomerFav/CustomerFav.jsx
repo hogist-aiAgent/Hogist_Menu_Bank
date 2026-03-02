@@ -86,7 +86,7 @@ export const CustomerFav = () => {
           isActive={activeCategory === "Lunch & Dinner" || hoveredCategory === "Lunch & Dinner"} 
         />
       ), 
-      key: "Lunch/Dinner" 
+      key: "Lunch & Dinner" 
     },
     { 
       label: "Breakfast & Dinner", 
@@ -96,7 +96,7 @@ export const CustomerFav = () => {
           isActive={activeCategory === "Breakfast & Dinner" || hoveredCategory === "Breakfast & Dinner"} 
         />
       ), 
-      key: "Breakfast/Dinner" 
+      key: "Breakfast & Dinner" 
     },
   ];
 
