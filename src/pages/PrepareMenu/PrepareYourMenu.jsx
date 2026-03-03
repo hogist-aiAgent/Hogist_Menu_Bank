@@ -1,3 +1,4 @@
+// PrepareYourMenu.js
 import React, { useState, useMemo, useRef } from "react";
 import {
   Box,
@@ -19,6 +20,7 @@ import ClearAllIcon from '@mui/icons-material/ClearAll';
 import FiberManualRecord from "@mui/icons-material/FiberManualRecord";
 import MenuContent from "./MenuContent";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 const PrepareYourMenu = () => {
   const categoryScrollRef = useRef(null);
   const topRef = useRef(null);
@@ -73,21 +75,65 @@ const PrepareYourMenu = () => {
     );
   }, [allItems, filterType]);
 
-  const handleCategoryClick = (category) => {
-    setActiveCategory(category);
+
+const handleCategoryClick = (category) => {
+  setActiveCategory(category);
+  
+  const scrollToTop = () => {
+    if (topRef.current) {
+      topRef.current.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+  
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
     window.scrollTo({
       top: 0,
+      left: 0,
       behavior: 'smooth'
     });
   };
 
-  const handleToggleClick = (type) => {
-    setFilterType(type);
+  setTimeout(scrollToTop, 50);
+  setTimeout(scrollToTop, 100);
+  setTimeout(scrollToTop, 200);
+  setTimeout(scrollToTop, 300);
+};
+
+const handleToggleClick = (type) => {
+  setFilterType(type);
+  
+  const scrollToTop = () => {
+    if (topRef.current) {
+      topRef.current.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
     window.scrollTo({
       top: 0,
+      left: 0,
       behavior: 'smooth'
     });
   };
+
+  setTimeout(scrollToTop, 50);
+  setTimeout(scrollToTop, 100);
+  setTimeout(scrollToTop, 200);
+  setTimeout(scrollToTop, 300);
+};
 
   const handleCopyMenu = () => {
     if (selectedItems.length === 0) return;
@@ -132,7 +178,6 @@ const PrepareYourMenu = () => {
     }
   };
 
-  // Indicator for menu cards (keeps dots for "veg & non-veg")
   const renderCardIndicator = (type, size = 16) => {
     if (type === "veg & non-veg") {
       return (

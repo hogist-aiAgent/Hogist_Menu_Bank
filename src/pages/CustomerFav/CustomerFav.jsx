@@ -1,3 +1,4 @@
+// CustomerFav.js (only showing the relevant parts with fixes)
 import { Box, Typography, Stack, Paper, alpha, Container, Breadcrumbs, Link } from "@mui/material";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -164,13 +165,28 @@ export const CustomerFav = () => {
     navigate('/');
   };
 
+  // FIXED: Added setTimeout to ensure scroll happens properly
   const handleCustomerFavClick = (e) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Use setTimeout to ensure scroll happens properly
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }, 100);
   };
 
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }, 100);
   };
 
   return (

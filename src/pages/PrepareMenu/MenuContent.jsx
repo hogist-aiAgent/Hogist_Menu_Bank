@@ -277,7 +277,7 @@ const MenuContent = (props) => {
 
   return (
     <>
-      <Box sx={{ px: { xs: 1, md: 4 }, py: { xs: 1, md: 5 }, backgroundColor: "#f6f6f6", minHeight: "100vh" }}>
+      <Box sx={{ px: { xs: 1, md: 4 }, py: { xs: 1, md: 5 }, backgroundColor: "#f6f6f6", minHeight: "80vh" }}>
         <Breadcrumbs 
           separator={<NavigateNextIcon fontSize="small" />} 
           aria-label="breadcrumb"
@@ -323,8 +323,8 @@ const MenuContent = (props) => {
         {/* Rest of your component remains exactly the same */}
         <Box sx={{ display: "flex", gap: { xs: 3, md: 4 }, flexDirection: { xs: "column", md: "row" } }}>
           {/* Main content area with scrollable cards */}
-          <Box sx={{ flex: 3, height: 'calc(100vh - 250px)', overflowY: 'auto', pr: 1 }} ref={topRef}>
-            <Container maxWidth="xl" sx={{ p: { xs: "0px 8px" }, width:{xs: "100%"} , }}>
+          <Box sx={{ flex: 3, height: 'calc(100vh - 220px)', overflowY: 'auto', pr: 1 }} ref={topRef}>
+            <Container maxWidth="xl" sx={{ p: { xs: "0px 4px" }, width:{xs: "100%"} , }}>
               <Paper
                 elevation={0}
                 sx={{
@@ -384,9 +384,10 @@ const MenuContent = (props) => {
                             borderTop: `3px solid ${themeColor}`,
                           }}
                         >
-                          {/* IMAGE SECTION */}
+                          {/* IMAGE SECTION - FIXED: Always show card structure */}
                           <Box sx={{ position: "relative", height: 180, flexShrink: 0, padding: "6px" }}>
                             <Box sx={{ position: "relative" }}>
+                              {/* Show loading indicator but keep card visible */}
                               {!imageLoaded[item.id] && (
                                 <Box
                                   sx={{
@@ -411,10 +412,13 @@ const MenuContent = (props) => {
                                   width: "100%",
                                   height: 174,
                                   objectFit: "cover",
-                                  filter: imageLoaded[item.id] ? "blur(0px)" : "blur(12px)",
-                                  transition: "filter 0.4s ease, opacity 0.4s ease",
+                                  // FIXED: Remove blur filter, just use opacity for loading state
+                                  filter: "none",
                                   opacity: imageLoaded[item.id] ? 1 : 0.7,
+                                  transition: "opacity 0.4s ease",
                                   borderRadius: "15px",
+                                  // FIXED: Add background color to show card structure
+                                  backgroundColor: "#f0f0f0",
                                 }}
                               />
                             </Box>
@@ -448,7 +452,7 @@ const MenuContent = (props) => {
                             </Box>
                           </Box>
 
-                          {/* CONTENT SECTION */}
+                          {/* CONTENT SECTION - Always visible */}
                           <Box sx={{ p: 3, display: "flex", flexDirection: "column", flexGrow: 1, pt: 0 }}>
                             <Typography
                               sx={{
