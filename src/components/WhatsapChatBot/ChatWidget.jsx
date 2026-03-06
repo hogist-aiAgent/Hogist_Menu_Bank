@@ -10,18 +10,17 @@ import {
   Avatar,
   CircularProgress,
   Tooltip,
+  ThemeProvider,
 } from "@mui/material";
 import { Close, Send, WhatsApp, RestartAlt } from "@mui/icons-material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import axios from "axios";
-// import avatarIcon from "../../public/download.png";
+import avatarIcon from "../../assets/CompanyLogos/avatarLogo.png";
 import ChatAssistant from "./ChatAssistant";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
-export const API_BASE = false
-  ? "http://127.0.0.1:5005"
-  : import.meta.env.VITE_API_BASE_URL;
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { chatTheme } from "../../theme/chatTheme";
+export const API_BASE = `https://hogist.in/chatbot/`;
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -133,40 +132,43 @@ const ChatWidget = () => {
 
   return (
     <>
-      <Fade in={isOpen}>
-        <Paper
-          elevation={24}
-          sx={{
-            position: "fixed",
-            bottom: { xs: 0, sm: 40 },
-            right: { xs: 0, sm: 32 },
-            width: { xs: "100%", sm: 380 },
-            height: { xs: "100%", sm: 580 },
-            display: "flex",
-            flexDirection: "column",
-            borderRadius: { xs: 0, sm: "24px" },
-            overflow: "hidden",
-            zIndex: 9999,
-          }}
-        >
-          {/* HEADER */}
-          <Box
+      <ThemeProvider theme={chatTheme}>
+        <Fade in={isOpen}>
+          <Paper
+            elevation={24}
             sx={{
-              px: 2,
-              py: 1.5,
-              background: "linear-gradient(135deg,#8B0E1A,#B11226,#6F0B14)",
-              color: "white",
+              position: "fixed",
+              fontFamily: '"Outfit", sans-serif', // 👈 add this
+
+              bottom: { xs: 0, sm: 40 },
+              right: { xs: 0, sm: 32 },
+              width: { xs: "100%", sm: 380 },
+              height: { xs: "100%", sm: 580 },
               display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              flexDirection: "column",
+              borderRadius: { xs: 0, sm: "24px" },
+              overflow: "hidden",
+              zIndex: 9999,
             }}
           >
-            <Box display="flex" gap={1.5} alignItems="center">
-              <Box position="relative">
-                <AccountCircleIcon sx={{ width: 38, height: 38, color: 'white' }} />
+            {/* HEADER */}
+            <Box
+              sx={{
+                px: 2,
+                py: 1.5,
+                background: "linear-gradient(135deg,#8B0E1A,#B11226,#6F0B14)",
+                color: "white",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Box display="flex" gap={1.5} alignItems="center">
+                <Box position="relative">
+                   <Avatar src={avatarIcon} sx={{ width: 38, height: 38 }} />
 
-                {/* Online Indicator */}
-                {/* <Box
+                  {/* Online Indicator */}
+                  {/* <Box
       sx={{
         position: "absolute",
         bottom: 2,
@@ -178,267 +180,270 @@ const ChatWidget = () => {
         border: "2px solid white",
       }}
     /> */}
+                </Box>
+
+                <Box>
+                  <Typography fontWeight={700}>Lisa</Typography>
+
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 0.5,
+                      color: "#4CAF50",
+                      fontWeight: 600,
+                    }}
+                  >
+                    ● Online
+                  </Typography>
+                </Box>
               </Box>
 
               <Box>
-                <Typography fontWeight={700}>Lisa</Typography>
-
-                <Typography
-                  variant="caption"
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 0.5,
-                    color: "#4CAF50",
-                    fontWeight: 600,
-                  }}
+                <IconButton onClick={startNewChat} sx={{ color: "white" }}>
+                  <RestartAlt />
+                </IconButton>
+                <IconButton
+                  onClick={() => setIsOpen(false)}
+                  sx={{ color: "white" }}
                 >
-                  ● Online
-                </Typography>
+                  <Close />
+                </IconButton>
               </Box>
             </Box>
 
-            <Box>
-              <IconButton onClick={startNewChat} sx={{ color: "white" }}>
-                <RestartAlt />
-              </IconButton>
-              <IconButton
-                onClick={() => setIsOpen(false)}
-                sx={{ color: "white" }}
-              >
-                <Close />
-              </IconButton>
-            </Box>
-          </Box>
+            {/* BODY */}
+            <Box
+              sx={{
+                flex: 1,
+                p: 2,
+                overflowY: "auto",
+                background: "linear-gradient(180deg,#F9FAFB,#F3F4F6)",
+              }}
+            >
+              {messages.map((msg, i) => {
+                const isAssistant = msg.role === "assistant";
+                const isFirstAssistant = isAssistant && i === 0;
 
-          {/* BODY */}
-          <Box
-            sx={{
-              flex: 1,
-              p: 2,
-              overflowY: "auto",
-              background: "linear-gradient(180deg,#F9FAFB,#F3F4F6)",
-            }}
-          >
-            {messages.map((msg, i) => {
-              const isAssistant = msg.role === "assistant";
-              const isFirstAssistant = isAssistant && i === 0;
-
-              return (
-                <Box key={i} mb={2}>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: isAssistant ? "flex-start" : "flex-end",
-                      gap: 1,
-                    }}
-                  >
-                    {isAssistant && (
-                      <AccountCircleIcon sx={{ width: 32, height: 32, color: '#B11226' }} />
-                    )}
-
-                    <Paper
-                      sx={{
-                        px: 1.6,
-                        py: 1.2,
-                        maxWidth: "70%",
-                        bgcolor: isAssistant ? "#FFFFFF" : "#B11226",
-                        color: isAssistant ? "#111827" : "white",
-                        borderRadius: isAssistant
-                          ? "18px 18px 18px 6px"
-                          : "18px 18px 6px 18px",
-                        boxShadow: "0 2px 6px rgba(0,0,0,.08)",
-                      }}
-                    >
-                      <Typography
-                        dangerouslySetInnerHTML={{
-                          __html: msg.text.replace(/\n/g, "<br/>"),
-                        }}
-                      />
-                    </Paper>
-                  </Box>
-
-                  {/* QUICK ACTION BUTTONS (ONLY UNDER FIRST AI MESSAGE) */}
-                  {/* QUICK ACTION BUTTONS (ONLY UNDER FIRST AI MESSAGE) */}
-                  {isFirstAssistant && (
+                return (
+                  <Box key={i} mb={2}>
                     <Box
                       sx={{
-                        mt: 1.2,
-                        pl: 5, // keeps alignment under assistant bubble (avatar space)
                         display: "flex",
+                        justifyContent: isAssistant ? "flex-start" : "flex-end",
                         gap: 1,
-                        flexWrap: "wrap",
                       }}
                     >
-                      {[
-                        {
-                          label: "Events",
-                          emoji: "🎉",
-                          bg: "#B11226",
-                          fg: "#fff",
-                        },
-                        {
-                          label: "Daily Meals",
-                          emoji: "🍱",
-                          bg: "#fff",
-                          fg: "#111827",
-                          border: "#E5E7EB",
-                        },
-                        {
-                          label: "Others",
-                          emoji: "📩",
-                          bg: "#6B7280",
-                          fg: "#fff",
-                        },
-                      ].map((btn) => (
-                        <Box
-                          key={btn.label}
-                          onClick={() => sendMessage(btn.label)}
-                          role="button"
-                          tabIndex={0}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ")
-                              sendMessage(btn.label);
+                      {isAssistant && (
+                      <Avatar src={avatarIcon} sx={{ width: 32, height: 32 }} />
+                    )}
+
+                      <Paper
+                        sx={{
+                          px: 1.6,
+                          py: 1.2,
+                          maxWidth: "70%",
+                          bgcolor: isAssistant ? "#FFFFFF" : "#B11226",
+                          color: isAssistant ? "#111827" : "white",
+                          borderRadius: isAssistant
+                            ? "18px 18px 18px 6px"
+                            : "18px 18px 6px 18px",
+                          boxShadow: "0 2px 6px rgba(0,0,0,.08)",
+                        }}
+                      >
+                        <Typography
+                          dangerouslySetInnerHTML={{
+                            __html: msg.text.replace(/\n/g, "<br/>"),
                           }}
-                          sx={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: 0.8,
-                            px: 1.4,
-                            py: 0.7,
-                            borderRadius: "999px",
-                            cursor: "pointer",
-                            userSelect: "none",
+                        />
+                      </Paper>
+                    </Box>
 
-                            bgcolor: btn.bg,
-                            color: btn.fg,
-                            border: btn.border
-                              ? `1px solid ${btn.border}`
-                              : "1px solid transparent",
+                    {/* QUICK ACTION BUTTONS (ONLY UNDER FIRST AI MESSAGE) */}
+                    {/* QUICK ACTION BUTTONS (ONLY UNDER FIRST AI MESSAGE) */}
+                    {isFirstAssistant && (
+                      <Box
+                        sx={{
+                          mt: 1.2,
+                          pl: 5, // keeps alignment under assistant bubble (avatar space)
+                          display: "flex",
+                          gap: 1,
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        {[
+                          {
+                            label: "Events",
+                            emoji: "🎉",
+                            bg: "#B11226",
+                            fg: "#fff",
+                          },
+                          {
+                            label: "Daily Meals",
+                            emoji: "🍱",
+                            bg: "#fff",
+                            fg: "#111827",
+                            border: "#E5E7EB",
+                          },
+                          {
+                            label: "Others",
+                            emoji: "📩",
+                            bg: "#6B7280",
+                            fg: "#fff",
+                          },
+                        ].map((btn) => (
+                          <Box
+                            key={btn.label}
+                            onClick={() => sendMessage(btn.label)}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter" || e.key === " ")
+                                sendMessage(btn.label);
+                            }}
+                            sx={{
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: 0.8,
+                              px: 1.4,
+                              py: 0.7,
+                              borderRadius: "999px",
+                              cursor: "pointer",
+                              userSelect: "none",
 
-                            fontSize: "0.78rem",
-                            fontWeight: 700,
-                            letterSpacing: "0.1px",
+                              bgcolor: btn.bg,
+                              color: btn.fg,
+                              border: btn.border
+                                ? `1px solid ${btn.border}`
+                                : "1px solid transparent",
 
-                            boxShadow:
-                              btn.bg === "#fff"
-                                ? "0 1px 2px rgba(0,0,0,0.05)"
-                                : "0 3px 10px rgba(0,0,0,0.12)",
+                              fontSize: "0.78rem",
+                              fontWeight: 700,
+                              letterSpacing: "0.1px",
 
-                            transition:
-                              "transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease",
-
-                            "&:hover": {
-                              transform: "translateY(-1px)",
                               boxShadow:
                                 btn.bg === "#fff"
-                                  ? "0 4px 12px rgba(0,0,0,0.08)"
-                                  : "0 6px 16px rgba(0,0,0,0.16)",
-                              opacity: 0.96,
-                            },
+                                  ? "0 1px 2px rgba(0,0,0,0.05)"
+                                  : "0 3px 10px rgba(0,0,0,0.12)",
 
-                            "&:active": {
-                              transform: "translateY(0px) scale(0.98)",
-                            },
-                          }}
-                        >
-                          <span style={{ fontSize: "0.95rem", lineHeight: 1 }}>
-                            {btn.emoji}
-                          </span>
-                          <span>{btn.label}</span>
-                        </Box>
-                      ))}
-                    </Box>
-                  )}
+                              transition:
+                                "transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease",
+
+                              "&:hover": {
+                                transform: "translateY(-1px)",
+                                boxShadow:
+                                  btn.bg === "#fff"
+                                    ? "0 4px 12px rgba(0,0,0,0.08)"
+                                    : "0 6px 16px rgba(0,0,0,0.16)",
+                                opacity: 0.96,
+                              },
+
+                              "&:active": {
+                                transform: "translateY(0px) scale(0.98)",
+                              },
+                            }}
+                          >
+                            <span
+                              style={{ fontSize: "0.95rem", lineHeight: 1 }}
+                            >
+                              {btn.emoji}
+                            </span>
+                            <span>{btn.label}</span>
+                          </Box>
+                        ))}
+                      </Box>
+                    )}
+                  </Box>
+                );
+              })}
+
+              {isLoading && (
+                <Box display="flex" alignItems="center" gap={1}>
+                  <AccountCircleIcon
+                    sx={{ width: 32, height: 32, color: "#B11226" }}
+                  />
+                  <Box display="flex" gap={0.5}>
+                    <Box sx={dotStyle(0)} />
+                    <Box sx={dotStyle(0.2)} />
+                    <Box sx={dotStyle(0.4)} />
+                  </Box>
                 </Box>
-              );
-            })}
+              )}
+              <div ref={messagesEndRef} />
+            </Box>
 
-            {isLoading && (
-              <Box display="flex" alignItems="center" gap={1}>
-                <AccountCircleIcon sx={{ width: 32, height: 32, color: '#B11226' }} />
-                <Box display="flex" gap={0.5}>
-                  <Box sx={dotStyle(0)} />
-                  <Box sx={dotStyle(0.2)} />
-                  <Box sx={dotStyle(0.4)} />
-                </Box>
-              </Box>
-            )}
-            <div ref={messagesEndRef} />
-          </Box>
-
-          {/* INPUT */}
-          <Box
-            sx={{
-              p: 1.5,
-              borderTop: "1px solid #E5E7EB",
-              background: "white",
-            }}
-          >
-            <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-              {expectingDate ? (
-                <TextField
-                  fullWidth
-                  type="date"
-                  size="small"
-                  value={input}
-                  inputProps={{
-                    min: new Date(Date.now() + 24 * 60 * 60 * 1000)
-                      .toISOString()
-                      .split("T")[0], // blocks today and all past dates
-                  }}
-                  onChange={(e) => {
-                    const rawDate = e.target.value; // YYYY-MM-DD
-
-                    if (rawDate) {
-                      const [year, month, day] = rawDate.split("-");
-                      const formattedDate = `${day}/${month}/${year}`; // DD/MM/YYYY
-                      console.log(formattedDate);
-                      setInput(formattedDate);
-                      sendMessage(formattedDate);
-                    }
-                  }}
-                />
-              ) : (
-                <>
+            {/* INPUT */}
+            <Box
+              sx={{
+                p: 1.5,
+                borderTop: "1px solid #E5E7EB",
+                background: "white",
+              }}
+            >
+              <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                {expectingDate ? (
                   <TextField
                     fullWidth
-                    placeholder="Message Lisa…"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    type="date"
                     size="small"
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
-                        e.preventDefault();
-                        handleSend();
+                    value={input}
+                    inputProps={{
+                      min: new Date(Date.now() + 24 * 60 * 60 * 1000)
+                        .toISOString()
+                        .split("T")[0], // blocks today and all past dates
+                    }}
+                    onChange={(e) => {
+                      const rawDate = e.target.value; // YYYY-MM-DD
+
+                      if (rawDate) {
+                        const [year, month, day] = rawDate.split("-");
+                        const formattedDate = `${day}/${month}/${year}`; // DD/MM/YYYY
+                        console.log(formattedDate);
+                        setInput(formattedDate);
+                        sendMessage(formattedDate);
                       }
                     }}
-                    sx={{ bgcolor: "#F3F4F6", borderRadius: "999px" }}
                   />
+                ) : (
+                  <>
+                    <TextField
+                      fullWidth
+                      placeholder="Message Lisa…"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      size="small"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && !e.shiftKey) {
+                          e.preventDefault();
+                          handleSend();
+                        }
+                      }}
+                      sx={{ bgcolor: "#F3F4F6", borderRadius: "" }}
+                    />
 
-                  <Fab
-                    onClick={handleSend}
-                    disabled={!input.trim()}
-                    size="small"
-                    sx={{
-                      bgcolor: "#B11226",
-                      color: "white",
-                      boxShadow: "none",
-                      "&:hover": { bgcolor: "#9B0E20" },
-                    }}
-                  >
-                    <Send fontSize="small" />
-                  </Fab>
-                </>
-              )}
+                    <Fab
+                      onClick={handleSend}
+                      disabled={!input.trim()}
+                      size="small"
+                      sx={{
+                        bgcolor: "#B11226",
+                        color: "white",
+                        boxShadow: "none",
+                        "&:hover": { bgcolor: "#9B0E20" },
+                      }}
+                    >
+                      <Send fontSize="small" />
+                    </Fab>
+                  </>
+                )}
+              </Box>
             </Box>
-          </Box>
-        </Paper>
-      </Fade>
+          </Paper>
+        </Fade>
 
-      {!isOpen && (
-       <ChatAssistant isOpen={isOpen} setIsOpen={setIsOpen} />
-      )}
+        {!isOpen && <ChatAssistant isOpen={isOpen} setIsOpen={setIsOpen} />}
+      </ThemeProvider>
     </>
   );
 };

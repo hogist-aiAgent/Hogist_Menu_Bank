@@ -30,18 +30,17 @@ const pulse = keyframes`
 
 /* ---------------- COMPONENT ---------------- */
 
-export default function ChatAssistant({isOpen,setIsOpen}) {
-
-  const fullText = "Need more details? I'm here";
-  const [typedText, setTypedText] = useState("");
+export default function ChatAssistant({ isOpen, setIsOpen }) {
+const fullText =
+  window.innerWidth < 600
+    ? "Need help?"
+    : "Need more details? I'm here";  const [typedText, setTypedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [showHint, setShowHint] = useState(true);
 
   useEffect(() => {
     if (!showHint) return;
-
     const speed = isDeleting ? 35 : 60;
-
     const timeout = setTimeout(() => {
       if (!isDeleting) {
         if (typedText.length < fullText.length) {
@@ -55,7 +54,7 @@ export default function ChatAssistant({isOpen,setIsOpen}) {
         } else {
           setShowHint(false);
           setIsDeleting(false);
-          
+
           setTimeout(() => {
             setShowHint(true);
           }, 4000);
@@ -70,7 +69,7 @@ export default function ChatAssistant({isOpen,setIsOpen}) {
     <>
       {/* ---------------- CHAT BUBBLE ---------------- */}
       {showHint && !isOpen && (
-        <Box
+       <Box
           sx={{
             position: "fixed",
             bottom: 40,
@@ -82,7 +81,7 @@ export default function ChatAssistant({isOpen,setIsOpen}) {
             boxShadow: "0 8px 28px rgba(0,0,0,0.18)",
             fontWeight: 600,
             whiteSpace: "nowrap",
-            animation: `${slideUp} .4s ease`,
+animation: `${slideUp} .4s ease`,
             "&::after": {
               content: '""',
               position: "absolute",

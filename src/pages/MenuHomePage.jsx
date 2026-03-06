@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import CustomerCard from "../components/common/CustomerCard";
 import { GetStarted } from "./GetStarted/GetStarted.jsx";
 import FryingPanLoader from "../components/common/Preloader/FryingPanLoader.jsx";
+import WhatsAppButton from "../components/WhatsapChatBot/WhatsAppButton.jsx";
+import ChatWidget from "../components/WhatsapChatBot/ChatWidget.jsx";
 
 const testimonials = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
 
@@ -333,6 +335,8 @@ export const MenuHomePage = () => {
       </Box>
 
       <GetStarted />
+            <WhatsAppButton/>
+            <ChatWidget/>
     </Box>
   );
 };
