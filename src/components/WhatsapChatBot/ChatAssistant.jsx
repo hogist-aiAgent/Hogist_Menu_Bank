@@ -31,10 +31,9 @@ const pulse = keyframes`
 /* ---------------- COMPONENT ---------------- */
 
 export default function ChatAssistant({ isOpen, setIsOpen }) {
-const fullText =
-  window.innerWidth < 600
-    ? "Need help?"
-    : "Need more details? I'm here";  const [typedText, setTypedText] = useState("");
+  const fullText =
+    window.innerWidth < 600 ? "Need help?" : "Need more details? I'm here";
+  const [typedText, setTypedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [showHint, setShowHint] = useState(true);
 
@@ -69,7 +68,7 @@ const fullText =
     <>
       {/* ---------------- CHAT BUBBLE ---------------- */}
       {showHint && !isOpen && (
-       <Box
+        <Box
           sx={{
             position: "fixed",
             bottom: 40,
@@ -79,10 +78,11 @@ const fullText =
             py: 1.5,
             borderRadius: "20px",
             boxShadow: "0 8px 28px rgba(0,0,0,0.18)",
-            fontWeight: 600,            zIndex: 9999, 
+            fontWeight: 600,
+            zIndex: 9999,
 
             whiteSpace: "nowrap",
-animation: `${slideUp} .4s ease`,
+            animation: `${slideUp} .4s ease`,
             "&::after": {
               content: '""',
               position: "absolute",

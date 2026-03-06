@@ -5,7 +5,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const WhatsAppButton = ({ phoneNumber }) => {
   const openWhatsApp = () => {
-    const url = "https://wa.me/${phoneNumber}";
+    const url = `https://wa.me/${phoneNumber}`;
     window.open(url, '_blank');
   };
 
