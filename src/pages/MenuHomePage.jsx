@@ -335,8 +335,8 @@ export const MenuHomePage = () => {
       </Box>
 
       <GetStarted />
-            <WhatsAppButton phoneNumber={'+15557647627'}/>
-            <ChatWidget/>
+            {/* <WhatsAppButton phoneNumber={'+15557647627'}/>
+            <ChatWidget/> */}
     </Box>
   );
 };
