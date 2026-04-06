@@ -8,6 +8,7 @@ import { GetStarted } from '../pages/GetStarted/GetStarted';
 import { CustomerFav } from '../pages/CustomerFav/CustomerFav';
 import ScrollToTop from '../components/common/ScrollToTop';
 import PrepareYourMenu  from '../pages/PrepareMenu/PrepareYourMenu';
+import RegionalIndianCuisines from '../pages/RegionalIndianCuisines/RegionalIndianCuisines';
 
 const MainRoutes = () => {
     return (
@@ -19,6 +20,7 @@ const MainRoutes = () => {
             <Route path='/' element={<MenuHomePage/>}/>
             <Route path='/customerfav' element={<CustomerFav/>}/>
             <Route path='/preparemenu' element={<PrepareYourMenu/>}/>
+            <Route path='/regional-indian-cuisines' element={<RegionalIndianCuisines/>}/>
 
 
             {/* <Route path='/' element={<GetStarted/>}/> */}

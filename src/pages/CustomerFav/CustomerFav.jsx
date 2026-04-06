@@ -153,6 +153,7 @@ export const CustomerFav = () => {
     window.addEventListener('scroll', handleScroll, { passive: false });
     
     // Initial check
+  console.log("scrolled")
     setTimeout(handleScroll, 100);
 
     return () => {
