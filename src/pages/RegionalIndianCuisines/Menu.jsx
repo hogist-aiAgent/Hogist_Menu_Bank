@@ -31,23 +31,25 @@ import ClearAllIcon from '@mui/icons-material/ClearAll';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 
-import welcomeDrink from '../../assets/icons/prepareMenuIcons/drink.png'
-import Salad from '../../assets/icons/prepareMenuIcons/salad.png'
-import Soup from '../../assets/icons/prepareMenuIcons/soup.png'
-import Starter from '../../assets/icons/prepareMenuIcons/starter.png'
-import Bread  from '../../assets/icons/prepareMenuIcons/bread.png'
-import RiceNoodles from '../../assets/icons/prepareMenuIcons/food.png'
-import Gravy from '../../assets/icons/prepareMenuIcons/gravy.png'
-import MainCourse from '../../assets/icons/prepareMenuIcons/mainCourse.png'
-import VarietyRice from '../../assets/icons/prepareMenuIcons/varietyrice.png'
-import Dessert from '../../assets/icons/prepareMenuIcons/dessert.png'
-import SeaFood from '../../assets/icons/prepareMenuIcons/seaFood.png'
-import Tandoori from '../../assets/icons/prepareMenuIcons/tantoori.png'
-import Chaat from '../../assets/icons/prepareMenuIcons/chaat.png'
-import Snacks from '../../assets/icons/prepareMenuIcons/snacks.png'
-import SideDish from '../../assets/icons/prepareMenuIcons/sideDish.png'
+// Category-specific icons
+import welcomeDrink from '../../assets/icons/prepareMenuIcons/drink.png';
+import Salad from '../../assets/icons/prepareMenuIcons/salad.png';
+import Soup from '../../assets/icons/prepareMenuIcons/soup.png';
+import Starter from '../../assets/icons/prepareMenuIcons/starter.png';
+import Bread from '../../assets/icons/prepareMenuIcons/bread.png';
+import RiceNoodles from '../../assets/icons/prepareMenuIcons/food.png';
+import Gravy from '../../assets/icons/prepareMenuIcons/gravy.png';
+import MainCourse from '../../assets/icons/prepareMenuIcons/mainCourse.png';
+import VarietyRice from '../../assets/icons/prepareMenuIcons/varietyrice.png';
+import Dessert from '../../assets/icons/prepareMenuIcons/dessert.png';
+import SeaFood from '../../assets/icons/prepareMenuIcons/seaFood.png';
+import Tandoori from '../../assets/icons/prepareMenuIcons/tantoori.png';
+import Chaat from '../../assets/icons/prepareMenuIcons/chaat.png';
+import Snacks from '../../assets/icons/prepareMenuIcons/snacks.png';
+import SideDish from '../../assets/icons/prepareMenuIcons/sideDish.png';
+import defaultIcon from '../../assets/icons/prepareMenuIcons/drink.png';
 
-const CategoryIcon = ({ src, isActive, children }) => {
+const CategoryIcon = ({ src, isActive }) => {
   return (
     <Box
       component="img"
@@ -62,6 +64,29 @@ const CategoryIcon = ({ src, isActive, children }) => {
       }}
     />
   );
+};
+
+// Map category labels to their respective icons
+const getCategoryIcon = (categoryLabel) => {
+  const label = categoryLabel.toLowerCase();
+
+  if (label.includes("welcome drink") || label.includes("welcome")) return welcomeDrink;
+  if (label.includes("salad")) return Salad;
+  if (label.includes("soup")) return Soup;
+  if (label.includes("starter") || label.includes("starters")) return Starter;
+  if (label.includes("bread") || label.includes("breads")) return Bread;
+  if (label.includes("rice") || label.includes("noodle") || label.includes("biryani") || label.includes("pulao")) return RiceNoodles;
+  if (label.includes("gravy") || label.includes("gravies") || label.includes("curry") || label.includes("curries") || label.includes("main course") || label.includes("course")) return MainCourse;
+  if (label.includes("dessert") || label.includes("sweet") || label.includes("payasam") || label.includes("halwa") || label.includes("ice cream") || label.includes("bakery")) return Dessert;
+  if (label.includes("sea food") || label.includes("seafood") || label.includes("fish") || label.includes("prawn") || label.includes("crab")) return SeaFood;
+  if (label.includes("tandoori") || label.includes("grill")) return Tandoori;
+  if (label.includes("chaat")) return Chaat;
+  if (label.includes("snack")) return Snacks;
+  if (label.includes("side") || label.includes("accompaniment") || label.includes("chutney") || label.includes("curd") || label.includes("raita") || label.includes("condiment")) return SideDish;
+  if (label.includes("dal") || label.includes("continental") || label.includes("paneer")) return Gravy;
+  if (label.includes("variety rice") || label.includes("fried rice")) return VarietyRice;
+
+  return defaultIcon;
 };
 
 const Menu = (props) => {
@@ -91,163 +116,29 @@ const Menu = (props) => {
     Zoom,
     mobileMenuDrawer,
     selectedRegion,
-    selectedSubOption
+    selectedSubOption,
+    menuCategories
   } = props;
 
   const [hoveredCategory, setHoveredCategory] = React.useState(null);
 
-  const categories = [
-    { 
-      label: "Welcome Drink", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={welcomeDrink} 
-          isActive={activeCategory === "Welcome Drink" || hoveredCategory === "Welcome Drink"} 
-        />
-      ), 
-      key: "Welcome Drink" 
-    },
-    { 
-      label: "Salad", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={Salad} 
-          isActive={activeCategory === "Salad" || hoveredCategory === "Salad"} 
-        />
-      ), 
-      key: "Salad" 
-    },
-    { 
-      label: "Soup", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={Soup} 
-          isActive={activeCategory === "Soup" || hoveredCategory === "Soup"} 
-        />
-      ), 
-      key: "Soup" 
-    },
-    { 
-      label: "Starter", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={Starter} 
-          isActive={activeCategory === "Starter" || hoveredCategory === "Starter"} 
-        />
-      ), 
-      key: "Starter" 
-    },
-    { 
-      label: "Indian Bread", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={Bread}
-          isActive={activeCategory === "Indian Bread" || hoveredCategory === "Indian Bread"} 
-        />
-      ), 
-      key: "Indian Bread" 
-    },
-    { 
-      label: "Rice & Noodles", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={RiceNoodles}
-          isActive={activeCategory === "Rice & Noodles" || hoveredCategory === "Rice & Noodles"} 
-        />
-      ), 
-      key: "Rice & Noodles" 
-    },
-    { 
-      label: "Gravy", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={Gravy}
-          isActive={activeCategory === "Gravy" || hoveredCategory === "Gravy"} 
-        />
-      ), 
-      key: "Gravy" 
-    },
-    { 
-      label: "Side Dishes", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={SideDish}
-          isActive={activeCategory === "Side Dishes" || hoveredCategory === "Side Dishes"} 
-        />
-      ), 
-      key: "Side Dishes" 
-    },
-    { 
-      label: "Main Course", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={MainCourse}
-          isActive={activeCategory === "Main Course" || hoveredCategory === "Main Course"} 
-        />
-      ), 
-      key: "Main Course" 
-    },
-    { 
-      label: "Variety Rice", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={VarietyRice}
-          isActive={activeCategory === "Variety Rice" || hoveredCategory === "Variety Rice"} 
-        />
-      ), 
-      key: "Variety Rice" 
-    },
-    { 
-      label: "Dessert", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={Dessert} 
-          isActive={activeCategory === "Dessert" || hoveredCategory === "Dessert"} 
-        />
-      ), 
-      key: "Dessert" 
-    },
-    { 
-      label: "Sea Food", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={SeaFood}
-          isActive={activeCategory === "Sea Food" || hoveredCategory === "Sea Food"} 
-        />
-      ), 
-      key: "Sea Food" 
-    },
-    { 
-      label: "Tandoori", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={Tandoori} 
-          isActive={activeCategory === "Tandoori" || hoveredCategory === "Tandoori"} 
-        />
-      ), 
-      key: "Tandoori" 
-    },
-    { 
-      label: "Chaat", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={Chaat} 
-          isActive={activeCategory === "Chaat" || hoveredCategory === "Chaat"} 
-        />
-      ), 
-      key: "Chaat" 
-    },
-    { 
-      label: "Snacks", 
-      icon: (active) => (
-        <CategoryIcon 
-          src={Snacks}
-          isActive={activeCategory === "Snacks" || hoveredCategory === "Snacks"} 
-        />
-      ), 
-      key: "Snacks" 
-    },
-  ];
+  // Dynamically create categories from the menu data
+  const categories = React.useMemo(() => {
+    if (menuCategories && menuCategories.length > 0) {
+      return menuCategories.map(cat => ({
+        label: cat,
+        icon: (active) => (
+          <CategoryIcon 
+            src={getCategoryIcon(cat)} 
+            isActive={activeCategory === cat || hoveredCategory === cat} 
+          />
+        ),
+        key: cat
+      }));
+    }
+    // Default categories if no data
+    return [];
+  }, [menuCategories, activeCategory, hoveredCategory]);
 
   const defaultImage = "https://via.placeholder.com/300x200?text=No+Image";
 
@@ -276,7 +167,7 @@ const Menu = (props) => {
   // Get display name for the page header
   const getPageHeader = () => {
     if (selectedRegion && selectedSubOption) {
-      return `${selectedRegion} Cuisine - ${selectedSubOption.split(" - ")[1]}`;
+      return `${selectedRegion} Cuisine - ${selectedSubOption}`;
     }
     return "Regional Indian Cuisines";
   };
@@ -307,50 +198,26 @@ const Menu = (props) => {
           </Link>
         </Breadcrumbs>
 
-        {/* Display selected category name */}
-        {selectedRegion && selectedSubOption && (
-          <Box sx={{ mb: 3, textAlign: "center" }}>
-            <Typography
-              sx={{
-                fontWeight: 800,
-                fontSize: { xs: "1.5rem", md: "2rem" },
-                color: "#c60000",
-                mb: 1
-              }}
+        {categories.length > 0 && (
+          <Box sx={{ mb: 1, mx: { xs: -2, md: -4 }, px: { xs: 2, md: 4 } }}>
+            <Box 
+              sx={{ mb: 2 }}
+              onMouseLeave={() => setHoveredCategory(null)}
             >
-              {selectedRegion} Cuisine
-            </Typography>
-            <Typography
-              sx={{
-                fontWeight: 600,
-                fontSize: { xs: "1rem", md: "1.2rem" },
-                color: "#555",
-                mb: 2
-              }}
-            >
-              {selectedSubOption} Menu
-            </Typography>
+              <CategoryBar 
+                setFoodType={setFilterType} 
+                categories={categories.map(cat => ({
+                  ...cat,
+                  icon: cat.icon(activeCategory === cat.key)
+                }))} 
+                activeCategory={activeCategory} 
+                setActiveCategory={handleCategoryClick} 
+                animationDuration="0.15s" 
+                onHoverCategory={setHoveredCategory}
+              />
+            </Box>
           </Box>
         )}
-
-        <Box sx={{ mb: 1, mx: { xs: -2, md: -4 }, px: { xs: 2, md: 4 } }}>
-          <Box 
-            sx={{ mb: 2 }}
-            onMouseLeave={() => setHoveredCategory(null)}
-          >
-            <CategoryBar 
-              setFoodType={setFilterType} 
-              categories={categories.map(cat => ({
-                ...cat,
-                icon: cat.icon(activeCategory === cat.key)
-              }))} 
-              activeCategory={activeCategory} 
-              setActiveCategory={handleCategoryClick} 
-              animationDuration="0.15s" 
-              onHoverCategory={setHoveredCategory}
-            />
-          </Box>
-        </Box>
 
         <Box sx={{ display: "flex", gap: { xs: 3, md: 4 }, flexDirection: { xs: "column", md: "row" } }}>
           <Box sx={{ flex: 3, height: 'calc(100vh - 220px)', overflowY: 'auto', pr: 1 }} ref={topRef}>

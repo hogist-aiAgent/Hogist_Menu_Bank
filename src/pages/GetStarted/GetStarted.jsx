@@ -5,12 +5,8 @@ import {
   Card, 
   CardContent, 
   Dialog, 
-  DialogTitle, 
   DialogContent, 
   IconButton,
-  Chip,
-  Grid,
-  Slide,
   Button,
   Avatar
 } from "@mui/material";
@@ -20,26 +16,17 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import backgroundImage from "../../assets/getStarted/menu-bg.jpeg";
 import { useNavigate } from "react-router-dom";
 
-// Import icon images - REPLACE THESE WITH YOUR ACTUAL ICON PATHS
 import SouthIndianIcon from "../../assets/popUp/southIndia.png";
 import NorthIndianIcon from "../../assets/popUp/northIndia.png";
 import AndhraIcon from "../../assets/popUp/andhra.png";
 import KeralaIcon from "../../assets/popUp/kerala.png";
 
-// Placeholder icons if you don't have them yet - using MUI icons as placeholders
 import RestaurantIcon from '@mui/icons-material/Restaurant';
-import BreakfastDiningIcon from '@mui/icons-material/BreakfastDining';
-import LunchDiningIcon from '@mui/icons-material/LunchDining';
-import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 
 import breakfast from "../../assets/categoryIcon/breakfast.png";
 import snacks from "../../assets/categoryIcon/snacks.png";
 import lunch from "../../assets/categoryIcon/lunch.png";
 import dinner from "../../assets/categoryIcon/dinner.png";
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 
 export const GetStarted = () => {
   const navigate = useNavigate();
@@ -49,8 +36,6 @@ export const GetStarted = () => {
   // State for Regional Indian Cuisines flow
   const [regionalDialogOpen, setRegionalDialogOpen] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState(null);
-  const [subOptionsOpen, setSubOptionsOpen] = useState(false);
-  const [selectedSubOption, setSelectedSubOption] = useState(null);
 
   // Regional options with icons
   const regionalOptions = [
@@ -61,74 +46,64 @@ export const GetStarted = () => {
   ];
 
   // Sub-options based on selected region with icons
-    const getSubOptions = (region) => {
-      if (!region) return [];
+  const getSubOptions = (region) => {
+    if (!region) return [];
 
-      const map = {
-        "South Indian": [
-          "South India Breakfast",
-          "South India Snacks",
-          "South India Lunch & Dinner"
-        ],
-        "North Indian": [
-          "North India Breakfast",
-          "North India Snacks",
-          "North India Lunch",
-          "North India Dinner"
-        ],
-        "Andhra": [
-          "Andhra Breakfast",
-          "Andhra Snacks",
-          "Andhra Lunch",
-          "Andhra Dinner"
-        ],
-        "Kerala": [
-          "Kerala Breakfast",
-          "Kerala Snacks",
-          "Kerala Lunch",
-          "Kerala Dinner"
-        ]
-      };
+    const map = {
+      "South Indian": [
+        " Breakfast",
+        " Snacks",
+        " Lunch & Dinner"
+      ],
+      "North Indian": [
+        " Breakfast",
+        " Snacks",
+        " Lunch",
+        " Dinner"
+      ],
+      "Andhra": [
+        " Breakfast",
+        " Snacks",
+        " Lunch",
+        " Dinner"
+      ],
+      "Kerala": [
+        " Breakfast",
+        " Snacks",
+        " Lunch",
+        " Dinner"
+      ]
+    };
 
-      return map[region] || [];
-    };  
-  // Handle Regional Indian Cuisines card click
+    return map[region] || [];
+  };  
+
   const handleRegionalCardClick = () => {
     setRegionalDialogOpen(true);
   };
 
-  // Handle region selection
-// Handle region selection (UPDATED)
-const handleRegionSelect = (region) => {
-  setSelectedRegion(region);
-};
+  const handleRegionSelect = (region) => {
+    setSelectedRegion(region);
+  };
 
-// Handle sub-option selection (UPDATED)
-const handleSubOptionSelect = (subOption) => {
-  setSelectedSubOption(subOption);
+  const handleSubOptionSelect = (subOption) => {
+    navigate("/regional-indian-cuisines", {
+      state: {
+        selectedRegion,
+        selectedSubOption: subOption
+      }
+    });
 
-  navigate("/regional-indian-cuisines", {
-    state: {
-      selectedRegion,
-      selectedSubOption: subOption
-    }
-  });
+    setRegionalDialogOpen(false);
 
-  setRegionalDialogOpen(false);
-
-  setTimeout(() => {
-    setSelectedRegion(null);
-    setSelectedSubOption(null);
-  }, 500);
-};
+    setTimeout(() => {
+      setSelectedRegion(null);
+    }, 500);
+  };
 
   // Handle close dialogs
   const handleCloseRegionalDialog = () => {
     setRegionalDialogOpen(false);
-  };
-
-  const handleCloseSubOptionsDialog = () => {
-    setSubOptionsOpen(false);
     setSelectedRegion(null);
   };
 
@@ -153,7 +128,6 @@ const handleSubOptionSelect = (subOption) => {
             backgroundRepeat: "no-repeat",
             backgroundAttachment: "fixed",
             opacity: 1,
-            // transition: "opacity 0.6s ease-out",
             zIndex: 0,
             width: "100%",
             height: "900px",
@@ -208,7 +182,6 @@ const handleSubOptionSelect = (subOption) => {
               cursor: "pointer",
               position: "relative",
               overflow: "hidden",
-              // transition: "transform 0.35s ease, box-shadow 0.35s ease",
 
               "&::after": {
                 content: '""',
@@ -217,12 +190,10 @@ const handleSubOptionSelect = (subOption) => {
                 background:
                   "linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.55))",
                 opacity: 0,
-                // transition: "opacity 0.35s ease",
                 zIndex: 1,
               },
 
               "&:hover": {
-               
                 boxShadow: "0 20px 40px rgba(0,0,0,0.35)",
               },
 
@@ -246,7 +217,6 @@ const handleSubOptionSelect = (subOption) => {
                 p: 5,
                 position: "relative",
                 zIndex: 2,
-                // transition: "opacity 0.3s ease",
               }}
             >
               <Typography
@@ -284,7 +254,6 @@ const handleSubOptionSelect = (subOption) => {
                 zIndex: 2,
                 opacity: 0,
                 transform: "translateY(12px)",
-                // transition: "all 0.35s ease",
               }}
             >
               <Box
@@ -318,7 +287,6 @@ const handleSubOptionSelect = (subOption) => {
               cursor: "pointer",
               position: "relative",
               overflow: "hidden",
-              // transition: "transform 0.35s ease, box-shadow 0.35s ease",
 
               "&::after": {
                 content: '""',
@@ -327,7 +295,6 @@ const handleSubOptionSelect = (subOption) => {
                 background:
                   "linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.55))",
                 opacity: 0,
-                // transition: "opacity 0.35s ease",
                 zIndex: 1,
               },
 
@@ -355,7 +322,6 @@ const handleSubOptionSelect = (subOption) => {
                 p: 5,
                 position: "relative",
                 zIndex: 2,
-                // transition: "opacity 0.3s ease",
               }}
             >
               <Typography
@@ -393,7 +359,6 @@ const handleSubOptionSelect = (subOption) => {
                 zIndex: 2,
                 opacity: 0,
                 transform: "translateY(12px)",
-                // transition: "all 0.35s ease",
               }}
             >
               <Box
@@ -427,7 +392,6 @@ const handleSubOptionSelect = (subOption) => {
               cursor: "pointer",
               position: "relative",
               overflow: "hidden",
-              // transition: "transform 0.35s ease, box-shadow 0.35s ease",
 
               "&::after": {
                 content: '""',
@@ -436,7 +400,6 @@ const handleSubOptionSelect = (subOption) => {
                 background:
                   "linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.55))",
                 opacity: 0,
-                // transition: "opacity 0.35s ease",
                 zIndex: 1,
               },
 
@@ -464,7 +427,6 @@ const handleSubOptionSelect = (subOption) => {
                 p: 5,
                 position: "relative",
                 zIndex: 2,
-                // transition: "opacity 0.3s ease",
               }}
             >
               <Typography
@@ -502,7 +464,6 @@ const handleSubOptionSelect = (subOption) => {
                 zIndex: 2,
                 opacity: 0,
                 transform: "translateY(12px)",
-                // transition: "all 0.35s ease",
               }}
             >
               <Box
@@ -590,11 +551,81 @@ const handleSubOptionSelect = (subOption) => {
         <DialogContent sx={{ px: 2, pb: 3 }}>
           {/* ================= REGION VIEW ================= */}
           {!selectedRegion && (
-            <Grid container spacing={3} justifyContent="center">
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                gap: 3,
+              }}
+            >
               {regionalOptions.map((option) => (
-                <Grid item xs={4} sm={3} key={option.name}>
+                <Box
+                  key={option.name}
+                  onClick={() => handleRegionSelect(option.name)}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    cursor: "pointer",
+                  }}
+                >
                   <Box
-                    onClick={() => handleRegionSelect(option.name)}
+                    sx={{
+                      width: 70,
+                      height: 70,
+                      borderRadius: 3,
+                      backgroundColor: "#f2f2f2",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      mb: 1,
+                      transition: "0.3s",
+                      "&:hover": {
+                        border: "2px solid #c60000",
+                      }
+                    }}
+                  >
+                    <Avatar src={option.icon} sx={{ width: 40, height: 40 }} />
+                  </Box>
+
+                  <Typography
+                    sx={{
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      color: "#c60000",
+                      textAlign: "center",
+                    }}
+                  >
+                    {option.name}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          )}
+
+          {selectedRegion && (
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                gap: 3,
+              }}
+            >
+              {getSubOptions(selectedRegion).map((item) => {
+                let iconImg;
+
+                if (item.toLowerCase().includes("breakfast")) iconImg = breakfast;
+                else if (item.toLowerCase().includes("snacks")) iconImg = snacks;
+                else if (item.toLowerCase().includes("lunch")) iconImg = lunch;
+                else if (item.toLowerCase().includes("dinner")) iconImg = dinner;
+
+                return (
+
+                  <Box
+                    key={item}
+                    onClick={() => handleSubOptionSelect(item)}
                     sx={{
                       display: "flex",
                       flexDirection: "column",
@@ -618,81 +649,24 @@ const handleSubOptionSelect = (subOption) => {
                         }
                       }}
                     >
-                      <Avatar src={option.icon} sx={{ width: 40, height: 40 }} />
+                      <Avatar src={iconImg} sx={{ width: 40, height: 40 }} />
                     </Box>
 
                     <Typography
                       sx={{
-                        fontSize: "14px",
+                        fontSize: "13px",
                         fontWeight: 600,
                         color: "#c60000",
                         textAlign: "center",
                       }}
                     >
-                      {option.name}
+                      {item}
                     </Typography>
                   </Box>
-                </Grid>
-              ))}
-            </Grid>
-          )}
-
-        {selectedRegion && (
-  <Grid container spacing={3} justifyContent="center">
-    {getSubOptions(selectedRegion).map((item) => {
-      let iconImg;
-
-      if (item.toLowerCase().includes("breakfast")) iconImg = breakfast;
-      else if (item.toLowerCase().includes("snacks")) iconImg = snacks;
-      else if (item.toLowerCase().includes("lunch")) iconImg = lunch;
-      else if (item.toLowerCase().includes("dinner")) iconImg = dinner;
-
-      return (
-        <Grid item xs={4} sm={3} key={item}>
-          <Box
-            onClick={() => handleSubOptionSelect(item)}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              cursor: "pointer",
-            }}
-          >
-            <Box
-              sx={{
-                width: 70,
-                height: 70,
-                borderRadius: 3,
-                backgroundColor: "#f2f2f2",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                mb: 1,
-                transition: "0.3s",
-                "&:hover": {
-                  border: "2px solid #c60000",
-                }
-              }}
-            >
-              <Avatar src={iconImg} sx={{ width: 40, height: 40 }} />
+                );
+              })}
             </Box>
-
-            <Typography
-              sx={{
-                fontSize: "13px",
-                fontWeight: 600,
-                color: "#c60000",
-                textAlign: "center",
-              }}
-            >
-              {item}
-            </Typography>
-          </Box>
-        </Grid>
-      );
-    })}
-  </Grid>
-)}
+          )}
         </DialogContent>
       </Dialog>
     </>

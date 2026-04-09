@@ -1,4 +1,3 @@
-// RegionalIndianCuisines.js
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import {
   Box,
@@ -15,24 +14,20 @@ import Zoom from "@mui/material/Zoom";
 import { useMenuStore } from "../../components/store/useMenuStore";
 import { prepareMenuData } from "../../components/data/prepareMenuData";
 import DeleteIcon from "@mui/icons-material/Delete";
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import ClearAllIcon from '@mui/icons-material/ClearAll';
 import FiberManualRecord from "@mui/icons-material/FiberManualRecord";
 import Menu from "./Menu";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useLocation } from "react-router-dom";
+import { getRegionalMenuData } from "../../components/data/regionalMenuData";
 
 const RegionalIndianCuisines = () => {
   const location = useLocation();
-  const categoryScrollRef = useRef(null);
   const topRef = useRef(null);
 
   // Get selected region and sub-option from navigation state
   const { selectedRegion, selectedSubOption } = location.state || {};
 
-  const [activeCategory, setActiveCategory] = useState(
-    prepareMenuData[0]?.category || "Breakfast"
-  );
+  const [activeCategory, setActiveCategory] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [filterType, setFilterType] = useState("both");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,33 +41,27 @@ const RegionalIndianCuisines = () => {
   const removeItem = useMenuStore((state) => state.removeItem);
   const clearAll = useMenuStore((state) => state.clearAll);
 
-  // Filter menu data based on selected region and sub-option
+  // Get filtered menu data based on selected region and sub-option
   const filteredMenuData = useMemo(() => {
-    if (!selectedRegion || !selectedSubOption) {
-      return prepareMenuData;
+    const regionalData = getRegionalMenuData(selectedRegion, selectedSubOption);
+    if (regionalData && regionalData.length > 0) {
+      return regionalData;
     }
-
-    // Parse the selected sub-option to determine meal type
-    // Example: "South Indian - Breakfast" -> mealType = "Breakfast"
-    const mealType = selectedSubOption.split(" - ")[1];
-    
-    // Filter categories based on meal type
-    return prepareMenuData.filter(cat => {
-      if (mealType === "Breakfast") {
-        return cat.category === "Breakfast" || cat.category === "Welcome Drink";
-      } else if (mealType === "Lunch") {
-        return cat.category !== "Breakfast" && cat.category !== "Dessert";
-      } else if (mealType === "Dinner") {
-        return cat.category !== "Breakfast";
-      }
-      return true;
-    });
+    return [];
   }, [selectedRegion, selectedSubOption]);
+
+  // Get unique categories from menu data
+  const menuCategories = useMemo(() => {
+    if (filteredMenuData && filteredMenuData.length > 0) {
+      return filteredMenuData.map(cat => cat.category);
+    }
+    return [];
+  }, [filteredMenuData]);
 
   // Set initial active category
   useEffect(() => {
-    if (filteredMenuData.length > 0) {
-      setActiveCategory(filteredMenuData[0]?.category || "Breakfast");
+    if (filteredMenuData && filteredMenuData.length > 0) {
+      setActiveCategory(filteredMenuData[0]?.category || "");
     }
   }, [filteredMenuData]);
 
@@ -488,6 +477,7 @@ const RegionalIndianCuisines = () => {
         Zoom={Zoom}
         selectedRegion={selectedRegion}
         selectedSubOption={selectedSubOption}
+        menuCategories={menuCategories}
       />
 
       <Fab
