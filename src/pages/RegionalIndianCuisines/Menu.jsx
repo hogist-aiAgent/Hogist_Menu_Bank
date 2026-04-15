@@ -47,7 +47,7 @@ import Tandoori from '../../assets/icons/prepareMenuIcons/tantoori.png';
 import Chaat from '../../assets/icons/prepareMenuIcons/chaat.png';
 import Snacks from '../../assets/icons/prepareMenuIcons/snacks.png';
 import SideDish from '../../assets/icons/prepareMenuIcons/sideDish.png';
-import defaultIcon from '../../assets/icons/prepareMenuIcons/drink.png';
+import defaultIcon from '../../assets/icons/prepareMenuIcons/varietyrice.png';
 
 const CategoryIcon = ({ src, isActive }) => {
   return (
@@ -70,20 +70,20 @@ const CategoryIcon = ({ src, isActive }) => {
 const getCategoryIcon = (categoryLabel) => {
   const label = categoryLabel.toLowerCase();
 
-  if (label.includes("welcome drink") || label.includes("welcome")) return welcomeDrink;
-  if (label.includes("salad")) return Salad;
-  if (label.includes("soup")) return Soup;
+  if (label.includes("welcome drink") || label.includes("welcome")||label.includes("juice")|| label.includes("beverages")) return welcomeDrink;
+  if (label.includes("salad")||label.includes("fruit")) return Salad;
+  if (label.includes("soup") || label.includes("chinese")) return Soup;
   if (label.includes("starter") || label.includes("starters")) return Starter;
-  if (label.includes("bread") || label.includes("breads")) return Bread;
+  if (label.includes("bread") || label.includes("breads")|| label.includes("parathas")) return Bread;
   if (label.includes("rice") || label.includes("noodle") || label.includes("biryani") || label.includes("pulao")) return RiceNoodles;
-  if (label.includes("gravy") || label.includes("gravies") || label.includes("curry") || label.includes("curries") || label.includes("main course") || label.includes("course")) return MainCourse;
+  if (label.includes("main course") || label.includes("course")) return MainCourse;
   if (label.includes("dessert") || label.includes("sweet") || label.includes("payasam") || label.includes("halwa") || label.includes("ice cream") || label.includes("bakery")) return Dessert;
   if (label.includes("sea food") || label.includes("seafood") || label.includes("fish") || label.includes("prawn") || label.includes("crab")) return SeaFood;
-  if (label.includes("tandoori") || label.includes("grill")) return Tandoori;
+  if (label.includes("tandoori") || label.includes("grill")|| label.includes("chicken")) return Tandoori;
   if (label.includes("chaat")) return Chaat;
   if (label.includes("snack")) return Snacks;
-  if (label.includes("side") || label.includes("accompaniment") || label.includes("chutney") || label.includes("curd") || label.includes("raita") || label.includes("condiment")) return SideDish;
-  if (label.includes("dal") || label.includes("continental") || label.includes("paneer")) return Gravy;
+  if (label.includes("side") || label.includes("accompaniment") || label.includes("chutney") || label.includes("raita") || label.includes("condiment")) return SideDish;
+  if (label.includes("dal") || label.includes("continental") || label.includes("paneer")|| label.includes("curd")||(label.includes("gravy") || label.includes("gravies") || label.includes("curry") || label.includes("curries"))) return Gravy;
   if (label.includes("variety rice") || label.includes("fried rice")) return VarietyRice;
 
   return defaultIcon;

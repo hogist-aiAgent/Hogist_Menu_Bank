@@ -935,10 +935,7 @@ export const menuData = [
     ],
   },
 
-
-
-  // 5. Lunch & Dinner: Non Veg
-  
+  // 5. Lunch & Dinner: Non Veg  
 
   {
     id: 48,

@@ -36,6 +36,12 @@ const CategoryIcon = ({ src, isActive, children }) => {
   );
 };
 
+// Extract menu number from title string for sorting
+const getMenuNumber = (title) => {
+  const match = title.match(/Menu\s+(\d+)/i);
+  return match ? parseInt(match[1], 10) : Infinity;
+};
+
 export const CustomerFav = () => {
   const navigate = useNavigate();
   const theme = useTheme();
@@ -102,11 +108,13 @@ export const CustomerFav = () => {
   ];
 
   const filteredMenus = useMemo(() => {
-    return menuData.filter((menu) => {
-      const categoryMatch = activeCategory === "ALL" || menu.category === activeCategory;
-      const foodMatch = foodType === "BOTH" || menu.foodType === foodType;
-      return categoryMatch && foodMatch;
-    });
+    return menuData
+      .filter((menu) => {
+        const categoryMatch = activeCategory === "ALL" || menu.category === activeCategory;
+        const foodMatch = foodType === "BOTH" || menu.foodType === foodType;
+        return categoryMatch && foodMatch;
+      })
+      .sort((a, b) => getMenuNumber(a.title) - getMenuNumber(b.title));
   }, [activeCategory, foodType]);
 
   // Check if any cards are empty after filtering
