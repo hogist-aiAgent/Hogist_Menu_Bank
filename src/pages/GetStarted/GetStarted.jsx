@@ -582,7 +582,7 @@ export const GetStarted = () => {
                       mb: 1,
                       transition: "0.3s",
                       "&:hover": {
-                        border: "2px solid #c60000",
+                        backgroundColor:"#e81313b6",
                       }
                     }}
                   >
@@ -645,7 +645,7 @@ export const GetStarted = () => {
                         mb: 1,
                         transition: "0.3s",
                         "&:hover": {
-                          border: "2px solid #c60000",
+                          backgroundColor:"#e81313b6",
                         }
                       }}
                     >

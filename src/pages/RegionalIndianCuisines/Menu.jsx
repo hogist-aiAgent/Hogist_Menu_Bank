@@ -281,32 +281,34 @@ const Menu = (props) => {
                           >
                             <Box sx={{ position: "relative", height: 180, flexShrink: 0, padding: "6px" }}>
                               <Box sx={{ position: "relative" }}>
-                                {!imageLoaded[item.id] && (
-                                  <Box
-                                    sx={{
-                                      position: "absolute",
-                                      top: "50%",
-                                      left: "50%",
-                                      transform: "translate(-50%, -50%)",
-                                      zIndex: 2,
-                                    }}
-                                  >
-                                    <CircularProgress size={35} sx={{ color: "#c60000" }} />
-                                  </Box>
-                                )}
+                               
+                            {!imageLoaded[item.id] && (
+                              <Box
+                                sx={{
+                                  position: "absolute",
+                                  inset: 0,
+                                  borderRadius: "15px",
+                                  background: "linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)",
+                                  backgroundSize: "800px 100%",
+                                  animation: "shimmer 1.4s infinite",
+                                  zIndex: 2,
+                                }}
+                              />
+                            )}
 
                                 <Box
                                   component="img"
-                                  src={item.image || defaultImage}
+                                  src={item.image ? item.image + "=w400" : defaultImage}
                                   alt={item.name}
                                   loading="lazy"
                                   onLoad={() => handleImageLoad(item.id)}
+                                  onError={() => handleImageLoad(item.id)}
                                   sx={{
                                     width: "100%",
                                     height: 174,
                                     objectFit: "cover",
                                     filter: "none",
-                                    opacity: imageLoaded[item.id] ? 1 : 0.7,
+                                    opacity: imageLoaded[item.id] ? 1 : 0,
                                     transition: "opacity 0.4s ease",
                                     borderRadius: "15px",
                                     backgroundColor: "#f0f0f0",
