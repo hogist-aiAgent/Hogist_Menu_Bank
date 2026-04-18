@@ -15,6 +15,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import backgroundImage from "../../assets/getStarted/menu-bg.jpeg";
 import { useNavigate } from "react-router-dom";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 import SouthIndianIcon from "../../assets/popUp/southIndia.png";
 import NorthIndianIcon from "../../assets/popUp/northIndia.png";
@@ -510,19 +511,22 @@ export const GetStarted = () => {
             mt: 1
           }}
         >
-          {selectedRegion && (
-            <Button
+        {selectedRegion && (
+            <IconButton
               onClick={() => setSelectedRegion(null)}
               sx={{
                 position: "absolute",
                 left: 0,
+                top: 3,
                 color: "#c60000",
-                fontWeight: 600,
-                textTransform: "none"
+               ":hover": {
+                  bgcolor: "#f2f2f2",  // ✅ match the close button background
+                }
               }}
             >
-              Back
-            </Button>
+              <ArrowBackIosIcon fontSize="medium" sx={{ ml: 0.2, position: "relative",
+                left: 3.5, }} /> {/* ✅ nudge icon to center */}
+            </IconButton>
           )}
 
           <Typography
